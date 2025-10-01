@@ -1,2 +1,2 @@
-# Programaci-n
+# Programacion
 Repositorio de la asignatura programación
