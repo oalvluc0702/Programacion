@@ -13,7 +13,7 @@ public class ejercicio5 {
 
         //ahora hacemos el calculo del número aleatorio y lo vamos metiendo en las posiciones con un bucle mostrándolo por pantalla
         for (int i = 0; i < nums.length; i++) {
-            nums[i]= (int) (Math.random()*9);
+            nums[i]= (int) (Math.random()*10);
             System.out.println("El índice del número es: "+i+" el número aleatorio es: "+nums[i]);
         }
     }
