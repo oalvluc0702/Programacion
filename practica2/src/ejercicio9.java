@@ -17,14 +17,14 @@ public class ejercicio9 {
               numPos=j+1;
             }
         }
-        System.out.println("max = "+max+"pos = "+numPos);
+        System.out.printf("El número máximo es %d y su posición es %d%n",max,numPos);
         numPos=0;
         for (int k = 0; k < nums.length; k++) {
             if (nums[k] < min){
                 min=nums[k];
-                numPos=k+2;
+                numPos=k+1;
             }
         }
-        System.out.println("min = "+min+"pos = "+numPos);
+        System.out.printf("El numero minimo es %d y su posición es %d",min,numPos);
     }
 }
