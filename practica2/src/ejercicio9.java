@@ -19,7 +19,7 @@ public class ejercicio9 {
 
         //comparamos los números con el contador, si es mayor que el máximo se sobreescribirá y la posición será el contador + 1
         for (int j = 0; j < nums.length; j++) {
-            if (nums[j] > max){
+            if (nums[j] >= max){
               max=nums[j];
               numPos=j+1;
             }
@@ -32,7 +32,7 @@ public class ejercicio9 {
 
         //hacemos lo mismo pero para los mínimos, esta vez comparando si el número del contador es menor que el mín
         for (int k = 0; k < nums.length; k++) {
-            if (nums[k] < min){
+            if (nums[k] <= min){
                 min=nums[k];
                 numPos=k+1;
             }
