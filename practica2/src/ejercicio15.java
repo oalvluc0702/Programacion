@@ -1,9 +1,16 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//Ejercicio 15
+/*Crea un programa que:
+Cree una lista de enteros (ArrayList<Integer>).
+Pida al usuario 10 números enteros y los añada a la lista.
+Elimine los valores duplicados manteniendo solo el primero que apareció.
+Ordene la lista de menor a mayor y la muestre por pantalla. */
+
 public class ejercicio15 {
     public static void main(String[] args){
-        //Primero definimos la Clase Scanner  y el Array list con la que vamos a trabajar los números
+        //Primero definimos la Clase Scanner y el Array list con la que vamos a trabajar los números
         Scanner s = new Scanner(System.in);
         ArrayList<Integer> lista = new ArrayList<>();
 

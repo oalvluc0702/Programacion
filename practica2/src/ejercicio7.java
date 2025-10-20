@@ -1,5 +1,10 @@
 import java.util.Scanner;
 
+//Ejercicio 7
+/* Programa Java que llene un array con 10 números enteros que se leen por teclado. A
+continuación calcula y muestra la media de los valores positivos y la de los valores negativos
+del array. */
+
 public class ejercicio7 {
     public static void main(String[] args){
         //definimos la clase Scanner y el array

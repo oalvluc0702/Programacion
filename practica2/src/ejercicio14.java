@@ -1,6 +1,13 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//Ejercicio 14
+/*Crea un programa que:
+Cree una lista de Strings (ArrayList<String>).
+Pida al usuario nombres por teclado hasta que introduzca la palabra "fin".
+Luego pida un nombre a buscar y diga si está en la lista o no, mostrando también en
+qué posición se encuentra si existe.*/
+
 public class ejercicio14 {
     public static void main(String[] args) {
         //definimos la clase Scanner y el arraylist donde vamos a guardar los nombres y la entrada de datos

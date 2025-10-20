@@ -1,5 +1,12 @@
 import java.util.Scanner;
 
+//Ejercicio 9
+/*Crea un programa en Java que:
+1. Pida al usuario por teclado 10 números enteros y los guarde en un array.
+2. Recorra el array para encontrar:
+    ○ El valor máximo y la posición en la que aparece.
+    ○ El valor mínimo y la posición en la que aparece.
+Muestre el resultado en consola */
 public class ejercicio9 {
     public static void  main(String[] args){
         //importamos clase Scanner y definimos el array que contendrá los 10 números enteros

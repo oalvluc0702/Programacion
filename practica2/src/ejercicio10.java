@@ -1,5 +1,11 @@
 import java.util.Scanner;
 
+//Ejercicio 10
+/* Crea un programa que muestre por pantalla la nota de un estudiante, de entre una lista de
+estudiantes con sus respectivas notas. El nombre del estudiante lo introduce el usuario por
+teclado (usa la clase Scanner). Utiliza un array para los nombres de los alumnos y otro para
+las notas. ¿Serías capaz de hacerlo con un array BIdimensional? */
+
 public class ejercicio10 {
     public static void main(String[] args){
         //definimos la clase Scanner y los array de estudiantes y notas

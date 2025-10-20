@@ -1,4 +1,7 @@
 import java.util.Scanner;
+//Ejercicio 1
+/* Crea un array de 10 posiciones de números con valores pedidos por teclado. Muestra por
+consola el índice y el valor al que corresponde.*/
 
 public class ejercicio1 {
     public static void main(String[] args){
