@@ -1,3 +1,6 @@
+# ☕︎ Práctica 2 ☕︎ <img src=https://img.shields.io/badge/Completado-green>
+
+
 ### Enunciados de los ejercicios de la práctica 2, los títulos que pone "Ejercicio x" son enlaces que te llevarán al ejercicio
 ## [Ejercicio 1](src/ejercicio1.java)
 ### Crea un array de 10 posiciones de números con valores pedidos por teclado. Muestra por consola el índice y el valor al que corresponde.
