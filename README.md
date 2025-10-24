@@ -14,4 +14,7 @@ Repositorio de la asignatura programación que pertenece al alumno Óscar Álvar
     * [src/](practica2/src)
       * ejercicio1...
     * practica2.iml
+    * [Enunciados.md](practica2/Enunciados.md)
   * [images/](images)
+
+![Java icono](images/R.jpg)
