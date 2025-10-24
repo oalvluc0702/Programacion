@@ -30,12 +30,16 @@ public class ejercicio14 {
         System.out.println("dime un nombre a buscar: ");
         String entradaNom= s.nextLine();
 
-        //ahora vemos con el metodo .contains() si existe dentro de nuestro arraylist
+        //ahora vemos con un for recorriendo la lista si existe dentro de nuestro arraylist
         //si lo ha encontrado sacaremos el índice del elemento que ha encontrado, si no, mostraremos que no existe ese elemento en especifico
-        if (lista.contains(entradaNom)){
-            System.out.printf("El nombre existe y se encuentra en la posición %d",lista.indexOf(entradaNom));
-        } else {
-            System.out.printf("El nombre %s no existe",entradaNom);
+        for (int i = 0; i <lista.size() ; i++) {
+            if (lista.get(i).equals(entradaNom)){
+                System.out.printf("El nombre existe y se encuentra en la posición %d",lista.indexOf(entradaNom));
+                break;
+            } else if (!lista.get(i).equals(entradaNom) && i == lista.size()-1){
+                System.out.printf("El nombre %s no existe",entradaNom);
+            }
         }
+
     }
 }
