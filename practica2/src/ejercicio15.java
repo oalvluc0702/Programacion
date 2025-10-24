@@ -30,9 +30,25 @@ public class ejercicio15 {
                 }
             }
         }
-        //con el metodo .sort() le pasamos el parametro null que es para dejar el comparador al orden natural (menor a mayor)
-        lista.sort(null);
-        //mostramos la lista por pantalla
+        //Ahora vamos a crear el algoritmo de ordenación para la lista, primero definimos las variables que controlan que se compara
+        int valorActual=0;
+        int valorFuturo=0;
+        //Ahora un bucle que vaya recorriendo un array hasta que el contador sea la longitud de la lista -1 indice
+        for (int i = 0; i < lista.size()-1; i++) {
+            //ponemos que el valoractual sea el elemento del contador de la lista
+            valorActual=lista.get(i);
+            //el valor futuro es el elemento del contador de la lista + 1 indice para que compare el que viene
+            valorFuturo=lista.get(i+1);
+            //si el valor actual es mayor que el valor futuro se añade el valor futuro a la lista y elimina el índice del que estaba comparando
+            if (valorActual > valorFuturo){
+                lista.add(valorActual);
+                lista.remove(i);
+                //ahora reiniciamos el valor del bucle para que vuelva a comparar desde el principio ponemos -1 porque al acabar el bucle el propio bucle añade 1 al contador
+                i=-1;
+            }
+        }
+        //Mostramos por pantalla la lista ordenada
         System.out.println(lista);
     }
 }
+
