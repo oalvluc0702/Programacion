@@ -16,7 +16,6 @@ public class ejercicio2 {
 
         //esta variable es la que se encargará de sumar todas las filas posibles en nuestro programa
         int sTotal=0;
-        int sumaColumna=0;
         //con un for anidado metemos los números en el array bidimensional
         for (int i = 0; i < numeros.length; i++) {
             for (int j = 0; j < numeros[i].length; j++) {
