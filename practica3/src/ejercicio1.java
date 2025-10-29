@@ -8,6 +8,7 @@ public class ejercicio1 {
         double[][] numeros= {{0,30,2,9999,9999,5},{75,9999,9999,9999,0,9999},{9999,9999,-2,9,9999,11}};
         String[] array={"Array","Columna 0","Columna 1","Columna 2","Columna 3","Columna 4","Columna 5"};
         //ahora con un bucle anidado mostramos por pantalla la posición los números comparando si son igual al espacio en blanco o no
+
         for (int i = 0; i < numeros.length; i++) {
             if (i == 0){
                 for (int j = 0; j < array.length; j++) {
