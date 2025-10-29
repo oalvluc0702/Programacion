@@ -33,7 +33,7 @@ public class ejercicio2 {
             //este bucle imprime los números siguiendo la segunda dimensión de nuestro array
             for (int j = 0; j < numeros[i].length; j++) {
 
-                System.out.printf("|    %d    |",numeros[i][j]);
+                System.out.printf("|%-10d|",numeros[i][j]);
 
                 //añade el número a sumaFila para luego mostrarlo
                 sumaFila+=numeros[i][j];
@@ -44,7 +44,7 @@ public class ejercicio2 {
             sTotal+=sumaFila;
 
             //imprimimos la columna del sumatorio de la fila
-            System.out.printf("|   %d   ||%n",sumaFila);
+            System.out.printf("|%-10d|%n",sumaFila);
         }
 
         //este bucle se encargará de recorrer el array de otra manera para sacar el número máximo de la columna
@@ -66,10 +66,10 @@ public class ejercicio2 {
             sTotal+=max;
 
             //cuando ha acabado la comparación de esa columna, imprimos en la tabla ese número guardado en max
-            System.out.printf("|    %d    |",max);
+            System.out.printf("|%-10d|",max);
         }
 
         //Como último paso imprimimos el contenido de la variable sTotal que es la suma de todas las filas y ya estaría completa la tabla
-        System.out.printf("|   %d   ||",sTotal);
+        System.out.printf("|%-10d|",sTotal);
     }
 }
