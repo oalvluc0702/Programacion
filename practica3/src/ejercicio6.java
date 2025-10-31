@@ -1,5 +1,9 @@
+/*Modifica el programa anterior de tal forma que no se repita ningún número en el array
+además de que tiene que estar comprendido en un rango entre 20-40.*/
 
 public class ejercicio6 {
+
+    //esta es la función que se encarga de buscar repetidos, devuelve verdadero si encuentra algún número repetido
     public static boolean buscarRepetido(int[][] numeros, int numActual){
         for (int i = 0; i < numeros.length; i++) {
             for (int j = 0; j < numeros[i].length; j++) {
@@ -32,7 +36,7 @@ public class ejercicio6 {
             for (int j = 0; j < numeros[i].length; j++) {
                 //Definimos la variable intentos para poder controlar los intentos de comprobación
                 int intentos=0;
-                //Ahora con un do while ejecutaremos la generación del número aleatorio que se ejecute mientras buscar repetido sea verdadero y los intentos sean menores a los intentos máximos permitidos
+                //Ahora con un do while ejecutaremos la generación del número aleatorio que se ejecute mientras buscarRepetido sea verdadero y los intentos sean menores a los intentos máximos permitidos
                 do {
                     numActual = 20 + (int) (Math.random() * 21);
                     intentos++;
