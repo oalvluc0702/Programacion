@@ -51,16 +51,18 @@ public class ejercicio8 {
         return false;
     }
     public static void main(String[] args) {
-        int x = (int) (Math.random() * 5);
-        int y = (int) (Math.random() * 5);
+        int casillas = 10;
+        int intentos = 0;
+        int x = (int) (Math.random() * casillas);
+        int y = (int) (Math.random() * casillas);
         int posXFalso = x;
         int posYFalso = y;
-        int[][] tablero = new int[5][5];
+        int[][] tablero = new int[casillas][casillas];
         tablero[y][x] = 1;
         Scanner s = new Scanner(System.in);
         do {
-            x = (int) (Math.random() * 5);
-            y = (int) (Math.random() * 5);
+            x = (int) (Math.random() * casillas);
+            y = (int) (Math.random() * casillas);
         } while (tablero[y][x] == 1);
         int posXTesoro = x;
         int posYTesoro = y;
@@ -73,17 +75,19 @@ public class ejercicio8 {
         int posicionInicial = tablero[posActualY][posActualX];
         if (posicionInicial == 1) {
             mostrarTablero(tablero);
-            System.out.println("☠ ¡Empezaste sobre el tesoro falso! Has perdido.");
+            System.out.printf("%s has tardado: %d","☠ ¡Empezaste sobre el tesoro falso! Has perdido.",intentos);
             return;
         } else if (posicionInicial == 2) {
             mostrarTablero(tablero);
-            System.out.println("💰 ¡Empezaste sobre el tesoro verdadero! ¡Has ganado!");
+            System.out.printf("%s has tardado: %d","💰 ¡Empezaste sobre el tesoro verdadero! ¡Has ganado!", intentos);
             return;
         }
         tablero[posActualY][posActualX] = 3;
-        int distancia=Math.abs((posXTesoro-posActualX)+(posYTesoro-posActualY));
-        int distanciaFalso=Math.abs((posXFalso-posActualX)+(posYFalso-posActualY));
-        if (distancia <=2 || distanciaFalso <=2){
+        int distancia=Math.abs((posXTesoro-posActualX)+Math.abs((posYTesoro-posActualY)));
+        System.out.println(distancia);
+        int distanciaFalso=Math.abs((posXFalso-posActualX)+Math.abs((posYFalso-posActualY)));
+        System.out.println(distanciaFalso);
+        if (distancia <=1 || distanciaFalso <=1){
             System.out.println("estas cerca... Pero ten cuidado podría ser un cofre falso");
         } else {
             System.out.println("Aún estás muy lejos del cofre");
@@ -128,18 +132,25 @@ public class ejercicio8 {
                 }
                     int posicionDestino = tablero[posActualY][posActualX];
                     if (posicionDestino == 1) {
+                        intentos++;
                         mostrarTablero(tablero);
                         System.out.println("☠ Te has encontrado con un tesoro falso, Has perdido");
+                        System.out.printf("has tardado: %d intentos",intentos);
                     } else if (posicionDestino == 2) {
+                        intentos++;
                         mostrarTablero(tablero);
                         System.out.println("💰 HAS ENCONTRADO EL TESORO!!! FELICIDADES HAS GANADO!!!!");
+                        System.out.printf("has tardado: %d intentos",intentos);
                     } else {
+                        intentos++;
                         tablero[posActualYAnterior][posActualXAnterior] = 0;
                         tablero[posActualY][posActualX] = 3;
                         mostrarTableroParcial(tablero);
-                        distancia=Math.abs((posXTesoro-posActualX)+(posYTesoro-posActualY));
-                        distanciaFalso=Math.abs((posXFalso-posActualX)+(posYFalso-posActualY));
-                        if (distancia <=2 || distanciaFalso <=2){
+                        distancia=Math.abs((posXTesoro-posActualX)+ Math.abs((posYTesoro-posActualY)));
+                        System.out.println(distancia);
+                        distanciaFalso=Math.abs((posXFalso-posActualX)+Math.abs((posYFalso-posActualY)));
+                        System.out.println(distanciaFalso);
+                        if (distancia <=1 || distanciaFalso <=1){
                             System.out.println("estas cerca... Pero ten cuidado podría ser un cofre falso");
                         } else {
                             System.out.println("Aún estás muy lejos del cofre");
