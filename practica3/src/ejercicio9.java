@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+/*Escribe un programa que, dada una posición en un tablero de ajedrez, nos diga a qué casillas podría saltar un caballo que se encuentra en esa posición. Como se indica en la fi gura, el caballo se mueve siempre en forma de L. El tablero cuenta con 64 casillas. Las columnas se indican con las letras de la “a” a la “h” y las filas se indican del 1 al 8.*/
 public class ejercicio9 {
 
     //tendremos esta función para mostrar el tablero, que mostrará conjunto, que es un array con los Strings concatenados
