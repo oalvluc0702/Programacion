@@ -94,6 +94,7 @@ public class ejercicio10 {
                 tablero[i][j]=99;
             }
         }
+        mostrarTablero(tablero);
         //ahora ya nos metemos con la partida
         do {
             //definimos fila y columna para saber donde meter el dato
