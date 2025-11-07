@@ -83,9 +83,9 @@ public class ejercicio8 {
             return;
         }
         tablero[posActualY][posActualX] = 3;
-        int distancia=Math.abs((posXTesoro-posActualX)+Math.abs((posYTesoro-posActualY)));
+        int distancia = Math.abs(posXTesoro - posActualX) + Math.abs(posYTesoro - posActualY);
         System.out.println(distancia);
-        int distanciaFalso=Math.abs((posXFalso-posActualX)+Math.abs((posYFalso-posActualY)));
+        int distanciaFalso = Math.abs(posXFalso - posActualX) + Math.abs(posYFalso - posActualY);
         System.out.println(distanciaFalso);
         if (distancia <=1 || distanciaFalso <=1){
             System.out.println("estas cerca... Pero ten cuidado podría ser un cofre falso");
@@ -146,10 +146,8 @@ public class ejercicio8 {
                         tablero[posActualYAnterior][posActualXAnterior] = 0;
                         tablero[posActualY][posActualX] = 3;
                         mostrarTableroParcial(tablero);
-                        distancia=Math.abs((posXTesoro-posActualX)+ Math.abs((posYTesoro-posActualY)));
-                        System.out.println(distancia);
-                        distanciaFalso=Math.abs((posXFalso-posActualX)+Math.abs((posYFalso-posActualY)));
-                        System.out.println(distanciaFalso);
+                        distancia = Math.abs(posXTesoro - posActualX) + Math.abs(posYTesoro - posActualY);
+                        distanciaFalso = Math.abs(posXFalso - posActualX) + Math.abs(posYFalso - posActualY);
                         if (distancia <=1 || distanciaFalso <=1){
                             System.out.println("estas cerca... Pero ten cuidado podría ser un cofre falso");
                         } else {
