@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+/*Realiza el juego de las tres en raya.*/
 public class ejercicio10 {
     //aquí tendremos la función sencilla para mostrar el tablero, teniendo en cuenta lo que tiene que mostrar dependiendo del valor dentro del array
     public static void mostrarTablero(int[][] tablero){
