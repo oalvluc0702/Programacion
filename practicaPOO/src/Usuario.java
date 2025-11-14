@@ -1,10 +1,10 @@
 public class Usuario {
-    private  String nombre;
-    private  String apellidos;
-    private  String codPostal;
-    private  String direccion;
-    private  String email;
-    private  String contrasena;
+    private String nombre;
+    private String apellidos;
+    private String codPostal;
+    private String direccion;
+    private String email;
+    private String contrasena;
 
     public Usuario(String nom, String ape, String codP, String direc, String correo, String passwd){
         nombre = nom;
@@ -15,53 +15,64 @@ public class Usuario {
         contrasena = passwd;
     }
 
-    public static String getApellidos() {
+    public String getApellidos() {
         return apellidos;
     }
 
-    public static String getCodPostal() {
+    public  String getCodPostal() {
         return codPostal;
     }
 
-    public static String getNombre() {
+    public  String getNombre() {
         return nombre;
     }
 
-    public static String getDireccion() {
+    public  String getDireccion() {
         return direccion;
     }
 
-    public static String getEmail() {
+    public  String getEmail() {
         return email;
     }
 
-    public static String getContrasena() {
+    public  String getContrasena() {
         return contrasena;
     }
 
-    public static void setNombre(String nombre) {
-        Usuario.nombre = nombre;
+    public  void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public static void setApellidos(String apellidos) {
-        Usuario.apellidos = apellidos;
+    public  void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
-    public static void setCodPostal(String codPostal) {
-        Usuario.codPostal = codPostal;
+    public  void setCodPostal(String codPostal) {
+        this.codPostal = codPostal;
     }
 
-    public static void setContrasena(String contrasena) {
-        Usuario.contrasena = contrasena;
+    public  void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
-    public static void setDireccion(String direccion) {
-        Usuario.direccion = direccion;
+    public  void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public static void setEmail(String email) {
+    public  void setEmail(String email) {
         if (email.contains("@")){
-            Usuario.email =
+            this.email = email;
+        } else {
+            System.out.println("Error: Email inválido. No contiene @.");
         }
+    }
+    public boolean checkUsuario(String correo, String passwd){
+        if (this.email.equals(correo) && this.contrasena.equals(passwd)){
+            return true;
+        }
+        return false;
+    }
+    public String toString(){
+        return " nombre: "+this.nombre+" apellidos: "+this.apellidos+" direccion: "+this.direccion+" código postal: "+this.codPostal+" email: "+this.email;
     }
 }
