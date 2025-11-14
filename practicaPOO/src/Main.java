@@ -17,19 +17,28 @@ public class Main{
         Usuario freezer = new Usuario("Freezer", "Zarbon Dodoria","99999","Planeta Namek, 2","freezerdbz@namek.sol","damelasbolasdedragon123");
         Usuario[] listaUsuarios={oscar,mario,freezer};
         validarRegistro(listaUsuarios);
-        System.out.println("dime el correo: ");
-        String email = s.nextLine();
+        String email;
+        do {
+            System.out.println("dime el correo: ");
+            email = s.nextLine();
+            if (!email.equals(oscar.getEmail())){
+                System.out.println("El correo que debes introducir es: "+oscar.getEmail());
+            }
+        }while (!email.equals(oscar.getEmail()));
         System.out.println("dime la contraseña para el correo: "+email);
         String passwd = s.nextLine();
         if (oscar.checkUsuario(email,passwd)){
             System.out.println("Sesión iniciada");
         } else {
-            System.out.printf("ERROR contraseña incorrecta para %s",oscar.getEmail());
+            System.out.printf("ERROR contraseña incorrecta para %s%n",oscar.getEmail());
         }
-        System.out.println("dime el correo: ");
-        email = s.nextLine();
-        System.out.println("dime la contraseña para el correo: "+email);
-        passwd = s.nextLine();
+        do {
+            System.out.println("dime el correo: ");
+            email = s.nextLine();
+            if (!email.equals(mario.getEmail())){
+                System.out.println("El correo que debes introducir es: "+mario.getEmail());
+            }
+        }while (!email.equals(mario.getEmail()));
         if (mario.checkUsuario(email,passwd)){
             System.out.println("Sesión iniciada para"+mario.getNombre());
         } else {
