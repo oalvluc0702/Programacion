@@ -39,6 +39,8 @@ public class Main{
                 System.out.println("El correo que debes introducir es: "+mario.getEmail());
             }
         }while (!email.equals(mario.getEmail()));
+        System.out.println("dime la contraseña para el correo: "+email);
+        passwd = s.nextLine();
         if (mario.checkUsuario(email,passwd)){
             System.out.println("Sesión iniciada para"+mario.getNombre());
         } else {
