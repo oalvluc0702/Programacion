@@ -10,7 +10,7 @@ public class Main{
             }
         }
     }
-    public static void main() {
+    public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         Usuario oscar = new Usuario("oscar","Alvarez Lucas","28630","Calle panamá, 8, 2-I","oscarieshungria@gmail.com","1234");
         Usuario mario = new Usuario("Mario","Escribano Cózar","28620","Calle Algar, 5","Mescrico@gmail.com","123456");
@@ -42,7 +42,7 @@ public class Main{
         System.out.println("dime la contraseña para el correo: "+email);
         passwd = s.nextLine();
         if (mario.checkUsuario(email,passwd)){
-            System.out.println("Sesión iniciada para"+mario.getNombre());
+            System.out.println("Sesión iniciada para "+mario.getNombre());
         } else {
             System.out.printf("ERROR contraseña incorrecta para %s",mario.getEmail());
         }
