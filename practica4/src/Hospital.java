@@ -1,4 +1,3 @@
-import java.awt.geom.Area;
 import java.util.ArrayList;
 
 public class Hospital {
@@ -39,5 +38,24 @@ public class Hospital {
     public void agregarArea(Areas areas) {
         this.areas.add(areas);
     }
+    public int getNumeroTotalMedicos(){
+        int sumaMedicos = 0;
+        for (int i = 0; i<this.areas.size(); i++){
+            sumaMedicos+=this.areas.get(i).getNumMedicos();
+        }
+        return sumaMedicos;
+    }
+    public double getProporcionMedicosArea(Areas areas){
+        return (double) areas.getNumMedicos() / (double) (this.getNumeroTotalMedicos());
+    }
+    public boolean existeArea(int idArea){
+        for (int i = 0; i < this.areas.size(); i++) {
+            if(this.areas.get(i).getIdentificador() == idArea){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
 
