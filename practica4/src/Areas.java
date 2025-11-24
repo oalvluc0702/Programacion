@@ -18,6 +18,14 @@ public class Areas {
         this.numMedicos = 0;
     }
 
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -34,12 +42,8 @@ public class Areas {
         this.identificador = identificador;
     }
 
-    public Hospital getCifHospital() {
-        return hospital;
-    }
-
-    public void setCifHospital(Hospital hospital) {
-        this.hospital = hospital;
+    public String getCifHospital() {
+        return hospital.getCif();
     }
 
     public int getNumMedicos() {
@@ -74,16 +78,5 @@ public class Areas {
     }
     public int calcularCapacidadRestante( int capacidadMaxima){
         return capacidadMaxima-this.numMedicos;
-    }
-
-    @Override
-    public String toString() {
-        return "Areas{" +
-                "nombre='" + nombre + '\'' +
-                ", identificador=" + identificador +
-                ", hospital=" + hospital +
-                ", numMedicos=" + numMedicos +
-                ", planta=" + planta +
-                '}';
     }
 }

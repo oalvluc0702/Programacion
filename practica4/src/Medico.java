@@ -8,10 +8,11 @@ public class Medico {
     private String sexo;
     private Areas areas;
     private int fechaInicio;
+    private Direccion direccion;
     public Medico() {
     }
 
-    public Medico(String dni, int edad, double sueldoBruto, String nombre, String sexo,int fechaInicio, Areas areas) {
+    public Medico(String dni, int edad, double sueldoBruto, String nombre, String sexo,int fechaInicio, Areas areas, Direccion direccion) {
         this.dni = dni;
         this.edad = edad;
         this.sueldoBruto = sueldoBruto;
@@ -19,7 +20,16 @@ public class Medico {
         this.sexo = sexo;
         this.areas = areas;
         this.fechaInicio = fechaInicio;
+        this.direccion = direccion;
         areas.aumentarMedicos();
+    }
+
+    public Direccion getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(Direccion direccion) {
+        this.direccion = direccion;
     }
 
     public String getDni() {
@@ -101,5 +111,18 @@ public class Medico {
         this.areas.disminuirMedicos();
         setAreas(nuevaArea);
         this.areas.aumentarMedicos();
+    }
+
+    @Override
+    public String toString() {
+        return "Medico{" +
+                "dni='" + dni + '\'' +
+                ", edad=" + edad +
+                ", sueldoBruto=" + sueldoBruto +
+                ", nombre='" + nombre + '\'' +
+                ", sexo='" + sexo + '\'' +
+                ", areas=" + areas +
+                ", fechaInicio=" + fechaInicio +
+                '}';
     }
 }
