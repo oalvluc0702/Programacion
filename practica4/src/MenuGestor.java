@@ -123,7 +123,22 @@ public class MenuGestor {
                     medicoBuscado.cambiarArea(areaSeleccionada);
             }
         }
+    }
+    public void modificarHospital(){
+        for (int i = 0; i < listaHospitales.size(); i++) {
+            Hospital hospital = listaHospitales.get(i);
+            System.out.println(i+".- CIF: "+hospital.getCif()+" nombre: "+hospital.getNombre());
+        }
+        System.out.println("Elige un hospital: ");
+        int eleccion = s.nextInt();
+        Hospital hospitalSeleccionado = listaHospitales.get(eleccion);
+        System.out.println("Dime que quieres hacer");
 
+        String seleccion = s.nextLine();
+        switch (seleccion){
+            case "1":
+
+        }
     }
     public void presentacion(){
         boolean salir = false;
@@ -190,6 +205,8 @@ public class MenuGestor {
                             modificarMedico(dni);
                         }
                         break;
+                    case 5:
+
                     case 13:
                         salir=true;
                         break;
