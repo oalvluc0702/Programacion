@@ -54,4 +54,9 @@ public class Direccion {
     public void setProvincia(String provincia) {
         this.provincia = provincia;
     }
+
+    @Override
+    public String toString() {
+        return "calle: "+this.calle+" numero: "+this.numero+" localidad: "+this.localidad+" provincia: "+this.provincia+" codigo postal: "+this.codigoPostal;
+    }
 }

@@ -4,15 +4,24 @@ public class Hospital {
     private String cif;
     private String nombre;
     private ArrayList<Areas> areas;
-
+    private Direccion direccion;
 
     public Hospital() {
     }
 
-    public Hospital(String cif, String nombre) {
+    public Hospital(String cif, String nombre, Direccion direccion) {
         this.cif = cif;
         this.nombre = nombre;
+        this.direccion = direccion;
         this.areas = new ArrayList<>();
+    }
+
+    public Direccion getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(Direccion direccion) {
+        this.direccion = direccion;
     }
 
     public String getCif() {
@@ -57,5 +66,9 @@ public class Hospital {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return this.cif+" "+this.nombre+" "+this.direccion;
+    }
 }
 

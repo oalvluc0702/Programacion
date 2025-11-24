@@ -75,4 +75,15 @@ public class Areas {
     public int calcularCapacidadRestante( int capacidadMaxima){
         return capacidadMaxima-this.numMedicos;
     }
+
+    @Override
+    public String toString() {
+        return "Areas{" +
+                "nombre='" + nombre + '\'' +
+                ", identificador=" + identificador +
+                ", hospital=" + hospital +
+                ", numMedicos=" + numMedicos +
+                ", planta=" + planta +
+                '}';
+    }
 }
