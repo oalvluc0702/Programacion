@@ -6,7 +6,6 @@ public class Areas {
     private Hospital hospital;
     private int numMedicos;
     private int planta;
-
     public Areas() {
     }
 

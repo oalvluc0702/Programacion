@@ -1,3 +1,4 @@
+import java.awt.geom.Area;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,9 +10,21 @@ public class MenuGestor {
     private ArrayList<Areas> listaAreas = new ArrayList<>();
     private ArrayList<Medico> listaMedicos = new ArrayList<>();
     private ArrayList<Contratos> listaContratos = new ArrayList<>();
+    Direccion direccion1 = new Direccion("Calle panamá",8,11630,"Arcos de la frontera","Provincia");
+    Hospital h1 = new Hospital("HOSP0","Maria Zambrano", direccion1);
+    Areas a1 = new Areas("medicina",0,h1,2);
+    Medico m1 = new Medico("32913620E",22,2400,"Óscar Álvarez Lucas","hombre",2015,a1,direccion1);
     public MenuGestor() {
     }
     Scanner s = new Scanner(System.in);
+    public Medico buscarMedico(String dni){
+        for (Medico listaMedico : listaMedicos) {
+            if (listaMedico.getDni().equals(dni)) {
+                return listaMedico;
+            }
+        }
+        return null;
+    }
     public Direccion crearDireccion(){
         System.out.println("Dime una calle");
         String calle = s.nextLine();
@@ -131,33 +144,131 @@ public class MenuGestor {
         }
         System.out.println("Elige un hospital: ");
         int eleccion = s.nextInt();
+        s.nextLine(); //limpia el buffer del int para que no salte el salto de línea
         Hospital hospitalSeleccionado = listaHospitales.get(eleccion);
         System.out.println("Dime que quieres hacer");
-
+        System.out.println("1.- Modificar nombre");
+        System.out.println("2.- Modificar dirección");
+        System.out.println("3.- Cancelar operación");
         String seleccion = s.nextLine();
         switch (seleccion){
             case "1":
+                System.out.println("Dime el nombre que quieres asignar al hospital");
+                String nombre = s.nextLine();
+                hospitalSeleccionado.setNombre(nombre);
+                break;
+            case "2":
+                Direccion nuevaDireccion = crearDireccion();
+                hospitalSeleccionado.setDireccion(nuevaDireccion);
+                break;
+            case "3":
+                break;
+            default:
+                System.out.println("Debe seleccionar una opción");
+                break;
+        }
+    }
+    public void calcularAntiguedad(){
+        System.out.println("dime un dni");
+        String dni = s.nextLine();
+        Medico medicoEncontrado = buscarMedico(dni);
+        if (medicoEncontrado == null){
+            System.out.println("no existe ningún médico con ese DNI");
+        }else {
+            System.out.println("Los años de antigüedad del médico: "+medicoEncontrado.getNombre()+" son: "+ medicoEncontrado.getAniosAntiguedad());
+        }
+    }
+    public void calcularSueldoNeto(){
+        double retencion;
+        System.out.println("dime un dni para calcular sueldo neto");
+        String dni = s.nextLine();
+        Medico medicoEncontrado = buscarMedico(dni);
+        if (medicoEncontrado == null){
+            System.out.println("no existe ningún médico con ese DNI");
+        }else{
+            do {
+                System.out.println("dime el porcentaje de retención en numero con decimales ej: 0,4");
+                retencion = s.nextDouble();
+                s.nextLine(); // limpieza del buffer del double
+                if (retencion < 0){
+                    System.out.println("Has introducido un valor negativo, tiene que ser positivo");
+                }
+            } while (retencion <0);
+            System.out.println("El sueldo neto del médico: "+medicoEncontrado.getNombre()+ " es: "+medicoEncontrado.calcularSueldoNeto(retencion)+ "€");
+        }
+    }
+    public void comprobarEdad(){
+        System.out.println("dime un dni para comprobar edad");
+        String dni = s.nextLine();
+        Medico medicoEncontrado = buscarMedico(dni);
+        if (medicoEncontrado == null){
+            System.out.println("no existe el médico");
+        } else {
+            System.out.println("introduce la edad mínima de tu país para ser mayor de edad");
+            int edadMinima = s.nextInt();
+            if (medicoEncontrado.esMayordeEdad(edadMinima)){
+                System.out.println("Es mayor de edad");
+            } else {
+                System.out.println("Es menor de edad");
+            }
+        }
 
+    }
+    public void calcularProporcionMedicos(){
+        Areas areaSeleccionada = null;
+        Hospital hospitalSeleccionado= null;
+        System.out.println("Dime el cif del Hospital del que quieres seleccionar el área");
+        String cifHospital = s.nextLine();
+        for (int i = 0; i < listaHospitales.size(); i++) {
+            if (listaHospitales.get(i).getCif().equals(cifHospital)){
+                hospitalSeleccionado = listaHospitales.get(i);
+            }
+        }
+        for (int i = 0; i < listaAreas.size(); i++) {
+            Areas areas = listaAreas.get(i);
+            if (areas.getHospital().getCif().equals(cifHospital)){
+                System.out.printf("| %-3s | %-25s |%n",i,"ID: "+areas.getIdentificador());
+            }
+        }
+        System.out.println("Ahora dime el id del área, escribe el valor al lado de ID");
+        int id = s.nextInt();
+        for (int i = 0; i < listaAreas.size(); i++) {
+            if (listaAreas.get(i).getIdentificador() == id){
+                areaSeleccionada = listaAreas.get(i);
+            }
+        }
+        if (hospitalSeleccionado == null || areaSeleccionada == null){
+            System.out.println("Tienes que haber seleccionado un hospital o área");
+        } else{
+            System.out.println("El hospital: "+hospitalSeleccionado.getNombre()+ " tiene una proporción de médicos en el area del: "+hospitalSeleccionado.getProporcionMedicosArea(areaSeleccionada));
         }
     }
     public void presentacion(){
+        listaHospitales.add(h1);
+        listaAreas.add(a1);
+        h1.agregarArea(a1);
+        listaMedicos.add(m1);
+
         boolean salir = false;
         do {
-            System.out.println("------------1.Crear Hospital------------");
-            System.out.println("------------2.Crear Área------------");
-            System.out.println("------------3.Crear Médico------------");
-            System.out.println("------------4.Modificar médico------------");
-            System.out.println("------------5.Modificar Hospital------------");
-            System.out.println("------------6.Calcular antiguedad------------");
-            System.out.println("------------7.Calcular sueldo neto------------");
-            System.out.println("------------8.Comprobar edad------------");
-            System.out.println("------------9.Proporción de Médicos------------");
-            System.out.println("------------10.Capacidad de Área------------");
-            System.out.println("------------11.Comparar Áreas------------");
-            System.out.println("------------12.Contratos por Año------------");
-            System.out.println("------------13.Salir------------------------");
-            System.out.println("----------------------------------------");
-            System.out.println("------------Elige opción------------");
+            System.out.println("+---------------------------------+");
+            System.out.printf("| %-3s | %-25s |%n", "1", "Crear Hospital");
+            System.out.printf("| %-3s | %-25s |%n", "2", "Crear Area");
+            System.out.printf("| %-3s | %-25s |%n", "3", "Crear Médico");
+            System.out.printf("| %-3s | %-25s |%n", "4", "Modificar Médico");
+            System.out.printf("| %-3s | %-25s |%n", "5", "Modificar Hospital");
+            System.out.printf("| %-3s | %-25s |%n", "6", "Calcular antigüedad");
+            System.out.printf("| %-3s | %-25s |%n", "7", "Calcular sueldo neto");
+            System.out.printf("| %-3s | %-25s |%n", "8", "Comprobar edad");
+            System.out.printf("| %-3s | %-25s |%n", "9", "Proporción de Médicos");
+            System.out.printf("| %-3s | %-25s |%n", "10", "Capacidad de Área");
+            System.out.printf("| %-3s | %-25s |%n", "11", "Comparar Áreas");
+            System.out.printf("| %-3s | %-25s |%n", "12", "Contratos por Año");
+            System.out.printf("| %-3s | %-25s |%n", "13", "Salir");
+            System.out.println("+---------------------------------+");
+            System.out.printf("| %-3s | %-25s |%n", "", "Elige opción");
+            System.out.println("+---------------------------------+");
+
             int eleccion = s.nextInt();
             s.nextLine();
                 switch (eleccion) {
@@ -182,6 +293,7 @@ public class MenuGestor {
                             Hospital hospitalElegido = listaHospitales.get(indice);
                             Areas areaNueva = crearArea(hospitalElegido, nomArea);
                             listaAreas.add(areaNueva);
+                            hospitalElegido.agregarArea(areaNueva);
                         }
                         break;
                     case 3:
@@ -206,10 +318,45 @@ public class MenuGestor {
                         }
                         break;
                     case 5:
-
+                        if (listaHospitales.isEmpty()){
+                            System.out.println("no hay hospitales creados");
+                        } else {
+                            modificarHospital();
+                        }
+                        break;
+                    case 6:
+                        if (listaMedicos.isEmpty()){
+                            System.out.println("no existen médicos para calcular su antiguedad, crea algún médico");
+                        }else {
+                            calcularAntiguedad();
+                        }
+                        break;
+                    case 7:
+                        if (listaMedicos.isEmpty()){
+                            System.out.println("no existen médicos");
+                        } else {
+                            calcularSueldoNeto();
+                        }
+                        break;
+                    case 8:
+                        if (listaMedicos.isEmpty()){
+                            System.out.println("no existen médicos");
+                        } else {
+                            comprobarEdad();
+                        }
+                        break;
+                    case 9:
+                            if (listaHospitales.isEmpty() || listaAreas.isEmpty()){
+                                System.out.println("no hay hospitales o áreas creadas, asegurese de que hay tanto hospitales como áreas creadas");
+                            } else {
+                                calcularProporcionMedicos();
+                            }
+                            break;
                     case 13:
                         salir=true;
                         break;
+                    default:
+                        System.out.println("debe seleccionar una de las opciones disponibles:");
                 }
         } while (!salir);
     }

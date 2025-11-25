@@ -55,7 +55,7 @@ public class Hospital {
         return sumaMedicos;
     }
     public double getProporcionMedicosArea(Areas areas){
-        return (double) areas.getNumMedicos() / (double) (this.getNumeroTotalMedicos());
+        return (double) areas.getNumMedicos() / (double) this.getNumeroTotalMedicos();
     }
     public boolean existeArea(int idArea){
         for (int i = 0; i < this.areas.size(); i++) {
