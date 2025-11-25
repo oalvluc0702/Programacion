@@ -26,6 +26,8 @@ public class MenuGestor {
         return null;
     }
     public Direccion crearDireccion(){
+        System.out.println("Creador de dirección: ");
+        System.out.println("+------------------------------------------+");
         System.out.println("Dime una calle");
         String calle = s.nextLine();
         System.out.println("Dime un numero");
@@ -246,7 +248,7 @@ public class MenuGestor {
     public void presentacion(){
         listaHospitales.add(h1);
         listaAreas.add(a1);
-        h1.agregarArea(a1);
+//       h1.agregarArea(a1);
         listaMedicos.add(m1);
 
         boolean salir = false;
@@ -293,7 +295,7 @@ public class MenuGestor {
                             Hospital hospitalElegido = listaHospitales.get(indice);
                             Areas areaNueva = crearArea(hospitalElegido, nomArea);
                             listaAreas.add(areaNueva);
-                            hospitalElegido.agregarArea(areaNueva);
+//                            hospitalElegido.agregarArea(areaNueva);
                         }
                         break;
                     case 3:

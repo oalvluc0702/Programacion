@@ -15,6 +15,7 @@ public class Areas {
         this.hospital = hospital;
         this.planta = planta;
         this.numMedicos = 0;
+        hospital.agregarArea(this);
     }
 
     public Hospital getHospital() {
@@ -66,7 +67,6 @@ public class Areas {
         numMedicos--;
     }
     public String compararMedicos(Areas otraArea){
-        int diferenciaAreas;
         if (otraArea.numMedicos > this.numMedicos){
             return "El área "+otraArea.getNombre()+" tiene más médicos que el área "+this.getNombre();
         } else if (otraArea.numMedicos < this.numMedicos){
