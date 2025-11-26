@@ -43,7 +43,7 @@ public class Areas {
     }
 
     public String getCifHospital() {
-        return hospital.getCif();
+        return this.hospital.getCif();
     }
 
     public int getNumMedicos() {

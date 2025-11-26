@@ -245,6 +245,21 @@ public class MenuGestor {
             System.out.println("El hospital: "+hospitalSeleccionado.getNombre()+ " tiene una proporción de médicos en el area del: "+hospitalSeleccionado.getProporcionMedicosArea(areaSeleccionada));
         }
     }
+    public void calcularCapacidadArea(){
+        for (int i = 0; i < listaAreas.size(); i++) {
+            Areas areas = listaAreas.get(i);
+            System.out.printf("| %-3s | %-25s | %-18s |%n",i,"Nombre: "+areas.getNombre(),"Hospital: "+areas.getCifHospital());
+        }
+        System.out.println("Escoge el número del area que quieres seleccionar");
+        int seleccion = s.nextInt();
+        s.nextLine();
+        Areas areaSeleccionada = listaAreas.get(seleccion);
+        System.out.println("Dime la capacidad máxima de integrantes para un área");
+        int capacidadMaxima = s.nextInt();
+        s.nextLine();
+
+        System.out.printf("La capacidad restante para el area seleccionada es : %d",areaSeleccionada.calcularCapacidadRestante(capacidadMaxima));
+    }
     public void presentacion(){
         listaHospitales.add(h1);
         listaAreas.add(a1);
@@ -348,12 +363,18 @@ public class MenuGestor {
                         }
                         break;
                     case 9:
-                            if (listaHospitales.isEmpty() || listaAreas.isEmpty()){
+                        if (listaHospitales.isEmpty() || listaAreas.isEmpty()){
                                 System.out.println("no hay hospitales o áreas creadas, asegurese de que hay tanto hospitales como áreas creadas");
-                            } else {
+                        } else {
                                 calcularProporcionMedicos();
-                            }
-                            break;
+                        }
+                        break;
+                    case 10:
+                        if (listaAreas.isEmpty()){
+                            System.out.println("no hay areas creadas");
+                        } else {
+                            calcularCapacidadArea();
+                        }
                     case 13:
                         salir=true;
                         break;
