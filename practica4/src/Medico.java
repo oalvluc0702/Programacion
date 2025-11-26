@@ -9,6 +9,7 @@ public class Medico {
     private Areas areas;
     private int fechaInicio;
     private Direccion direccion;
+    private Contratos contrato;
     public Medico() {
     }
 
@@ -22,6 +23,8 @@ public class Medico {
         this.fechaInicio = fechaInicio;
         this.direccion = direccion;
         areas.aumentarMedicos();
+        new Contratos(this.fechaInicio,this.areas.getHospital(),this);
+
     }
 
     public Direccion getDireccion() {
@@ -47,7 +50,9 @@ public class Medico {
     public void setEdad(int edad) {
         this.edad = edad;
     }
-
+    public Contratos getContrato(){
+        return this.contrato;
+    }
     public double getSueldoBruto() {
         return sueldoBruto;
     }
@@ -82,6 +87,9 @@ public class Medico {
 
     public void setFechaInicio(int fechaInicio) {
         this.fechaInicio = fechaInicio;
+    }
+    public void setContrato(Contratos contrato){
+        this.contrato = contrato;
     }
 
     public void setAreas(Areas areas) {

@@ -10,6 +10,7 @@ public class Contratos {
         this.fechaCreacion = fechaCreacion;
         this.hospital = hospital;
         this.medico = medico;
+        this.hospital.agregarContrato(this);
     }
 
     public int getFechaCreacion() {

@@ -25,6 +25,15 @@ public class MenuGestor {
         }
         return null;
     }
+    public boolean existeHospital(String cif){
+        for (int i = 0; i < listaHospitales.size(); i++) {
+            Hospital hospital = listaHospitales.get(i);
+            if (hospital.getCif().equals(cif)){
+                return true;
+            }
+        }
+        return false;
+    }
     public Direccion crearDireccion(){
         System.out.println("Creador de dirección: ");
         System.out.println("+------------------------------------------+");
@@ -221,28 +230,41 @@ public class MenuGestor {
         Hospital hospitalSeleccionado= null;
         System.out.println("Dime el cif del Hospital del que quieres seleccionar el área");
         String cifHospital = s.nextLine();
-        for (int i = 0; i < listaHospitales.size(); i++) {
-            if (listaHospitales.get(i).getCif().equals(cifHospital)){
-                hospitalSeleccionado = listaHospitales.get(i);
-            }
-        }
-        for (int i = 0; i < listaAreas.size(); i++) {
-            Areas areas = listaAreas.get(i);
-            if (areas.getHospital().getCif().equals(cifHospital)){
-                System.out.printf("| %-3s | %-25s |%n",i,"ID: "+areas.getIdentificador());
-            }
-        }
-        System.out.println("Ahora dime el id del área, escribe el valor al lado de ID");
-        int id = s.nextInt();
-        for (int i = 0; i < listaAreas.size(); i++) {
-            if (listaAreas.get(i).getIdentificador() == id){
-                areaSeleccionada = listaAreas.get(i);
-            }
-        }
-        if (hospitalSeleccionado == null || areaSeleccionada == null){
-            System.out.println("Tienes que haber seleccionado un hospital o área");
+        if (!existeHospital(cifHospital)){
+            System.out.println("no existe ese hospital");
         } else{
-            System.out.println("El hospital: "+hospitalSeleccionado.getNombre()+ " tiene una proporción de médicos en el area del: "+hospitalSeleccionado.getProporcionMedicosArea(areaSeleccionada));
+            for (int i = 0; i < listaHospitales.size(); i++) {
+                if (listaHospitales.get(i).getCif().equals(cifHospital)){
+                    hospitalSeleccionado = listaHospitales.get(i);
+                }
+            }
+            try{
+                if (hospitalSeleccionado.getAreas().isEmpty()){
+                    System.out.println("no existen areas");
+                }else {
+                    for (int i = 0; i < listaAreas.size(); i++) {
+                        Areas areas = listaAreas.get(i);
+                        if (areas.getHospital().getCif().equals(cifHospital)){
+                            System.out.printf("| %-3s | %-25s |%n",i,"ID: "+areas.getIdentificador());
+                        }
+                    }
+                    System.out.println("Ahora dime el id del área, escribe el valor al lado de ID");
+                    int id = s.nextInt();
+                    for (int i = 0; i < listaAreas.size(); i++) {
+                        if (listaAreas.get(i).getIdentificador() == id){
+                            areaSeleccionada = listaAreas.get(i);
+                        }
+                    }
+                    if (areaSeleccionada == null){
+                        System.out.println("Tienes que haber seleccionado un área");
+                    } else{
+
+                        System.out.println("El hospital: "+hospitalSeleccionado.getNombre()+ " tiene una proporción de médicos en el area del: "+hospitalSeleccionado.getProporcionMedicosArea(areaSeleccionada));
+                    }
+                }
+            } catch (Exception e){
+                System.out.println("No existen áreas en el hospital");
+            }
         }
     }
     public void calcularCapacidadArea(){
@@ -257,8 +279,40 @@ public class MenuGestor {
         System.out.println("Dime la capacidad máxima de integrantes para un área");
         int capacidadMaxima = s.nextInt();
         s.nextLine();
-
         System.out.printf("La capacidad restante para el area seleccionada es : %d",areaSeleccionada.calcularCapacidadRestante(capacidadMaxima));
+    }
+    public void compararAreas(){
+        for (int i = 0; i < listaAreas.size(); i++) {
+            Areas areas = listaAreas.get(i);
+            System.out.printf("| %-3s | %-25s | %-18s |%n",i,"Nombre: "+areas.getNombre(),"Hospital: "+areas.getCifHospital());
+        }
+        System.out.println("Selecciona el área que quieres comparar");
+        int seleccion = s.nextInt();
+        s.nextLine();
+        Areas areaSeleccionada1 = listaAreas.get(seleccion);
+        for (int i = 0; i < listaAreas.size(); i++) {
+            Areas areas = listaAreas.get(i);
+            if (!areas.equals(areaSeleccionada1)){
+                System.out.printf("| %-3s | %-25s | %-18s |%n",i,"Nombre: "+areas.getNombre(),"Hospital: "+areas.getCifHospital());
+            }
+        }
+        System.out.println("¿Con qué área quieres compararla?");
+        seleccion = s.nextInt();
+        s.nextLine();
+        Areas areaSeleccionada2 = listaAreas.get(seleccion);
+        System.out.println(areaSeleccionada1.compararMedicos(areaSeleccionada2));
+    }
+    public void contratosPorAnio(){
+        System.out.println("Dime un año y te digo los contratos que tiene");
+        int fecha = s.nextInt();
+        for (int i = 0; i < listaContratos.size(); i++) {
+            Contratos contratos = listaContratos.get(i);
+            if (contratos.esDeAnio(fecha)){
+                System.out.printf("| %-18s | %-25s | %-18s |%n","FECHA CREACION:  "+contratos.getFechaCreacion(),"Hospital: "+contratos.getHospital().getNombre(),"Medico: "+contratos.getMedico().getNombre());
+            } else {
+                System.out.println("no es del año");
+            }
+        }
     }
     public void presentacion(){
         listaHospitales.add(h1);
@@ -320,9 +374,8 @@ public class MenuGestor {
                         } else {
                             Direccion direccionMedico = crearDireccion();
                             Medico medico = crearMedico(direccionMedico);
-                            Contratos contrato = new Contratos(Year.now().getValue(), medico.getAreas().getHospital(),medico);
                             listaMedicos.add(medico);
-                            listaContratos.add(contrato);
+                            listaContratos.add(medico.getContrato());
                         }
                         break;
                     case 4:
@@ -375,6 +428,20 @@ public class MenuGestor {
                         } else {
                             calcularCapacidadArea();
                         }
+                    case 11:
+                        if(listaAreas.isEmpty() || listaAreas.size()<2){
+                            System.out.println("Necesitas tener al menos 2 areas para comparar sus médicos");
+                        } else {
+                            compararAreas();
+                        }
+                        break;
+                    case 12:
+                        if (listaHospitales.isEmpty()){
+                            System.out.println("no existen hospitales");
+                        } else {
+                            contratosPorAnio();
+                        }
+                        break;
                     case 13:
                         salir=true;
                         break;

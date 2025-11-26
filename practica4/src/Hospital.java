@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Hospital {
@@ -5,7 +6,7 @@ public class Hospital {
     private String nombre;
     private ArrayList<Areas> areas;
     private Direccion direccion;
-
+    private ArrayList<Contratos> contratos;
     public Hospital() {
     }
 
@@ -14,6 +15,7 @@ public class Hospital {
         this.nombre = nombre;
         this.direccion = direccion;
         this.areas = new ArrayList<>();
+        this.contratos = new ArrayList<>();
     }
 
     public Direccion getDireccion() {
@@ -46,6 +48,9 @@ public class Hospital {
 
     public void agregarArea(Areas areas) {
         this.areas.add(areas);
+    }
+    public void agregarContrato(Contratos contratos) {
+        this.contratos.add(contratos);
     }
     public int getNumeroTotalMedicos(){
         int sumaMedicos = 0;
