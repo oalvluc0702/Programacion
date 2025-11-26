@@ -23,7 +23,7 @@ public class Medico {
         this.fechaInicio = fechaInicio;
         this.direccion = direccion;
         areas.aumentarMedicos();
-        new Contratos(this.fechaInicio,this.areas.getHospital(),this);
+        this.contrato = new Contratos(this.fechaInicio,this.areas.getHospital(),this);
 
     }
 

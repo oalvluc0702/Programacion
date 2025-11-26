@@ -309,17 +309,14 @@ public class MenuGestor {
             Contratos contratos = listaContratos.get(i);
             if (contratos.esDeAnio(fecha)){
                 System.out.printf("| %-18s | %-25s | %-18s |%n","FECHA CREACION:  "+contratos.getFechaCreacion(),"Hospital: "+contratos.getHospital().getNombre(),"Medico: "+contratos.getMedico().getNombre());
-            } else {
-                System.out.println("no es del año");
             }
         }
     }
     public void presentacion(){
         listaHospitales.add(h1);
         listaAreas.add(a1);
-//       h1.agregarArea(a1);
         listaMedicos.add(m1);
-
+        listaContratos.add(m1.getContrato());
         boolean salir = false;
         do {
             System.out.println("+---------------------------------+");
@@ -364,13 +361,11 @@ public class MenuGestor {
                             Hospital hospitalElegido = listaHospitales.get(indice);
                             Areas areaNueva = crearArea(hospitalElegido, nomArea);
                             listaAreas.add(areaNueva);
-//                            hospitalElegido.agregarArea(areaNueva);
                         }
                         break;
                     case 3:
                         if (listaAreas.isEmpty()){
                             System.out.println("no existen áreas para asignar a un médico, si quiere crear un médico primero cree un área");
-
                         } else {
                             Direccion direccionMedico = crearDireccion();
                             Medico medico = crearMedico(direccionMedico);
