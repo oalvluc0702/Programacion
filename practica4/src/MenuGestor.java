@@ -423,6 +423,7 @@ public class MenuGestor {
                         } else {
                             calcularCapacidadArea();
                         }
+                        break;
                     case 11:
                         if(listaAreas.isEmpty() || listaAreas.size()<2){
                             System.out.println("Necesitas tener al menos 2 areas para comparar sus médicos");
