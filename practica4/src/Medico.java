@@ -1,5 +1,4 @@
-import java.awt.geom.Area;
-
+//----------------------------DEFINICIÓN DE LA CLASE-------------------------------------
 public class Medico {
     private String dni;
     private int edad;
@@ -12,6 +11,7 @@ public class Medico {
     private Contratos contrato;
     public Medico() {
     }
+    //----------------------------CREACIÓN DEL CONSTRUCTOR CON LOS DATOS-------------------------------------
 
     public Medico(String dni, int edad, double sueldoBruto, String nombre, String sexo,int fechaInicio, Areas areas, Direccion direccion) {
         this.dni = dni;
@@ -26,6 +26,7 @@ public class Medico {
         this.contrato = new Contratos(this.fechaInicio,this.areas.getHospital(),this);
 
     }
+    //----------------------------DEFINICIÓN DE LOS MÉTODOS GET Y SET-------------------------------------
 
     public Direccion getDireccion() {
         return direccion;
@@ -50,6 +51,7 @@ public class Medico {
     public void setEdad(int edad) {
         this.edad = edad;
     }
+
     public Contratos getContrato(){
         return this.contrato;
     }
@@ -95,18 +97,24 @@ public class Medico {
     public void setAreas(Areas areas) {
         this.areas = areas;
     }
+    //----------------------------FUNCIONALIDADES-------------------------------------
+    //esta función calcula el sueldo neto, recibe un double que será la retención y devuelve el sueldo neto que es sueldoBruto por retención
     public double calcularSueldoNeto(double retencion){
         return this.sueldoBruto*retencion;
     }
+    //devuelve la diferencia entre el año actual y la fecha de inicio del médico
     public int getAniosAntiguedad(){
         return java.time.Year.now().getValue() - this.fechaInicio;
     }
+    //recibe un double que será la tasa Impositiva y devolverá el impuesto anual que será el sueldo bruto menos sueldo bruto por la tasa impositiva
     public double calcularImpuestosAnuales(double tasaImpositiva){
         return this.sueldoBruto - (this.sueldoBruto*tasaImpositiva);
     }
+    //devuelve un verdadero o falso si es mayor de edad, recibe un número que va a ser la mayoría de edad del país del usuario
     public boolean esMayordeEdad(int mayoriaEdad){
         return this.edad >= mayoriaEdad;
     }
+    //devuelve cual será el proximo aumento
     public double  proximoAumento(double porcentajeAumento, int aniosRequeridos){
         if (getAniosAntiguedad() >= aniosRequeridos){
             return this.sueldoBruto + this.sueldoBruto * porcentajeAumento;

@@ -1,8 +1,10 @@
+//----------------------------DEFINICIÓN DE LA CLASE-------------------------------------
 public class Contratos {
     private int fechaCreacion;
     private Hospital hospital;
     private Medico medico;
 
+    //------------------------------CONSTRUCTORES UNO VACÍO Y OTRO CON DATOS-----------------------------
     public Contratos() {
     }
 
@@ -10,9 +12,10 @@ public class Contratos {
         this.fechaCreacion = fechaCreacion;
         this.hospital = hospital;
         this.medico = medico;
+        // AQUÍ AGREGA EL CONTRATO CREADO AL HOSPITAL REFERENCIADO
         this.hospital.agregarContrato(this);
     }
-
+    //--------------------------------CREACIÓN DE LOS MÉTODOS GET Y SET----------------------------
     public int getFechaCreacion() {
         return fechaCreacion;
     }
@@ -36,10 +39,13 @@ public class Contratos {
     public void setMedico(Medico medico) {
         this.medico = medico;
     }
+    //---------------------------------------------FUNCIONALIDADES-----------------------------------------
+
+    // recibe un año y devuelve verdadero o falso si coincide con la fecha de creación del objeto
     public boolean esDeAnio(int anio){
         return this.getFechaCreacion() == anio;
     }
-    //debido a que no vamos a usar el time entonces no voy a hacer el cálculo de vigencia en torno a los días, si referente a los años.
+    //devuelve el lapso de tiempo utilizando el valor del año actual y calcula la diferencia con la fecha de creación
     public int aniosDesdeCreacion(){
         return java.time.Year.now().getValue() - this.fechaCreacion;
     }
