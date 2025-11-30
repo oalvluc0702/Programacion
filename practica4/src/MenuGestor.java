@@ -144,6 +144,7 @@ public class MenuGestor {
                 case "b":
                     Direccion direccionNueva = crearDireccion();
                     medicoBuscado.setDireccion(direccionNueva);
+                    break;
                 case "c":
                     for (int i = 0; i < listaAreas.size(); i++) {
                         Areas areas = listaAreas.get(i);
@@ -153,6 +154,9 @@ public class MenuGestor {
                     int eleccionCase = s.nextInt();
                     Areas areaSeleccionada = listaAreas.get(eleccionCase);
                     medicoBuscado.cambiarArea(areaSeleccionada);
+                    break;
+                default:
+                    System.out.println("necesitas poner una opción correcta, vuelve a intentarlo");
             }
         }
     }
