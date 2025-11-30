@@ -17,6 +17,16 @@ public class MenuGestor {
     public MenuGestor() {
     }
     Scanner s = new Scanner(System.in);
+    public Areas buscarAreaId(int identificador){
+        Areas area = null;
+        for (int i = 0; i < listaAreas.size(); i++) {
+            area = listaAreas.get(i);
+            if (area.getIdentificador() == identificador){
+                return area;
+            }
+        }
+        return null;
+    }
     public Medico buscarMedico(String dni){
         for (Medico listaMedico : listaMedicos) {
             if (listaMedico.getDni().equals(dni)) {
