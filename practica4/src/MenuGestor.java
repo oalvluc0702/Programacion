@@ -96,7 +96,6 @@ public class MenuGestor {
         int planta = s.nextInt();
         return new Areas(nombre,identificador,hosp,planta);
     }
-
     public Medico crearMedico(Direccion direccion){
         System.out.println("Dime el dni del médico");
         String dni = s.nextLine();
@@ -120,7 +119,6 @@ public class MenuGestor {
         Areas area = listaAreas.get(eleccion);
         return new Medico(dni, edad, sueldoBruto, nombre, sexo, fechaInicio, area, direccion);
     }
-
     public void modificarMedico(String dni){
         Medico medicoBuscado = null;
         for (Medico med : listaMedicos){
@@ -346,7 +344,6 @@ public class MenuGestor {
             System.out.println("+---------------------------------+");
             System.out.printf("| %-3s | %-25s |%n", "", "Elige opción");
             System.out.println("+---------------------------------+");
-
             int eleccion = s.nextInt();
             s.nextLine();
                 switch (eleccion) {
