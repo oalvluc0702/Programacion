@@ -24,7 +24,6 @@ public class Medico {
         this.direccion = direccion;
         areas.aumentarMedicos();
         this.contrato = new Contratos(this.fechaInicio,this.areas.getHospital(),this);
-
     }
     //----------------------------DEFINICIÓN DE LOS MÉTODOS GET Y SET-------------------------------------
 
@@ -100,7 +99,7 @@ public class Medico {
     //----------------------------FUNCIONALIDADES-------------------------------------
     //esta función calcula el sueldo neto, recibe un double que será la retención y devuelve el sueldo neto que es sueldoBruto por retención
     public double calcularSueldoNeto(double retencion){
-        return this.sueldoBruto*retencion;
+        return this.sueldoBruto - (this.sueldoBruto*retencion);
     }
     //devuelve la diferencia entre el año actual y la fecha de inicio del médico
     public int getAniosAntiguedad(){

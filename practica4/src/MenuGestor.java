@@ -291,7 +291,7 @@ public class MenuGestor {
         System.out.println("Dime la capacidad máxima de integrantes para un área");
         int capacidadMaxima = s.nextInt();
         s.nextLine();
-        System.out.printf("La capacidad restante para el area seleccionada es : %d",areaSeleccionada.calcularCapacidadRestante(capacidadMaxima));
+        System.out.printf("La capacidad restante para el area seleccionada es : %d%n",areaSeleccionada.calcularCapacidadRestante(capacidadMaxima));
     }
     public void compararAreas(){
         for (int i = 0; i < listaAreas.size(); i++) {
@@ -325,6 +325,7 @@ public class MenuGestor {
         }
     }
     public void presentacion(){
+
         listaHospitales.add(h1);
         listaAreas.add(a1);
         listaMedicos.add(m1);
