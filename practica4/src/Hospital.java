@@ -1,5 +1,6 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+//----------------------------DEFINICIÓN DE LA CLASE-------------------------------------
 
 public class Hospital {
     private String cif;
@@ -9,7 +10,7 @@ public class Hospital {
     private ArrayList<Contratos> contratos;
     public Hospital() {
     }
-
+    //----------------------------CREACIÓN DEL CONSTRUCTOR CON LOS DATOS-------------------------------------
     public Hospital(String cif, String nombre, Direccion direccion) {
         this.cif = cif;
         this.nombre = nombre;
@@ -17,7 +18,7 @@ public class Hospital {
         this.areas = new ArrayList<>();
         this.contratos = new ArrayList<>();
     }
-
+    //----------------------------DEFINICIÓN DE LOS MÉTODOS GET Y SET-------------------------------------
     public Direccion getDireccion() {
         return direccion;
     }

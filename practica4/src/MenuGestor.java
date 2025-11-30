@@ -1,8 +1,6 @@
-import java.awt.geom.Area;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 public class MenuGestor {
     private int creadorHospital = 0;
     private int creadorArea = 0;

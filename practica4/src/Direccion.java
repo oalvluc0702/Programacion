@@ -1,3 +1,5 @@
+//----------------------------DEFINICIÓN DE LA CLASE-------------------------------------
+
 public class Direccion {
     private String calle;
     private int numero;
@@ -5,6 +7,7 @@ public class Direccion {
     private String localidad;
     private String provincia;
 
+    //----------------------------CREACIÓN DEL CONSTRUCTOR CON LOS DATOS-------------------------------------
     public Direccion() {
     }
     public Direccion (String calle, int numero, int codigoPostal, String localidad, String provincia){
@@ -14,7 +17,7 @@ public class Direccion {
         this.localidad = localidad;
         this.provincia = provincia;
     }
-
+    //----------------------------DEFINICIÓN DE LOS MÉTODOS GET Y SET-------------------------------------
     public String getCalle() {
         return calle;
     }

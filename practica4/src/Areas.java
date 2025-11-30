@@ -1,4 +1,5 @@
 import org.w3c.dom.ls.LSOutput;
+//----------------------------DEFINICIÓN DE LA CLASE-------------------------------------
 
 public class Areas {
     private String nombre;
@@ -8,6 +9,7 @@ public class Areas {
     private int planta;
     public Areas() {
     }
+    //----------------------------CREACIÓN DEL CONSTRUCTOR CON LOS DATOS-------------------------------------
 
     public Areas(String nombre, int identificador, Hospital hospital, int planta) {
         this.nombre = nombre;
@@ -17,7 +19,7 @@ public class Areas {
         this.numMedicos = 0;
         hospital.agregarArea(this);
     }
-
+    //----------------------------DEFINICIÓN DE LOS MÉTODOS GET Y SET-------------------------------------
     public Hospital getHospital() {
         return hospital;
     }
