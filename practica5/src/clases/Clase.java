@@ -44,5 +44,4 @@ public class Clase {
     public void setBonusVidaMaxima(int bonusVidaMaxima) {
         this.bonusVidaMaxima = bonusVidaMaxima;
     }
-
 }
