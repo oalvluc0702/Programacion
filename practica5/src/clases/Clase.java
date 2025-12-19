@@ -6,8 +6,11 @@ public class Clase {
     private int bonusDestreza= 0;
     private int bonusVidaMaxima= 0;
 
-    public Clase() {
-
+    public Clase(int bonusFuerza, int bonusInteligencia, int bonusDestreza, int bonusVidaMaxima) {
+        this.bonusFuerza = bonusFuerza;
+        this.bonusInteligencia = bonusInteligencia;
+        this.bonusDestreza = bonusDestreza;
+        this.bonusVidaMaxima = bonusVidaMaxima;
     }
 
     public int getBonusFuerza() {

@@ -18,7 +18,7 @@ public class Personaje {
         this.inteligencia = inteligencia + clase.getBonusInteligencia();
         this.destreza = destreza + clase.getBonusDestreza();
         this.vidaMaxima = vidaMaxima + clase.getBonusVidaMaxima();
-        this.vidaActual = vidaMaxima;
+        this.vidaActual = this.vidaMaxima;
     }
 
     public String getNombre() {
