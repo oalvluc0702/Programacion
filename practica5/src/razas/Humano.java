@@ -1,10 +1,11 @@
 package razas;
 
-import clases.Clase;
-
-public class Humano extends Personaje {
-    public Humano(String nombre, Clase clase) {
-        super(nombre, clase,5, 5, 5,100);
+public class Humano implements Raza{
+    @Override
+    public void establecerEstadisticasBase(Estadisticas estadisticas) {
+        estadisticas.setFuerza(5);
+        estadisticas.setInteligencia(5);
+        estadisticas.setDestreza(5);
+        estadisticas.setVida(100);
     }
-
 }

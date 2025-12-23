@@ -1,24 +1,26 @@
 package razas;
 import clases.Clase;
+import habilidades.Habilidades;
+
+import java.util.ArrayList;
 
 public class Personaje {
     private String nombre;
     private Clase clase;
-    private int fuerza;
-    private int inteligencia;
-    private int destreza;
-    private int vidaMaxima;
-    private int vidaActual;
- ;
+    private Raza raza;
+    private Estadisticas estadisticas;
+    private ArrayList<Habilidades> habilidades;
 
-    public Personaje(String nombre, Clase clase, int fuerza, int inteligencia, int destreza, int vidaMaxima) {
+    public Personaje(String nombre, Clase clase, Raza raza) {
         this.nombre = nombre;
         this.clase = clase;
-        this.fuerza = fuerza + clase.getBonusFuerza();
-        this.inteligencia = inteligencia + clase.getBonusInteligencia();
-        this.destreza = destreza + clase.getBonusDestreza();
-        this.vidaMaxima = vidaMaxima + clase.getBonusVidaMaxima();
-        this.vidaActual = this.vidaMaxima;
+        this.raza = raza;
+        this.estadisticas = new Estadisticas();
+        raza.establecerEstadisticasBase(this.estadisticas);
+        this.habilidades = new ArrayList<>();
+        this.clase.agregarBonificacionClase(this);
+        this.clase.agregarHabilidad(this);
+
     }
 
     public String getNombre() {
@@ -37,44 +39,27 @@ public class Personaje {
         this.clase = clase;
     }
 
-    public int getFuerza() {
-        return fuerza;
+    public Raza getRaza() {
+        return raza;
     }
 
-    public void setFuerza(int fuerza) {
-        this.fuerza = fuerza;
+    public void setRaza(Raza raza) {
+        this.raza = raza;
     }
 
-    public int getInteligencia() {
-        return inteligencia;
+    public Estadisticas getEstadisticas() {
+        return estadisticas;
     }
 
-    public void setInteligencia(int inteligencia) {
-        this.inteligencia = inteligencia;
+    public void setEstadisticas(Estadisticas estadisticas) {
+        this.estadisticas = estadisticas;
     }
 
-    public int getDestreza() {
-        return destreza;
+    public ArrayList<Habilidades> getHabilidades() {
+        return habilidades;
     }
 
-    public void setDestreza(int destreza) {
-        this.destreza = destreza;
+    public void setHabilidades(ArrayList<Habilidades> habilidades) {
+        this.habilidades = habilidades;
     }
-
-    public int getVidaMaxima() {
-        return vidaMaxima;
-    }
-
-    public void setVidaMaxima(int vidaMaxima) {
-        this.vidaMaxima = vidaMaxima;
-    }
-
-    public int getVidaActual() {
-        return vidaActual;
-    }
-
-    public void setVidaActual(int vidaActual) {
-        this.vidaActual = vidaActual;
-    }
-
 }
