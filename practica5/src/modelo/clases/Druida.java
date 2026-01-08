@@ -1,21 +1,21 @@
-package clases;
+package modelo.clases;
 
-import habilidades.CuracionMedia;
-import habilidades.CuracionMenor;
-import habilidades.GolpeFuerte;
-import habilidades.Habilidades;
-import razas.Personaje;
+import modelo.habilidades.*;
+import modelo.Personaje;
 
 import java.util.ArrayList;
 
-public class Guerrero implements Clase{
-    public Guerrero() {
+public class Druida implements Clase {
+    public Druida() {
     }
+
     @Override
     public void agregarBonificacionClase(Personaje personaje) {
-        int statTotalFuerza = personaje.getEstadisticas().getFuerza() + 3;
+        int statTotalInteligencia = personaje.getEstadisticas().getInteligencia() + 2;
+        int statTotalFuerza = personaje.getEstadisticas().getFuerza() + 1;
+        personaje.getEstadisticas().setInteligencia(statTotalInteligencia);
         personaje.getEstadisticas().setFuerza(statTotalFuerza);
-        int statTotalVida = personaje.getEstadisticas().getVida() + 120;
+        int statTotalVida = personaje.getEstadisticas().getVida() + 100;
         personaje.getEstadisticas().setVida(statTotalVida);
         personaje.getEstadisticas().setVidaActual(statTotalVida);
     }
@@ -23,7 +23,7 @@ public class Guerrero implements Clase{
     @Override
     public void agregarHabilidad(Personaje personaje) {
         ArrayList<Habilidades> listaHabilidades = personaje.getHabilidades();
-        listaHabilidades.add(new CuracionMenor());
+        listaHabilidades.add(new CuracionMedia());
         listaHabilidades.add(new GolpeFuerte());
     }
 }

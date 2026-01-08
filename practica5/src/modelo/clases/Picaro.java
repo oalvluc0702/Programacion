@@ -1,19 +1,21 @@
-package clases;
+package modelo.clases;
 
-import habilidades.*;
-import razas.Personaje;
+import modelo.habilidades.CuracionMenor;
+import modelo.habilidades.Golpe;
+import modelo.habilidades.Habilidades;
+import modelo.Personaje;
 
 import java.util.ArrayList;
 
-public class Mago implements Clase {
-    public Mago() {
+public class Picaro implements Clase {
+    public Picaro() {
     }
 
     @Override
     public void agregarBonificacionClase(Personaje personaje) {
-        int statTotalInteligencia = personaje.getEstadisticas().getInteligencia() + 3;
-        personaje.getEstadisticas().setInteligencia(statTotalInteligencia);
-        int statTotalVida = personaje.getEstadisticas().getVida() + 90;
+        int statTotalDestreza = personaje.getEstadisticas().getDestreza() + 3;
+        personaje.getEstadisticas().setDestreza(statTotalDestreza);
+        int statTotalVida = personaje.getEstadisticas().getVida() + 105;
         personaje.getEstadisticas().setVida(statTotalVida);
         personaje.getEstadisticas().setVidaActual(statTotalVida);
     }

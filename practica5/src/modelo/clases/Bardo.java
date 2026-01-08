@@ -1,9 +1,9 @@
-package clases;
+package modelo.clases;
 
-import habilidades.CuracionMayor;
-import habilidades.Golpe;
-import habilidades.Habilidades;
-import razas.Personaje;
+import modelo.habilidades.CuracionMayor;
+import modelo.habilidades.Golpe;
+import modelo.habilidades.Habilidades;
+import modelo.Personaje;
 
 import java.util.ArrayList;
 

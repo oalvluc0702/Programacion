@@ -1,22 +1,20 @@
-package clases;
-import habilidades.CuracionMedia;
-import habilidades.CuracionMenor;
-import habilidades.GolpeFuerte;
-import habilidades.Habilidades;
-import razas.Personaje;
+package modelo.clases;
+
+import modelo.habilidades.CuracionMenor;
+import modelo.habilidades.GolpeFuerte;
+import modelo.habilidades.Habilidades;
+import modelo.Personaje;
 
 import java.util.ArrayList;
 
-public class Paladin implements Clase{
-    public Paladin() {
+public class Guerrero implements Clase{
+    public Guerrero() {
     }
     @Override
     public void agregarBonificacionClase(Personaje personaje) {
-        int statTotalInteligencia = personaje.getEstadisticas().getInteligencia() + 1;
-        int statTotalFuerza = personaje.getEstadisticas().getFuerza() + 2;
-        personaje.getEstadisticas().setInteligencia(statTotalInteligencia);
+        int statTotalFuerza = personaje.getEstadisticas().getFuerza() + 3;
         personaje.getEstadisticas().setFuerza(statTotalFuerza);
-        int statTotalVida = personaje.getEstadisticas().getVida() + 115;
+        int statTotalVida = personaje.getEstadisticas().getVida() + 120;
         personaje.getEstadisticas().setVida(statTotalVida);
         personaje.getEstadisticas().setVidaActual(statTotalVida);
     }

@@ -1,10 +1,8 @@
-
-import clases.Bardo;
-import clases.Picaro;
-import clases.Sacerdote;
-import habilidades.Habilidades;
-import razas.Humano;
-import razas.Personaje;
+import modelo.clases.Picaro;
+import modelo.clases.Sacerdote;
+import modelo.habilidades.Habilidades;
+import modelo.razas.Humano;
+import modelo.Personaje;
 public class Main{
     public static void main(String[] args){
         Personaje oscar = new Personaje("oscar",new Picaro(),new Humano());

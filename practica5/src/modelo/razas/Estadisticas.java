@@ -1,4 +1,4 @@
-package razas;
+package modelo.razas;
 
 public class Estadisticas {
     private int fuerza;

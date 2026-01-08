@@ -1,6 +1,8 @@
-package razas;
-import clases.Clase;
-import habilidades.Habilidades;
+package modelo;
+import modelo.clases.Clase;
+import modelo.habilidades.Habilidades;
+import modelo.razas.Estadisticas;
+import modelo.razas.Raza;
 
 import java.util.ArrayList;
 

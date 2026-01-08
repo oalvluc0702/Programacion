@@ -1,6 +1,6 @@
-package habilidades;
+package modelo.habilidades;
 
-import razas.Personaje;
+import modelo.Personaje;
 
 public class GolpeFuerte extends Habilidades{
     public GolpeFuerte() {

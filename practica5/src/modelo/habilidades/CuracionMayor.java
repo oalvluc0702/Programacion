@@ -1,6 +1,6 @@
-package habilidades;
+package modelo.habilidades;
 
-import razas.Personaje;
+import modelo.Personaje;
 
 public class CuracionMayor extends Habilidades{
     public CuracionMayor() {

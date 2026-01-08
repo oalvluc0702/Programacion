@@ -1,7 +1,7 @@
-package habilidades;
+package modelo.habilidades;
 
 import modelo.Dado;
-import razas.Personaje;
+import modelo.Personaje;
 
 public class Golpe extends Habilidades{
     public Golpe() {

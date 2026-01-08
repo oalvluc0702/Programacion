@@ -1,21 +1,21 @@
-package clases;
-
-import habilidades.*;
-import razas.Personaje;
+package modelo.clases;
+import modelo.habilidades.CuracionMenor;
+import modelo.habilidades.GolpeFuerte;
+import modelo.habilidades.Habilidades;
+import modelo.Personaje;
 
 import java.util.ArrayList;
 
-public class Druida implements Clase {
-    public Druida() {
+public class Paladin implements Clase{
+    public Paladin() {
     }
-
     @Override
     public void agregarBonificacionClase(Personaje personaje) {
-        int statTotalInteligencia = personaje.getEstadisticas().getInteligencia() + 2;
-        int statTotalFuerza = personaje.getEstadisticas().getFuerza() + 1;
+        int statTotalInteligencia = personaje.getEstadisticas().getInteligencia() + 1;
+        int statTotalFuerza = personaje.getEstadisticas().getFuerza() + 2;
         personaje.getEstadisticas().setInteligencia(statTotalInteligencia);
         personaje.getEstadisticas().setFuerza(statTotalFuerza);
-        int statTotalVida = personaje.getEstadisticas().getVida() + 100;
+        int statTotalVida = personaje.getEstadisticas().getVida() + 115;
         personaje.getEstadisticas().setVida(statTotalVida);
         personaje.getEstadisticas().setVidaActual(statTotalVida);
     }
@@ -23,7 +23,7 @@ public class Druida implements Clase {
     @Override
     public void agregarHabilidad(Personaje personaje) {
         ArrayList<Habilidades> listaHabilidades = personaje.getHabilidades();
-        listaHabilidades.add(new CuracionMedia());
+        listaHabilidades.add(new CuracionMenor());
         listaHabilidades.add(new GolpeFuerte());
     }
 }
