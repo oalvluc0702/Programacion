@@ -1,14 +1,16 @@
 package modelo.habilidades;
 
+import modelo.Dado;
 import modelo.Personaje;
 
 public class GolpeFuerte extends Habilidades{
     public GolpeFuerte() {
-        super("Curación Menor",10, "curación");
+        super("Golpe Fuerte",20, "melee");
     }
 
     @Override
-    public void usarHabilidad(Personaje personaje, Personaje objetivo) {
-
+    public int usarHabilidad(Personaje personaje) {
+        Dado dado = new Dado();
+        return dado.tirar(getPotencia()) + personaje.getEstadisticas().getFuerza();
     }
 }

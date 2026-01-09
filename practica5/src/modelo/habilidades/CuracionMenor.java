@@ -1,5 +1,6 @@
 package modelo.habilidades;
 
+import modelo.Dado;
 import modelo.Personaje;
 
 public class CuracionMenor extends Habilidades{
@@ -8,7 +9,8 @@ public class CuracionMenor extends Habilidades{
     }
 
     @Override
-    public void usarHabilidad(Personaje personaje, Personaje objetivo) {
-
+    public int usarHabilidad(Personaje personaje) {
+        Dado dado = new Dado();
+        return dado.tirar(getPotencia()) + personaje.getEstadisticas().getInteligencia();
     }
 }

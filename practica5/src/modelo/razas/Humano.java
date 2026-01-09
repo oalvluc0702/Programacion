@@ -1,5 +1,7 @@
 package modelo.razas;
 
+import modelo.Estadisticas;
+
 public class Humano implements Raza{
     @Override
     public void establecerEstadisticasBase(Estadisticas estadisticas) {

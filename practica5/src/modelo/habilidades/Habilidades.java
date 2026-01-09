@@ -13,7 +13,7 @@ public abstract class Habilidades {
         this.tipo = tipo;
     }
 
-    public abstract void usarHabilidad(Personaje personaje, Personaje objetivo);
+    public abstract int usarHabilidad(Personaje personaje);
 
     public String getNombre() {
         return nombre;

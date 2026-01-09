@@ -1,6 +1,7 @@
 package modelo.razas;
 
 
+import modelo.Estadisticas;
 
 public class Elfo implements Raza{
     @Override

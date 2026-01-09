@@ -1,7 +1,7 @@
 package modelo.clases;
 
+import modelo.habilidades.Corte;
 import modelo.habilidades.CuracionMenor;
-import modelo.habilidades.Golpe;
 import modelo.habilidades.Habilidades;
 import modelo.Personaje;
 
@@ -24,6 +24,6 @@ public class Picaro implements Clase {
     public void agregarHabilidad(Personaje personaje) {
         ArrayList<Habilidades> listaHabilidades = personaje.getHabilidades();
         listaHabilidades.add(new CuracionMenor());
-        listaHabilidades.add(new Golpe());
+        listaHabilidades.add(new Corte());
     }
 }
