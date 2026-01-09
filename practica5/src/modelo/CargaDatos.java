@@ -16,4 +16,12 @@ public class CargaDatos {
         listaPersonajes.add(p1);
         listaPersonajes.add(p2);
     }
+
+    public ArrayList<Personaje> getListaPersonajes() {
+        return listaPersonajes;
+    }
+
+    public void setListaPersonajes(ArrayList<Personaje> listaPersonajes) {
+        this.listaPersonajes = listaPersonajes;
+    }
 }
