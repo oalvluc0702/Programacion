@@ -5,12 +5,14 @@ import modelo.Personaje;
 
 public class GolpeFuerte extends Habilidades{
     public GolpeFuerte() {
-        super("Golpe Fuerte",20, "melee");
+        super("Golpe Fuerte",300, "melee");
     }
 
     @Override
     public int usarHabilidad(Personaje personaje) {
         Dado dado = new Dado();
-        return dado.tirar(getPotencia()) + personaje.getEstadisticas().getFuerza();
+        int danio = dado.tirar(getPotencia()) + personaje.getEstadisticas().getFuerza();
+        System.out.println("Le has causado a tu enemigo: "+ danio+" puntos de salud");
+        return danio;
     }
 }

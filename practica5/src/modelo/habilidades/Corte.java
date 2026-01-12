@@ -14,7 +14,10 @@ public class Corte extends Habilidades{
         Dado dado = new Dado();
         if (Math.random() < 0.30){
             personaje.agregarEstado(new Sangrado());
+            System.out.println("El enemigo ahora sufre sangrado!!!");
         }
-        return dado.tirar(getPotencia()) + personaje.getEstadisticas().getDestreza();
+        int danio = dado.tirar(getPotencia()) + personaje.getEstadisticas().getDestreza();
+        System.out.println("Le has causado a tu enemigo: "+ danio+" puntos de salud");
+        return danio;
     }
 }

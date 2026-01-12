@@ -122,9 +122,22 @@ public class Personaje {
             this.finalizaEstado(estadosEliminar);
         }
     }
-    public void resetearUsos(){
+    public void aplicarEstados(){
+        for (Estados estado: this.getEstados()){
+            estado.aplicarEfecto(this);
+            estado.disminuirDuracion();
+        }
+    }
+    public void resetearStats(){
         this.getEstadisticas().setMelee(5);
         this.getEstadisticas().setCuracion(3);
         this.getEstadisticas().setHabilidadDistancia(1);
+        this.getEstadisticas().setVidaActual(this.getEstadisticas().getVida());
+    }
+    public void ataqueBasico(Personaje enemigo){
+        Dado dado = new Dado();
+        int danio = dado.tirar(20) + this.getEstadisticas().getFuerza();
+        enemigo.recibirDanio(danio);
+        System.out.println("Le has causado a tu enemigo: "+ danio+" puntos de salud");
     }
 }

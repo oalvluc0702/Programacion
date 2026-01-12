@@ -9,9 +9,11 @@ public class Envenenamiento extends Estados{
     }
 
     @Override
-    void aplicarEfecto(Personaje personaje) {
+    public void aplicarEfecto(Personaje personaje) {
         Dado dado = new Dado();
-        personaje.recibirDanio(dado.tirar((10)));
+        int danio = dado.tirar(10);
+        personaje.recibirDanio(danio);
+        System.out.println("Ha recibido "+danio+" puntos de daño por envenenamiento");
     }
 
 }

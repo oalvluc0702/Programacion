@@ -9,9 +9,11 @@ public class Sangrado extends Estados{
     }
 
     @Override
-    void aplicarEfecto(Personaje personaje) {
+    public void aplicarEfecto(Personaje personaje) {
         Dado dado = new Dado();
-        personaje.recibirDanio(dado.tirar((int) (personaje.getEstadisticas().getVida()*0.1)));
+        int danio = dado.tirar((int) (personaje.getEstadisticas().getVida()*0.1));
+        personaje.recibirDanio(danio);
+        System.out.println("Has recibido: "+danio+" puntos de salud por sangrado");
     }
 
 }

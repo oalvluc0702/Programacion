@@ -11,6 +11,8 @@ public class Golpe extends Habilidades{
     @Override
     public int usarHabilidad(Personaje personaje) {
             Dado dado = new Dado();
-            return dado.tirar(getPotencia()) + personaje.getEstadisticas().getFuerza();
+            int danio = dado.tirar(getPotencia()) + personaje.getEstadisticas().getFuerza();
+            System.out.println("Le has causado a tu enemigo: "+ danio+" puntos de salud");
+            return danio;
     }
 }

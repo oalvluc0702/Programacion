@@ -10,7 +10,7 @@ public abstract class Estados {
         this.nombre = nombre;
         this.duracion = duracion;
     }
-    abstract void aplicarEfecto(Personaje personaje);
+    public abstract void aplicarEfecto(Personaje personaje);
 
     public String getNombre() {
         return nombre;

@@ -11,6 +11,8 @@ public class CuracionMayor extends Habilidades{
     @Override
     public int usarHabilidad(Personaje personaje) {
         Dado dado = new Dado();
-        return dado.tirar(getPotencia()) + personaje.getEstadisticas().getInteligencia();
+        int cura = dado.tirar(getPotencia()) + personaje.getEstadisticas().getInteligencia();
+        System.out.println("Te has curado: "+cura+" puntos de salud");
+        return cura;
     }
 }
