@@ -24,6 +24,7 @@ public class Druida implements Clase {
     public void agregarHabilidad(Personaje personaje) {
         ArrayList<Habilidades> listaHabilidades = personaje.getHabilidades();
         listaHabilidades.add(new CuracionMedia());
-        listaHabilidades.add(new GolpeFuerte());
+        listaHabilidades.add(new Golpe());
+        listaHabilidades.add(new BolaFuego());
     }
 }

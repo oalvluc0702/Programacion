@@ -152,6 +152,8 @@ public class Vista {
     public void mostrarPersonaje(Personaje personaje){
         System.out.printf("%s: %d/%d%n",personaje.getNombre(),personaje.getEstadisticas().getVidaActual(),personaje.getEstadisticas().getVida());
         System.out.printf("usos: melee- %d curación- %d distancia/ultimate %d  %n",personaje.getEstadisticas().getMelee(),personaje.getEstadisticas().getCuracion(),personaje.getEstadisticas().getHabilidadDistancia());
+       // System.out.printf("estados %s", personaje.getEstados());
+
     }
     public void mostrarMenuAcciones(){
         System.out.printf("=====================================%n");

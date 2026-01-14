@@ -5,7 +5,7 @@ import modelo.Personaje;
 
 public class Golpe extends Habilidades{
     public Golpe() {
-        super("Golpe",10, "melee");
+        super("Golpe",20, "melee");
     }
 
     @Override

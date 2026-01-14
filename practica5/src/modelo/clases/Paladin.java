@@ -3,6 +3,7 @@ import modelo.habilidades.CuracionMenor;
 import modelo.habilidades.GolpeFuerte;
 import modelo.habilidades.Habilidades;
 import modelo.Personaje;
+import modelo.habilidades.RayoDivino;
 
 import java.util.ArrayList;
 
@@ -25,5 +26,6 @@ public class Paladin implements Clase{
         ArrayList<Habilidades> listaHabilidades = personaje.getHabilidades();
         listaHabilidades.add(new CuracionMenor());
         listaHabilidades.add(new GolpeFuerte());
+        listaHabilidades.add(new RayoDivino());
     }
 }

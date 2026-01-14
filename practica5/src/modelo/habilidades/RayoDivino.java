@@ -3,18 +3,17 @@ package modelo.habilidades;
 import modelo.Dado;
 import modelo.Personaje;
 import modelo.estadosAlterados.Quemado;
-import modelo.estadosAlterados.Sangrado;
 
-public class BolaFuego extends Habilidades{
-    public BolaFuego() {
-        super("Bola de fuego",70, "distancia");
+public class RayoDivino extends Habilidades{
+    public RayoDivino() {
+        super("Rayo Divino",80, "distancia");
     }
 
     @Override
     public int usarHabilidad(Personaje personaje) {
         Dado dado = new Dado();
-        int danio = dado.tirarVarios(2, getPotencia()) + personaje.getEstadisticas().getInteligencia();
-        if (Math.random() < 0.60){
+        int danio = dado.tirarVarios(1, getPotencia()) + personaje.getEstadisticas().getInteligencia();
+        if (Math.random() < 0.80){
             personaje.agregarEstado(new Quemado());
             System.out.println("El enemigo se resiente de las quemaduras, ahora sufre quemado");
         }

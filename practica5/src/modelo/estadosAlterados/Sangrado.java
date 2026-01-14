@@ -13,7 +13,7 @@ public class Sangrado extends Estados{
         Dado dado = new Dado();
         int danio = dado.tirar((int) (personaje.getEstadisticas().getVida()*0.1));
         personaje.recibirDanio(danio);
-        System.out.println("Has recibido: "+danio+" puntos de salud por sangrado");
+        System.out.println("Has recibido: "+danio+" puntos de daño por sangrado");
     }
 
 }

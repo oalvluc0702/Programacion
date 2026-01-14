@@ -5,7 +5,7 @@ import modelo.Personaje;
 
 public class CuracionMayor extends Habilidades{
     public CuracionMayor() {
-        super("Curación Mayor",20, "curación");
+        super("Curación Mayor",30, "curación");
     }
 
     @Override

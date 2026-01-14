@@ -1,5 +1,6 @@
 package modelo.clases;
 
+import modelo.habilidades.ArcoVenenoso;
 import modelo.habilidades.Corte;
 import modelo.habilidades.CuracionMenor;
 import modelo.habilidades.Habilidades;
@@ -25,5 +26,6 @@ public class Picaro implements Clase {
         ArrayList<Habilidades> listaHabilidades = personaje.getHabilidades();
         listaHabilidades.add(new CuracionMenor());
         listaHabilidades.add(new Corte());
+        listaHabilidades.add(new ArcoVenenoso());
     }
 }

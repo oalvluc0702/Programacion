@@ -1,6 +1,7 @@
 package modelo.clases;
 
 import modelo.habilidades.CuracionMenor;
+import modelo.habilidades.EspadaVorpal;
 import modelo.habilidades.GolpeFuerte;
 import modelo.habilidades.Habilidades;
 import modelo.Personaje;
@@ -24,5 +25,6 @@ public class Guerrero implements Clase{
         ArrayList<Habilidades> listaHabilidades = personaje.getHabilidades();
         listaHabilidades.add(new CuracionMenor());
         listaHabilidades.add(new GolpeFuerte());
+        listaHabilidades.add(new EspadaVorpal());
     }
 }

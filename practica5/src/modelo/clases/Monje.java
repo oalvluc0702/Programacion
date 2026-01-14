@@ -1,5 +1,6 @@
 package modelo.clases;
 
+import modelo.habilidades.ABocajarro;
 import modelo.habilidades.CuracionMenor;
 import modelo.habilidades.GolpeFuerte;
 import modelo.habilidades.Habilidades;
@@ -27,5 +28,6 @@ public class Monje implements Clase {
         ArrayList<Habilidades> listaHabilidades = personaje.getHabilidades();
         listaHabilidades.add(new CuracionMenor());
         listaHabilidades.add(new GolpeFuerte());
+        listaHabilidades.add(new ABocajarro());
     }
 }

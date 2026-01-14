@@ -4,6 +4,7 @@ import modelo.habilidades.CuracionMayor;
 import modelo.habilidades.Golpe;
 import modelo.habilidades.Habilidades;
 import modelo.Personaje;
+import modelo.habilidades.SoloDisturbio;
 
 import java.util.ArrayList;
 
@@ -25,5 +26,6 @@ public class Bardo implements Clase {
         ArrayList<Habilidades> listaHabilidades = personaje.getHabilidades();
         listaHabilidades.add(new CuracionMayor());
         listaHabilidades.add(new Golpe());
+        listaHabilidades.add(new SoloDisturbio());
     }
 }

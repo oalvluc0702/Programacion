@@ -6,7 +6,7 @@ import modelo.estadosAlterados.Sangrado;
 
 public class Corte extends Habilidades{
     public Corte() {
-        super("Corte",5, "melee");
+        super("Corte",15, "melee");
     }
 
     @Override
