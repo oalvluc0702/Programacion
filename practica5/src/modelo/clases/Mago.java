@@ -21,7 +21,8 @@ public class Mago implements Clase {
     @Override
     public void agregarHabilidad(Personaje personaje) {
         ArrayList<Habilidades> listaHabilidades = personaje.getHabilidades();
-        listaHabilidades.add(new CuracionMenor());
+        listaHabilidades.add(new CuracionMedia());
         listaHabilidades.add(new Golpe());
+        listaHabilidades.add(new BolaFuego());
     }
 }
