@@ -136,7 +136,7 @@ public class Personaje {
     }
     public void ataqueBasico(Personaje enemigo){
         Dado dado = new Dado();
-        int danio = dado.tirar(20) + this.getEstadisticas().getFuerza();
+        int danio = dado.tirar(10) + this.getEstadisticas().getFuerza();
         enemigo.recibirDanio(danio);
         System.out.println("Le has causado a tu enemigo: "+ danio+" puntos de salud");
     }
