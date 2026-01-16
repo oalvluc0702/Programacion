@@ -2,7 +2,6 @@ package modelo.habilidades;
 
 import modelo.Dado;
 import modelo.Personaje;
-import modelo.estadosAlterados.Quemado;
 import modelo.estadosAlterados.Sangrado;
 
 public class EspadaVorpal extends Habilidades{
@@ -11,11 +10,11 @@ public class EspadaVorpal extends Habilidades{
     }
 
     @Override
-    public int usarHabilidad(Personaje personaje) {
+    public int usarHabilidad(Personaje personaje, Personaje enemigo) {
         Dado dado = new Dado();
         int danio = dado.tirar(getPotencia()) + personaje.getEstadisticas().getFuerza();
         if (Math.random() < 0.50){
-            personaje.agregarEstado(new Sangrado());
+            enemigo.agregarEstado(new Sangrado());
             System.out.println("El enemigo ahora sufre sangrado!!!");
         }
         System.out.println("Le has causado a tu enemigo: "+ danio+" puntos de salud");

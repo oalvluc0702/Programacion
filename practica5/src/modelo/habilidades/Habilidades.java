@@ -16,7 +16,7 @@ public abstract class Habilidades {
         this.tipo = tipo;
     }
     //esta es la función abstracta que todas las habilidades tienen que implementar a su manera
-    public abstract int usarHabilidad(Personaje personaje);
+    public abstract int usarHabilidad(Personaje personaje, Personaje enemigo);
 
     //getters y setters
 

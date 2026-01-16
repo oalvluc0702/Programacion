@@ -88,10 +88,10 @@ public class Combate {
                     //si es válida la ejecuta dependiendo del tipo que sea la habilidad hace un recibir daño o curar vida
                     if (valido){
                         if (habilidadSeleccionada.getTipo().equals("curación")){
-                            luchador.curarVida(habilidadSeleccionada.usarHabilidad(luchador));
+                            luchador.curarVida(habilidadSeleccionada.usarHabilidad(luchador, enemigo ));
                             luchador.disminuirCosto(habilidadSeleccionada.getTipo());
                         }else{
-                            enemigo.recibirDanio(habilidadSeleccionada.usarHabilidad(luchador));
+                            enemigo.recibirDanio(habilidadSeleccionada.usarHabilidad(luchador, enemigo));
                             luchador.disminuirCosto(habilidadSeleccionada.getTipo());
                         }
                     }

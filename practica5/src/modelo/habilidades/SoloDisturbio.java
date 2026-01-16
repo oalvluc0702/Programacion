@@ -9,7 +9,7 @@ public class SoloDisturbio extends Habilidades{
     }
 
     @Override
-    public int usarHabilidad(Personaje personaje) {
+    public int usarHabilidad(Personaje personaje, Personaje enemigo) {
         Dado dado = new Dado();
         int danio = dado.tirarVarios(8, getPotencia()) + personaje.getEstadisticas().getInteligencia();
         System.out.println("Le has causado a tu enemigo: "+ danio+" puntos de salud");

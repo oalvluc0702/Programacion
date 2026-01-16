@@ -10,11 +10,11 @@ public class RayoDivino extends Habilidades{
     }
 
     @Override
-    public int usarHabilidad(Personaje personaje) {
+    public int usarHabilidad(Personaje personaje, Personaje enemigo) {
         Dado dado = new Dado();
         int danio = dado.tirarVarios(1, getPotencia()) + personaje.getEstadisticas().getInteligencia();
         if (Math.random() < 0.80){
-            personaje.agregarEstado(new Quemado());
+            enemigo.agregarEstado(new Quemado());
             System.out.println("El enemigo se resiente de las quemaduras, ahora sufre quemado");
         }
         System.out.println("Le has causado a tu enemigo: "+ danio+" puntos de salud");

@@ -10,10 +10,10 @@ public class Corte extends Habilidades{
     }
 
     @Override
-    public int usarHabilidad(Personaje personaje) {
+    public int usarHabilidad(Personaje personaje, Personaje enemigo) {
         Dado dado = new Dado();
         if (Math.random() < 0.30){
-            personaje.agregarEstado(new Sangrado());
+            enemigo.agregarEstado(new Sangrado());
             System.out.println("El enemigo ahora sufre sangrado!!!");
         }
         int danio = dado.tirar(getPotencia()) + personaje.getEstadisticas().getDestreza();
