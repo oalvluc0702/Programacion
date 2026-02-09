@@ -11,7 +11,6 @@ public class Ejercicio14 {
             ArrayList<String> mensajes = historialMensajes.get(jugadores);
             HashSet<String> comprobarMensajes = new HashSet<>();
             if (mensajes.size() < 3){
-                System.out.println(jugadores+": No tiene suficientes mensajes para poder analizar");
                 continue;
             }else {
                 for (int i = mensajes.size()-1; i >= mensajes.size()-3 ; i--) {
@@ -29,9 +28,11 @@ public class Ejercicio14 {
         HashSet<String> jugadoresSilenciados = new HashSet<>();
         historialMensajes.put("Mario", new ArrayList<>(List.of("hola","como estás","hola","listo")));
         historialMensajes.put("Oscar", new ArrayList<>(List.of("hola","bien","bien","no")));
+        historialMensajes.put("Josemi", new ArrayList<>(List.of("Tienes un 10 en el examen","Tienes la practica suspensa")));
         analizarMensajes(historialMensajes,jugadoresSilenciados);
         System.out.println("Jugadores Silenciados: "+ jugadoresSilenciados.toString());
-        System.out.println("Mario: "+ historialMensajes.get("Mario").toString());
-        System.out.println("Óscar"+ historialMensajes.get("Oscar").toString());
+        for (String jugador : historialMensajes.keySet()){
+            System.out.println(jugador+": "+historialMensajes.get(jugador).toString());
+        }
     }
 }
