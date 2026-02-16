@@ -18,4 +18,12 @@ public class Comida extends Producto{
     public int getTiempoCocinado() {
         return tiempoCocinado;
     }
+
+    public void setAlergenos(HashSet<String> alergenos) {
+        this.alergenos = alergenos;
+    }
+
+    public void setTiempoCocinado(int tiempoCocinado) {
+        this.tiempoCocinado = tiempoCocinado;
+    }
 }
