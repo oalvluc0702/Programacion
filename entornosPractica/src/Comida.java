@@ -5,9 +5,9 @@ public class Comida extends Producto{
     private HashSet<String> alergenos;
     private int tiempoCocinado;
 
-    public Comida(String nombre, ArrayList<Producto> comboFiesta, double precio, int descuento, HashSet<String> alergenos, int tiempoCocinado) {
-        super(nombre, comboFiesta, precio, descuento);
-        this.alergenos = alergenos;
+    public Comida(String nombre, double precio, int descuento, int tiempoCocinado) {
+        super(nombre, precio, descuento);
+        this.alergenos = new HashSet<>();
         this.tiempoCocinado = tiempoCocinado;
     }
 

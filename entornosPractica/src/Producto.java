@@ -6,7 +6,7 @@ public class Producto {
     private double precio;
     private int descuento;
 
-    public Producto(String nombre, ArrayList<Producto> comboFiesta, double precio, int descuento) {
+    public Producto(String nombre, double precio, int descuento) {
         this.nombre = nombre;
         this.comboFiesta = new ArrayList<>();
         this.precio = precio;

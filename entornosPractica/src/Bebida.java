@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class Bebida extends Producto{
     private String tamanio;
 
-    public Bebida(String nombre, ArrayList<Producto> comboFiesta, double precio, int descuento, String tamanio) {
-        super(nombre, comboFiesta, precio, descuento);
+    public Bebida(String nombre, double precio, int descuento, String tamanio) {
+        super(nombre, precio, descuento);
         this.tamanio = tamanio;
     }
 
