@@ -1,0 +1,20 @@
+[
+  {
+    "nombre": "Aragorn",
+    "raza": "Humano",
+    "nivel": 20,
+    "equipoIds": ["W01"]
+  },
+  {
+    "nombre": "Oscar",
+    "raza": "Elfo",
+    "nivel": 100,
+    "equipoIds": ["W02","W03"]
+  },
+  {
+    "nombre": "Mario",
+    "raza": "Enano",
+    "nivel": 69,
+    "equipoIds": ["P02"]
+  }
+]
