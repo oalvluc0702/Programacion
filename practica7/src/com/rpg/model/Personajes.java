@@ -8,11 +8,14 @@ public class Personajes {
     private Integer nivel;
     private List<Items> equipo;
 
-    public Personajes(String nombre, String raza, Integer nivel, List<Items> equipo) {
+    public Personajes(String nombre, String raza, Integer nivel, List<String> equipo) {
         this.nombre = nombre;
         this.raza = raza;
         this.nivel = nivel;
         this.equipo = equipo;
+    }
+
+    public Personajes(String nombre, String raza, List<String> items) {
     }
 
     public String getNombre() {
