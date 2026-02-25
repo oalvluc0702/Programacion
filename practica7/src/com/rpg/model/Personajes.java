@@ -8,14 +8,11 @@ public class Personajes {
     private Integer nivel;
     private List<Items> equipo;
 
-    public Personajes(String nombre, String raza, Integer nivel, List<String> equipo) {
+    public Personajes(String nombre, String raza, Integer nivel, List<Items> equipo) {
         this.nombre = nombre;
         this.raza = raza;
         this.nivel = nivel;
         this.equipo = equipo;
-    }
-
-    public Personajes(String nombre, String raza, List<String> items) {
     }
 
     public String getNombre() {
@@ -48,5 +45,15 @@ public class Personajes {
 
     public void setEquipo(List<Items> equipo) {
         this.equipo = equipo;
+    }
+
+    @Override
+    public String toString() {
+        return "Personajes{" +
+                "nombre='" + nombre + '\'' +
+                ", raza='" + raza + '\'' +
+                ", nivel=" + nivel +
+                ", equipo=" + equipo +
+                '}';
     }
 }
