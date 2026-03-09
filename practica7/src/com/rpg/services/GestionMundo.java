@@ -25,11 +25,15 @@ public class GestionMundo {
         cargarTodo();
         System.out.println(personajes.toString());
         System.out.println(ciudades.toString());
+        System.out.println(objetos.toString());
+        this.personajes.add(crearPersonaje(this.objetos));
+        jsonHelper.writeList("practica7/ficheros/personajes.json",personajes);
     }
 
     public void cargarTodo() throws RPGDataException {
             this.personajes = jsonHelper.readlist("practica7/ficheros/personajes.json",Personajes.class);
             this.ciudades = txtHelper.cargarFicheroCiudades("practica7/ficheros/ciudades.txt");
+            this.objetos = jsonHelper.readlist("practica7/ficheros/items.json", Items.class);
     }
     public Personajes crearPersonaje(List<Items> objetos){
         String nombre;
