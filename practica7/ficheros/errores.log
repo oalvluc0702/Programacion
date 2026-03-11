@@ -1,0 +1,6 @@
+[2026-03-11T10:59:56.878481700] ERROR:DatoInvalidoException-el nivel no puede ser negativo
+[2026-03-11T11:40:46.552655700] ERROR:DatoInvalidoException-el nivel no puede ser negativo
+[2026-03-11T11:52:22.106257100] ERROR:DatoInvalidoException-el nivel no puede ser negativo
+[2026-03-11T11:53:23.997020900] ERROR:DatoInvalidoException-el nivel no puede ser negativo
+[2026-03-11T13:17:43.144208400] ERROR:DatoInvalidoException-en Personaje bbbnivel: -2 no permitido
+[2026-03-11T13:19:22.857107100] ERROR:DatoInvalidoException- en Personaje marionivel: -2 no permitido
