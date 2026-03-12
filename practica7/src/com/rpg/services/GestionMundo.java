@@ -30,7 +30,7 @@ public class GestionMundo {
         inicio();
     }
 
-    public void cargarTodo() {
+    public void cargarTodo() throws RPGDataException {
         //  Cargamos personajes y ciudades
         this.personajes = jsonHelper.readlist("practica7/ficheros/personajes.json", Personajes.class);
         this.ciudades = txtHelper.cargarFicheroCiudades("practica7/ficheros/ciudades.txt");
