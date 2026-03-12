@@ -4,8 +4,7 @@
     "raza": "Humano",
     "nivel": 20,
     "equipoIds": [
-      "W01",
-      "P01"
+      "W01"
     ]
   },
   {
@@ -33,6 +32,15 @@
       "P01",
       "P01",
       "P01"
+    ]
+  },
+  {
+    "nombre": "Mario",
+    "raza": "Padre",
+    "nivel": 69,
+    "equipoIds": [
+      "P01",
+      "W02"
     ]
   }
 ]

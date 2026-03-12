@@ -9,3 +9,39 @@
 [2026-03-12T09:17:36.011235900] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Rivendel;Mil;Templado;2'. Causa: For input string: "Mil"
 [2026-03-12T09:17:36.028845900] ERROR: FormatoInvalidoException en Ciudad: Línea saltada: 'Gondor;10000;Soleado'. Causa: Se esperaban 4 campos, se encontraron 3
 [2026-03-12T09:17:36.029553600] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Mordor;;Oscuro;10'. Causa: For input string: ""
+[2026-03-12T09:42:19.269953500] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Rivendel;Mil;Templado;2'. Causa: For input string: "Mil"
+[2026-03-12T09:42:19.285593400] ERROR: FormatoInvalidoException en Ciudad: Línea saltada: 'Gondor;10000;Soleado'. Causa: Se esperaban 4 campos, se encontraron 3
+[2026-03-12T09:42:19.285593400] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Mordor;;Oscuro;10'. Causa: For input string: ""
+[2026-03-12T09:43:24.318026100] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Rivendel;Mil;Templado;2'. Causa: For input string: "Mil"
+[2026-03-12T09:43:24.331748400] ERROR: FormatoInvalidoException en Ciudad: Línea saltada: 'Gondor;10000;Soleado'. Causa: Se esperaban 4 campos, se encontraron 3
+[2026-03-12T09:43:24.332869900] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Mordor;;Oscuro;10'. Causa: For input string: ""
+[2026-03-12T09:49:45.961985300] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Rivendel;Mil;Templado;2'. Causa: For input string: "Mil"
+[2026-03-12T09:49:45.979515600] ERROR: FormatoInvalidoException en Ciudad: Línea saltada: 'Gondor;10000;Soleado'. Causa: Se esperaban 4 campos, se encontraron 3
+[2026-03-12T09:49:45.979515600] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Mordor;;Oscuro;10'. Causa: For input string: ""
+[2026-03-12T10:05:49.877388200] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Rivendel;Mil;Templado;2'. Causa: For input string: "Mil"
+[2026-03-12T10:05:49.894144300] ERROR: FormatoInvalidoException en Ciudad: Línea saltada: 'Gondor;10000;Soleado'. Causa: Se esperaban 4 campos, se encontraron 3
+[2026-03-12T10:05:49.895201800] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Mordor;;Oscuro;10'. Causa: For input string: ""
+[2026-03-12T10:25:44.423606] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Rivendel;Mil;Templado;2'. Causa: For input string: "Mil"
+[2026-03-12T10:25:44.437282400] ERROR: FormatoInvalidoException en Ciudad: Línea saltada: 'Gondor;10000;Soleado'. Causa: Se esperaban 4 campos, se encontraron 3
+[2026-03-12T10:25:44.437282400] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Mordor;;Oscuro;10'. Causa: For input string: ""
+[2026-03-12T10:25:44.483164700] INFO: el equipo Andúril existe y se ha añadido correctamente
+[2026-03-12T10:25:44.485982300] ERROR- RecursoNoEncontradoException - objeto: E01no encontrado se eliminará del personaje su identificador
+[2026-03-12T10:25:44.487796300] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-12T10:25:44.488912800] INFO: el equipo Andúril existe y se ha añadido correctamente
+[2026-03-12T10:25:44.488912800] INFO: el equipo Hacha de batalla existe y se ha añadido correctamente
+[2026-03-12T10:25:44.488912800] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-12T10:25:44.488912800] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-12T10:25:44.490046800] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-12T10:28:05.181120500] INFO: Se han guardado los cambios correctamente
+[2026-03-12T10:32:16.652803800] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Rivendel;Mil;Templado;2'. Causa: For input string: "Mil"
+[2026-03-12T10:32:16.669377700] ERROR: FormatoInvalidoException en Ciudad: Línea saltada: 'Gondor;10000;Soleado'. Causa: Se esperaban 4 campos, se encontraron 3
+[2026-03-12T10:32:16.670037400] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Mordor;;Oscuro;10'. Causa: For input string: ""
+[2026-03-12T10:32:16.713149900] INFO: el equipo Andúril existe y se ha añadido correctamente
+[2026-03-12T10:32:16.714933100] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-12T10:32:16.716074900] INFO: el equipo Andúril existe y se ha añadido correctamente
+[2026-03-12T10:32:16.716074900] INFO: el equipo Hacha de batalla existe y se ha añadido correctamente
+[2026-03-12T10:32:16.717232] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-12T10:32:16.717232] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-12T10:32:16.717900800] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-12T10:33:38.524091500] INFO: Se han guardado los cambios correctamente
+[2026-03-12T10:33:52.893433800] INFO: Se han guardado los cambios correctamente

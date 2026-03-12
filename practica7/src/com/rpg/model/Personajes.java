@@ -8,10 +8,10 @@ public class Personajes {
     private String raza;
     private Integer nivel;
 
-    // Este campo se lee y escribe en el JSON ("equipoIds": ["E01", "W02"])
+    // Este campo se lee y escribe en el JSON para luego la validación
     private List<String> equipoIds;
 
-    // 'transient' hace que GSON ignore este campo al serializar/deserializar
+    // transient hace que GSON ignore este campo al leer
     private transient List<Items> equipo;
 
     // Constructor vacío
@@ -26,10 +26,24 @@ public class Personajes {
         this.raza = raza;
         this.nivel = nivel;
         this.equipoIds = equipoIds;
-        this.equipo = new ArrayList<>(); // Se inicializa vacía hasta que se vincule
+        // se inicializa vacío hasta que se le asignan los objetos
+        this.equipo = new ArrayList<>();
     }
 
     // --- GETTERS Y SETTERS ---
+
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getRaza() {
+        return raza;
+    }
+
+    public Integer getNivel() {
+        return nivel;
+    }
 
     public List<String> getEquipoIds() {
         return equipoIds;
@@ -55,8 +69,8 @@ public class Personajes {
                 "nombre='" + nombre + '\'' +
                 ", raza='" + raza + '\'' +
                 ", nivel=" + nivel +
-                ", equipoIds=" + equipoIds + // Mostramos los IDs
-                ", equipo=" + equipo +       // Y los objetos si ya están vinculados
+                ", equipoIds=" + equipoIds +
+                ", equipo=" + equipo +
                 '}';
     }
 }

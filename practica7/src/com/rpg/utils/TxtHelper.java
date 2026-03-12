@@ -51,7 +51,8 @@ public class TxtHelper {
             return listaCiudad;
 
         } catch (IOException e) {
-            // aqui si el archivo no existe
+            // el archivo no existe
+            LoggerCustom.log("[" + LocalDateTime.now() + "] ERROR: No se ha encontrado el archivo "+path+" error crítico");
             throw new RecursoNoEncontradoException("No se ha encontrado el archivo: " + path);
         }
     }
