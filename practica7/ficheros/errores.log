@@ -6,3 +6,6 @@
 [2026-03-11T13:19:22.857107100] ERROR:DatoInvalidoException- en Personaje marionivel: -2 no permitido
 [2026-03-12T08:47:19.882266200] INFO: Se han guardado los cambios correctamente
 [2026-03-12T08:52:01.546255500] INFO: Se han guardado los cambios correctamente
+[2026-03-12T09:17:36.011235900] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Rivendel;Mil;Templado;2'. Causa: For input string: "Mil"
+[2026-03-12T09:17:36.028845900] ERROR: FormatoInvalidoException en Ciudad: Línea saltada: 'Gondor;10000;Soleado'. Causa: Se esperaban 4 campos, se encontraron 3
+[2026-03-12T09:17:36.029553600] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Mordor;;Oscuro;10'. Causa: For input string: ""

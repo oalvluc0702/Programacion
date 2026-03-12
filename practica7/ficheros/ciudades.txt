@@ -1,1 +1,8 @@
+# Nombre;Poblacion;Clima;Riesgo
 Minas Tirith;20000;Soleado;3
+Isengard;5000;Nublado;8
+### lineas que están mal para probar ###
+Rivendel;Mil;Templado;2
+Gondor;10000;Soleado
+Mordor;;Oscuro;10
+Edoras;3000;Viento;0
