@@ -1,42 +1,42 @@
 package com.rpg.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Personajes {
     private String nombre;
     private String raza;
     private Integer nivel;
-    private List<Items> equipo;
 
-    public Personajes(String nombre, String raza, Integer nivel, List<Items> equipo) {
+    // Este campo se lee y escribe en el JSON ("equipoIds": ["E01", "W02"])
+    private List<String> equipoIds;
+
+    // 'transient' hace que GSON ignore este campo al serializar/deserializar
+    private transient List<Items> equipo;
+
+    // Constructor vacío
+    public Personajes() {
+        this.equipoIds = new ArrayList<>();
+        this.equipo = new ArrayList<>();
+    }
+
+    // Constructor completo
+    public Personajes(String nombre, String raza, Integer nivel, List<String> equipoIds) {
         this.nombre = nombre;
         this.raza = raza;
         this.nivel = nivel;
-        this.equipo = equipo;
+        this.equipoIds = equipoIds;
+        this.equipo = new ArrayList<>(); // Se inicializa vacía hasta que se vincule
     }
 
-    public String getNombre() {
-        return nombre;
+    // --- GETTERS Y SETTERS ---
+
+    public List<String> getEquipoIds() {
+        return equipoIds;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getRaza() {
-        return raza;
-    }
-
-    public void setRaza(String raza) {
-        this.raza = raza;
-    }
-
-    public Integer getNivel() {
-        return nivel;
-    }
-
-    public void setNivel(Integer nivel) {
-        this.nivel = nivel;
+    public void setEquipoIds(List<String> equipoIds) {
+        this.equipoIds = equipoIds;
     }
 
     public List<Items> getEquipo() {
@@ -47,13 +47,16 @@ public class Personajes {
         this.equipo = equipo;
     }
 
+    // ... (Mantén tus otros getters y setters de nombre, raza, nivel) ...
+
     @Override
     public String toString() {
         return "Personajes{" +
                 "nombre='" + nombre + '\'' +
                 ", raza='" + raza + '\'' +
                 ", nivel=" + nivel +
-                ", equipo=" + equipo +
+                ", equipoIds=" + equipoIds + // Mostramos los IDs
+                ", equipo=" + equipo +       // Y los objetos si ya están vinculados
                 '}';
     }
 }

@@ -1,1 +1,38 @@
-[{"nombre":"Aragorn","raza":"Humano","nivel":20},{"nombre":"Oscar","raza":"Elfo","nivel":100},{"nombre":"Mario","raza":"Enano","nivel":69},{"nombre":"dario","raza":"enano","nivel":0,"equipo":[{"id":"P01","nombre":"Pocion","tipo":"CONSUMIBLE","valor":25},{"id":"W01","nombre":"Hacha Doble","tipo":"ARMA","valor":100}]}]
+[
+  {
+    "nombre": "Aragorn",
+    "raza": "Humano",
+    "nivel": 20,
+    "equipoIds": [
+      "W01",
+      "P01"
+    ]
+  },
+  {
+    "nombre": "Legolas",
+    "raza": "Elfo",
+    "nivel": 18,
+    "equipoIds": [
+      "W02"
+    ]
+  },
+  {
+    "nombre": "Gimli",
+    "raza": "Enano",
+    "nivel": 19,
+    "equipoIds": [
+      "W01",
+      "W03"
+    ]
+  },
+  {
+    "nombre": "Frodo",
+    "raza": "Hobbit",
+    "nivel": 5,
+    "equipoIds": [
+      "P01",
+      "P01",
+      "P01"
+    ]
+  }
+]

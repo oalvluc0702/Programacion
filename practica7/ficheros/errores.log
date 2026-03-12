@@ -4,3 +4,5 @@
 [2026-03-11T11:53:23.997020900] ERROR:DatoInvalidoException-el nivel no puede ser negativo
 [2026-03-11T13:17:43.144208400] ERROR:DatoInvalidoException-en Personaje bbbnivel: -2 no permitido
 [2026-03-11T13:19:22.857107100] ERROR:DatoInvalidoException- en Personaje marionivel: -2 no permitido
+[2026-03-12T08:47:19.882266200] INFO: Se han guardado los cambios correctamente
+[2026-03-12T08:52:01.546255500] INFO: Se han guardado los cambios correctamente

@@ -1,6 +1,7 @@
 package com.rpg.utils;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
@@ -22,8 +23,10 @@ public class JsonHelper {
         }
     }
     public <T> void writeList(String path, List<T> lista) {
+        // si usas GsonBuilder() tienes acceso a un par de opciones para que el JSON te lo haga bonito
+        Gson gson = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+
         try (Writer writer = new FileWriter(path)) {
-            Gson gson = new Gson();
             gson.toJson(lista, writer);
             System.out.println("JSON escrito correctamente en " + path);
         } catch (IOException e) {
