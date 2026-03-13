@@ -9,11 +9,9 @@ import com.rpg.model.Personajes;
 import com.rpg.utils.JsonHelper;
 import com.rpg.utils.LoggerCustom;
 import com.rpg.utils.TxtHelper;
+
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class GestionMundo {
     private List<Personajes> personajes;
@@ -21,11 +19,13 @@ public class GestionMundo {
     private TxtHelper txtHelper;
     private List<Ciudades> ciudades;
     private HashMap<String, Items> catalogoItems;
+    private HashMap<String, Ciudades> catalogoCiudad;
     // Constructor que se encarga de inicializar
     public GestionMundo() throws Exception {
         this.jsonHelper = new JsonHelper();
         this.txtHelper = new TxtHelper();
         this.catalogoItems = new HashMap<>();
+        this.catalogoCiudad = new HashMap<>();
         cargarTodo();
         inicio();
     }
@@ -38,6 +38,9 @@ public class GestionMundo {
         List<Items> listaItems = jsonHelper.readlist("practica7/ficheros/items.json", Items.class);
         for (Items item : listaItems) {
             this.catalogoItems.put(item.getId(), item);
+        }
+        for (Ciudades ciudad : ciudades ) {
+            this.catalogoCiudad.put(ciudad.getNombre(), ciudad);
         }
         validar();
     }
@@ -59,7 +62,44 @@ public class GestionMundo {
             } catch (RecursoNoEncontradoException e){
                 LoggerCustom.log("[" + LocalDateTime.now() + "] ERROR- "+e.getClass().getSimpleName()+" - "+e.getMessage());
             }
+        }
 
+        // asociar ciudades
+        for (Personajes p : personajes) {
+            if (catalogoCiudad.containsKey(p.getNombreCiudad())) {
+                p.setCiudad(catalogoCiudad.get(p.getNombreCiudad()));
+            } else {
+                LoggerCustom.log("ERROR: Ciudad no encontrada para " + p.getNombre());
+            }
+        }
+
+        // validar que humanos no puedan aparecer en el desierto que un arma de tipo hielo este en volcánico
+        HashSet<Personajes> personajesAEliminar = new HashSet<>();
+        try{
+            for (Personajes personajeLista: personajes){
+                if (personajeLista.getRaza().equalsIgnoreCase("humano") && personajeLista.getCiudad().getClima().equalsIgnoreCase("desierto")){
+                    personajesAEliminar.add(personajeLista);
+                    LoggerCustom.log("El clima no puede ser desierto cuando la raza es humana");
+                    //throw new DatoInvalidoException("El clima no puede ser desierto cuando la raza es humana");
+                }
+            }
+            for (Personajes personajeLista: personajes){
+                List<Items> objetosPersonaje = personajeLista.getEquipo();
+                String clima = personajeLista.getCiudad().getClima();
+                for (Items item: objetosPersonaje){
+                    if (item.getTipo().equalsIgnoreCase("hielo") && clima.equalsIgnoreCase("volcánico")){
+                        personajesAEliminar.add(personajeLista);
+                        LoggerCustom.log("Un objeto de tipo hielo no puede entrar en un volcánico");
+                        //throw new DatoInvalidoException("Un objeto de tipo hielo no puede entrar en un volcánico");
+                    }
+                }
+            }
+        } catch (Exception e){
+            LoggerCustom.log("[ "+LocalDateTime.now()+" ]"+"ERROR - "+e.getClass().getSimpleName()+" - "+e.getMessage());
+        }
+        // elimina los personajes
+        for (Personajes personajeAEliminar: personajesAEliminar){
+            personajes.remove(personajeAEliminar);
         }
     }
     public void crearPersonaje() {
@@ -92,14 +132,15 @@ public class GestionMundo {
         System.out.println("Dime el nivel del personaje:");
         // uso parseInt para que no tenga problemas con saltos de líneas
         int nivel = Integer.parseInt(scanner.nextLine());
-
+        Ciudades ciudad1 = new Ciudades("malaca",3000,"Desierto",2);
+        ciudades.add(ciudad1);
         try {
             if (nivel < 0) {
                 throw new DatoInvalidoException("Personaje " + nombre + " nivel: " + nivel + " no permitido");
             }
 
             // Creamos el personaje con la lista de los id de los objetos para el JSON
-            Personajes nuevo = new Personajes(nombre, raza, nivel, itemsIds);
+            Personajes nuevo = new Personajes(nombre, raza, nivel, itemsIds,"malaca");
 
             // Y le asignamos la lista de objetos que saca del HashMap
             nuevo.setEquipo(itemsObjetos);

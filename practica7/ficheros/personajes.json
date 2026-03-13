@@ -3,44 +3,49 @@
     "nombre": "Aragorn",
     "raza": "Humano",
     "nivel": 20,
-    "equipoIds": [
-      "W01"
-    ]
+    "equipoIds": ["W01"],
+    "nombreCiudad": "Minas Tirith"
   },
   {
     "nombre": "Legolas",
     "raza": "Elfo",
     "nivel": 18,
-    "equipoIds": [
-      "W02"
-    ]
-  },
-  {
-    "nombre": "Gimli",
-    "raza": "Enano",
-    "nivel": 19,
-    "equipoIds": [
-      "W01",
-      "W03"
-    ]
+    "equipoIds": ["H01"],
+    "nombreCiudad": "volcan"
   },
   {
     "nombre": "Frodo",
     "raza": "Hobbit",
     "nivel": 5,
-    "equipoIds": [
-      "P01",
-      "P01",
-      "P01"
-    ]
+    "equipoIds": ["P01"],
+    "nombreCiudad": "desierto"
   },
   {
     "nombre": "Mario",
     "raza": "Padre",
     "nivel": 69,
-    "equipoIds": [
-      "P01",
-      "W02"
-    ]
+    "equipoIds": ["P01", "W02"],
+    "nombreCiudad": "volcan"
+  },
+  {
+    "nombre": "Prueba Humano",
+    "raza": "Humano",
+    "nivel": 69,
+    "equipoIds": ["P01", "W02"],
+    "nombreCiudad": "desierto"
+  },
+  {
+    "nombre": "Prueba Humano2",
+    "raza": "Humano",
+    "nivel": 69,
+    "equipoIds": ["P01", "W02"],
+    "nombreCiudad": "desierto"
+  },
+  {
+    "nombre": "Prueba Humano3",
+    "raza": "Humano",
+    "nivel": 69,
+    "equipoIds": ["H01", "W02"],
+    "nombreCiudad": "volcan"
   }
 ]

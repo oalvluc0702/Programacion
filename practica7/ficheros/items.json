@@ -2,5 +2,6 @@
   { "id": "W01", "nombre": "Andúril", "tipo": "ARMA", "valor": 500 },
   { "id": "W02", "nombre": "Arco de los Galadhrim", "tipo": "ARMA", "valor": 350 },
   { "id": "W03", "nombre": "Hacha de batalla", "tipo": "ARMA", "valor": 200 },
-  { "id": "P01", "nombre": "Poción de Vida", "tipo": "CONSUMIBLE", "valor": 50 }
+  { "id": "P01", "nombre": "Poción de Vida", "tipo": "CONSUMIBLE", "valor": 50 },
+  { "id": "H01", "nombre": "Cubito de hielo", "tipo": "hielo", "valor": 1 }
 ]

@@ -45,3 +45,166 @@
 [2026-03-12T10:32:16.717900800] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
 [2026-03-12T10:33:38.524091500] INFO: Se han guardado los cambios correctamente
 [2026-03-12T10:33:52.893433800] INFO: Se han guardado los cambios correctamente
+[2026-03-13T10:31:15.634311200] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Rivendel;Mil;Templado;2'. Causa: For input string: "Mil"
+[2026-03-13T10:31:15.679098900] ERROR: FormatoInvalidoException en Ciudad: Línea saltada: 'Gondor;10000;Soleado'. Causa: Se esperaban 4 campos, se encontraron 3
+[2026-03-13T10:31:15.679098900] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Mordor;;Oscuro;10'. Causa: For input string: ""
+[2026-03-13T10:31:15.712374500] INFO: el equipo Andúril existe y se ha añadido correctamente
+[2026-03-13T10:31:15.728900100] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:31:15.730024100] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:31:15.730676200] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:31:15.730676200] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:31:15.731839900] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:31:15.731839900] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:31:15.731839900] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:31:15.733026700] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:31:15.733655] INFO: el equipo Cubito de hielo existe y se ha añadido correctamente
+[2026-03-13T10:31:15.733655] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:35:30.267469700] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Rivendel;Mil;Templado;2'. Causa: For input string: "Mil"
+[2026-03-13T10:35:30.285073800] ERROR: FormatoInvalidoException en Ciudad: Línea saltada: 'Gondor;10000;Soleado'. Causa: Se esperaban 4 campos, se encontraron 3
+[2026-03-13T10:35:30.286205500] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Mordor;;Oscuro;10'. Causa: For input string: ""
+[2026-03-13T10:35:30.325348500] INFO: el equipo Andúril existe y se ha añadido correctamente
+[2026-03-13T10:35:30.327180200] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:35:30.328278500] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:35:30.328278500] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:35:30.328952600] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:35:30.335190400] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:35:30.335851100] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:35:30.337010800] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:35:30.337010800] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:35:30.338138900] INFO: el equipo Cubito de hielo existe y se ha añadido correctamente
+[2026-03-13T10:35:30.338138900] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:39:27.433495200] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Rivendel;Mil;Templado;2'. Causa: For input string: "Mil"
+[2026-03-13T10:39:27.449917700] ERROR: FormatoInvalidoException en Ciudad: Línea saltada: 'Gondor;10000;Soleado'. Causa: Se esperaban 4 campos, se encontraron 3
+[2026-03-13T10:39:27.451050600] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Mordor;;Oscuro;10'. Causa: For input string: ""
+[2026-03-13T10:39:27.492828800] INFO: el equipo Andúril existe y se ha añadido correctamente
+[2026-03-13T10:39:27.495711100] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:39:27.495711100] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:39:27.495711100] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:39:27.496827700] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:39:27.496827700] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:39:27.497491300] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:39:27.497491300] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:39:27.497491300] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:39:27.497491300] INFO: el equipo Cubito de hielo existe y se ha añadido correctamente
+[2026-03-13T10:39:27.497491300] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+ERROR: Ciudad no encontrada para Aragorn
+ERROR: Ciudad no encontrada para Legolas
+ERROR: Ciudad no encontrada para Frodo
+ERROR: Ciudad no encontrada para Mario
+ERROR: Ciudad no encontrada para Prueba Humano
+ERROR: Ciudad no encontrada para Prueba Humano2
+ERROR: Ciudad no encontrada para Prueba Humano3
+[2026-03-13T10:40:59.654982] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Rivendel;Mil;Templado;2'. Causa: For input string: "Mil"
+[2026-03-13T10:40:59.719471900] ERROR: FormatoInvalidoException en Ciudad: Línea saltada: 'Gondor;10000;Soleado'. Causa: Se esperaban 4 campos, se encontraron 3
+[2026-03-13T10:40:59.721222600] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Mordor;;Oscuro;10'. Causa: For input string: ""
+[2026-03-13T10:40:59.797750300] INFO: el equipo Andúril existe y se ha añadido correctamente
+[2026-03-13T10:40:59.801671300] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:40:59.801671300] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:40:59.802278] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:40:59.802278] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:40:59.802278] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:40:59.803331600] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:40:59.803331600] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:40:59.803331600] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:40:59.803331600] INFO: el equipo Cubito de hielo existe y se ha añadido correctamente
+[2026-03-13T10:40:59.803331600] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+ERROR: Ciudad no encontrada para Aragorn
+ERROR: Ciudad no encontrada para Legolas
+ERROR: Ciudad no encontrada para Frodo
+ERROR: Ciudad no encontrada para Mario
+ERROR: Ciudad no encontrada para Prueba Humano
+ERROR: Ciudad no encontrada para Prueba Humano2
+ERROR: Ciudad no encontrada para Prueba Humano3
+[2026-03-13T10:42:00.826960400] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Rivendel;Mil;Templado;2'. Causa: For input string: "Mil"
+[2026-03-13T10:42:00.880570800] ERROR: FormatoInvalidoException en Ciudad: Línea saltada: 'Gondor;10000;Soleado'. Causa: Se esperaban 4 campos, se encontraron 3
+[2026-03-13T10:42:00.881772500] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Mordor;;Oscuro;10'. Causa: For input string: ""
+[2026-03-13T10:42:00.952532200] INFO: el equipo Andúril existe y se ha añadido correctamente
+[2026-03-13T10:42:00.956659500] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:42:00.956659500] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:42:00.956659500] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:42:00.957805100] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:42:00.957805100] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:42:00.958433500] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:42:00.958433500] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:42:00.958433500] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:42:00.958433500] INFO: el equipo Cubito de hielo existe y se ha añadido correctamente
+[2026-03-13T10:42:00.959563900] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[ 2026-03-13T10:42:12.592909 ]ERROR - DatoInvalidoException - El clima no puede ser desierto cuando la raza es humana
+[2026-03-13T10:42:21.389098600] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Rivendel;Mil;Templado;2'. Causa: For input string: "Mil"
+[2026-03-13T10:42:21.406579500] ERROR: FormatoInvalidoException en Ciudad: Línea saltada: 'Gondor;10000;Soleado'. Causa: Se esperaban 4 campos, se encontraron 3
+[2026-03-13T10:42:21.407735100] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Mordor;;Oscuro;10'. Causa: For input string: ""
+[2026-03-13T10:42:21.449551800] INFO: el equipo Andúril existe y se ha añadido correctamente
+[2026-03-13T10:42:21.452452800] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:42:21.452452800] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:42:21.453590] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:42:21.453590] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:42:21.453590] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:42:21.454728300] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:42:21.454728300] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:42:21.455402400] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:42:21.455402400] INFO: el equipo Cubito de hielo existe y se ha añadido correctamente
+[2026-03-13T10:42:21.455402400] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[ 2026-03-13T10:42:21.456584600 ]ERROR - DatoInvalidoException - El clima no puede ser desierto cuando la raza es humana
+[2026-03-13T10:43:57.614674500] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Rivendel;Mil;Templado;2'. Causa: For input string: "Mil"
+[2026-03-13T10:43:57.630128200] ERROR: FormatoInvalidoException en Ciudad: Línea saltada: 'Gondor;10000;Soleado'. Causa: Se esperaban 4 campos, se encontraron 3
+[2026-03-13T10:43:57.631258] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Mordor;;Oscuro;10'. Causa: For input string: ""
+[2026-03-13T10:43:57.672027500] INFO: el equipo Andúril existe y se ha añadido correctamente
+[2026-03-13T10:43:57.676067700] INFO: el equipo Cubito de hielo existe y se ha añadido correctamente
+[2026-03-13T10:43:57.677187800] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:43:57.677822100] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:43:57.677822100] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:43:57.678977300] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:43:57.678977300] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:43:57.680098200] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:43:57.680098200] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:43:57.681888400] INFO: el equipo Cubito de hielo existe y se ha añadido correctamente
+[2026-03-13T10:43:57.681888400] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[ 2026-03-13T10:43:57.682995400 ]ERROR - DatoInvalidoException - El clima no puede ser desierto cuando la raza es humana
+[2026-03-13T10:44:23.256033900] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Rivendel;Mil;Templado;2'. Causa: For input string: "Mil"
+[2026-03-13T10:44:23.301729200] ERROR: FormatoInvalidoException en Ciudad: Línea saltada: 'Gondor;10000;Soleado'. Causa: Se esperaban 4 campos, se encontraron 3
+[2026-03-13T10:44:23.301729200] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Mordor;;Oscuro;10'. Causa: For input string: ""
+[2026-03-13T10:44:23.380074] INFO: el equipo Andúril existe y se ha añadido correctamente
+[2026-03-13T10:44:23.384073100] INFO: el equipo Cubito de hielo existe y se ha añadido correctamente
+[2026-03-13T10:44:23.384073100] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:44:23.384760] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:44:23.384760] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:44:23.384760] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:44:23.385863900] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:44:23.385863900] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:44:23.385863900] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:44:23.386955200] INFO: el equipo Cubito de hielo existe y se ha añadido correctamente
+[2026-03-13T10:44:23.386955200] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[ 2026-03-13T10:45:48.395879600 ]ERROR - DatoInvalidoException - El clima no puede ser desierto cuando la raza es humana
+[2026-03-13T10:46:14.689308500] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Rivendel;Mil;Templado;2'. Causa: For input string: "Mil"
+[2026-03-13T10:46:14.738053100] ERROR: FormatoInvalidoException en Ciudad: Línea saltada: 'Gondor;10000;Soleado'. Causa: Se esperaban 4 campos, se encontraron 3
+[2026-03-13T10:46:14.738053100] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Mordor;;Oscuro;10'. Causa: For input string: ""
+[2026-03-13T10:46:14.808347500] INFO: el equipo Andúril existe y se ha añadido correctamente
+[2026-03-13T10:46:14.811216300] INFO: el equipo Cubito de hielo existe y se ha añadido correctamente
+[2026-03-13T10:46:14.811216300] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:46:14.812340] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:46:14.812340] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:46:14.812340] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:46:14.812340] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:46:14.813517700] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:46:14.813517700] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:46:14.813517700] INFO: el equipo Cubito de hielo existe y se ha añadido correctamente
+[2026-03-13T10:46:14.814111100] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[ 2026-03-13T10:46:19.908459900 ]ERROR - DatoInvalidoException - El clima no puede ser desierto cuando la raza es humana
+[2026-03-13T10:47:55.095116500] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Rivendel;Mil;Templado;2'. Causa: For input string: "Mil"
+[2026-03-13T10:47:55.143994] ERROR: FormatoInvalidoException en Ciudad: Línea saltada: 'Gondor;10000;Soleado'. Causa: Se esperaban 4 campos, se encontraron 3
+[2026-03-13T10:47:55.144661200] ERROR: NumberFormatException en Ciudad: Línea saltada: 'Mordor;;Oscuro;10'. Causa: For input string: ""
+[2026-03-13T10:47:55.209184400] INFO: el equipo Andúril existe y se ha añadido correctamente
+[2026-03-13T10:47:55.212147500] INFO: el equipo Cubito de hielo existe y se ha añadido correctamente
+[2026-03-13T10:47:55.212147500] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:47:55.212147500] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:47:55.213250] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:47:55.213250] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:47:55.213899] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:47:55.213899] INFO: el equipo Poción de Vida existe y se ha añadido correctamente
+[2026-03-13T10:47:55.213899] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+[2026-03-13T10:47:55.213899] INFO: el equipo Cubito de hielo existe y se ha añadido correctamente
+[2026-03-13T10:47:55.214978300] INFO: el equipo Arco de los Galadhrim existe y se ha añadido correctamente
+El clima no puede ser desierto cuando la raza es humana
+El clima no puede ser desierto cuando la raza es humana
+Un objeto de tipo hielo no puede entrar en un volcánico
+Un objeto de tipo hielo no puede entrar en un volcánico

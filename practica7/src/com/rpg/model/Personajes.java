@@ -13,7 +13,8 @@ public class Personajes {
 
     // transient hace que GSON ignore este campo al leer
     private transient List<Items> equipo;
-
+    private String nombreCiudad;
+    private transient Ciudades ciudad;
     // Constructor vacío
     public Personajes() {
         this.equipoIds = new ArrayList<>();
@@ -21,17 +22,46 @@ public class Personajes {
     }
 
     // Constructor completo
-    public Personajes(String nombre, String raza, Integer nivel, List<String> equipoIds) {
+    public Personajes(String nombre, String raza, Integer nivel, List<String> equipoIds, String nombreCiudad) {
         this.nombre = nombre;
         this.raza = raza;
         this.nivel = nivel;
         this.equipoIds = equipoIds;
         // se inicializa vacío hasta que se le asignan los objetos
         this.equipo = new ArrayList<>();
+        this.nombreCiudad = nombreCiudad;
     }
 
     // --- GETTERS Y SETTERS ---
 
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setRaza(String raza) {
+        this.raza = raza;
+    }
+
+    public void setNivel(Integer nivel) {
+        this.nivel = nivel;
+    }
+
+    public String getNombreCiudad() {
+        return nombreCiudad;
+    }
+
+    public void setNombreCiudad(String nombreCiudad) {
+        this.nombreCiudad = nombreCiudad;
+    }
+
+    public Ciudades getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(Ciudades ciudad) {
+        this.ciudad = ciudad;
+    }
 
     public String getNombre() {
         return nombre;
