@@ -1,34 +1,51 @@
 package rpg.logic;
 
-import rpg.dao.Conexion;
-import rpg.model.Ciudades;
-import rpg.model.ClasesRPG;
-import rpg.model.Items;
-import rpg.model.Razas;
+import rpg.dao.*;
+import rpg.model.*;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class GestionMundo {
     private Scanner sc = new Scanner(System.in);
-    private ArrayList<Ciudades> listaCiudades = new ArrayList<>();
-    private ArrayList<Items> listaItems = new ArrayList<>();
-    private ArrayList<Razas> listaRazas = new ArrayList<>();
-    private ArrayList<ClasesRPG> listaClases = new ArrayList<>();
+    //Listas
+    private List<Ciudades> listaCiudades;
+    private List<Items> listaItems;
+    private List<Razas> listaRazas;
+    private List<ClasesRPG> listaClases;
+    private List<Habilidades> listaHabilidades;
+    //DAO
+    private CiudadesDao ciudadesDao;
+    private ItemsDao itemsDao;
+    private RazasDao razasDao;
+    private ClasesRPGDao clasesRPGDao;
+    private HabilidadDao habilidadDao;
+
     public GestionMundo() {
+        listaItems = new ArrayList<>();
+        listaRazas = new ArrayList<>();
+        listaCiudades = new ArrayList<>();
+        listaClases = new ArrayList<>();
+        listaHabilidades = new ArrayList<>();
+
+        ciudadesDao = new CiudadesDao();
+        itemsDao = new ItemsDao();
+        razasDao = new RazasDao();
+        clasesRPGDao = new ClasesRPGDao();
+        habilidadDao = new HabilidadDao();
+
         /*mostrarMenu();*/
         cargarTodo();
-//        for (Ciudades ciudad : listaCiudades){
-//            System.out.println(ciudad.toString());
-//        }
-//        for (Items item : listaItems){
-//            System.out.println(item.toString());
-//        }
-//        for (Razas raza : listaRazas){
-//            System.out.println(raza.toString());
-//        }
+        for (Ciudades ciudad : listaCiudades){
+           System.out.println(ciudad.toString());
+        }
+        for (Items item : listaItems){
+            System.out.println(item.toString());
+        }
+        for (Razas raza : listaRazas){
+            System.out.println(raza.toString());
+        }
         for (ClasesRPG clase : listaClases){
             System.out.println(clase.toString());
         }
@@ -60,45 +77,10 @@ public class GestionMundo {
         } while (opcion != 0);
     }
     public void cargarTodo(){
-        try{
-            ResultSet res = Conexion.consulta("SELECT * FROM CIUDADES");
-            while(res.next()){
-                int id = res.getInt("id");
-                String nombre = res.getString("nombre");
-                int nivelMinimoAcceso = res.getInt("nivel_minimo_acceso");
-                listaCiudades.add(new Ciudades(id,nombre,nivelMinimoAcceso));
-            }
-            ResultSet resItems = Conexion.consulta("SELECT * FROM ITEMS");
-            while (resItems.next()){
-                int id = resItems.getInt("id");
-                String nombre = resItems.getString("nombre");
-                String tipo = resItems.getString("tipo");
-                int precioOro = resItems.getInt("precio_oro");
-                int bonificadorAtaque = resItems.getInt("bonificador_ataque");
-                int bonificadorDefensa= resItems.getInt("bonificador_defensa");
-                listaItems.add(new Items(id,nombre,tipo,precioOro,bonificadorAtaque,bonificadorDefensa));
-            }
-            ResultSet resRazas = Conexion.consulta("SELECT * FROM RAZAS");
-
-            while (resRazas.next()) {
-                int id = resRazas.getInt("id");
-                String nombre = resRazas.getString("nombre");
-                int bonificadorVida = resRazas.getInt("bonificador_vida");
-                int bonificadorFuerza = resRazas.getInt("bonificador_fuerza");
-                listaRazas.add(new Razas(id, nombre, bonificadorVida, bonificadorFuerza));
-            }
-
-            ResultSet resClases = Conexion.consulta("SELECT * FROM CLASES_RPG");
-
-            while (resClases.next()){
-                int id = resClases.getInt("id");
-                String nombre = resClases.getString("nombre");
-
-                listaClases.add(new ClasesRPG(id,nombre));
-            }
-        } catch (SQLException e ){
-            System.out.println("Fallo en las consultas");
-        }
-
+            listaCiudades = ciudadesDao.getCiudades();
+            listaItems = itemsDao.getItems();
+            listaRazas = razasDao.getRazas();
+            listaClases = clasesRPGDao.getClases();
+            listaHabilidades = habilidadDao.getHabilidades();
     }
 }

@@ -1,5 +1,8 @@
 package rpg.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Habilidades {
     private int id;
     private String nombre;
