@@ -5,7 +5,9 @@ import rpg.model.Items;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ItemsDao {
     public ItemsDao() {
@@ -36,6 +38,31 @@ public class ItemsDao {
         }
 
         return listaItems;
+    }
+
+    public Map<Items,Integer> getInventario(int idPersonaje, List<Items> listaItems){
+        Map<Items,Integer> inventario = new HashMap<>();
+        String sql = "SELECT * FROM INVENTARIOS WHERE ID_PERSONAJE = ?";
+        try(Connection conexion = Conexion.getConexion();
+            PreparedStatement preparedStatement = conexion.prepareStatement(sql)){
+
+            preparedStatement.setInt(1,idPersonaje);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                int idItem = resultSet.getInt("id_item");
+                Integer cantidad = resultSet.getInt("cantidad");
+
+                for (Items item : listaItems){
+                    if(item.getId() == idItem) inventario.put(item, cantidad);
+                }
+            }
+
+        } catch (SQLException e){
+            System.out.println("error en la consulta "+e.getMessage());
+        }
+        return inventario;
     }
 
 }

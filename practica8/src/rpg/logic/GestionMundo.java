@@ -15,26 +15,28 @@ public class GestionMundo {
     private List<Razas> listaRazas;
     private List<ClasesRPG> listaClases;
     private List<Habilidades> listaHabilidades;
+    private List<Personajes> listaPersonajes;
     //DAO
     private CiudadesDao ciudadesDao;
     private ItemsDao itemsDao;
     private RazasDao razasDao;
     private ClasesRPGDao clasesRPGDao;
     private HabilidadDao habilidadDao;
-
+    private PersonajesDao personajesDao;
     public GestionMundo() {
         listaItems = new ArrayList<>();
         listaRazas = new ArrayList<>();
         listaCiudades = new ArrayList<>();
         listaClases = new ArrayList<>();
         listaHabilidades = new ArrayList<>();
+        listaPersonajes = new ArrayList<>();
 
         ciudadesDao = new CiudadesDao();
         itemsDao = new ItemsDao();
         razasDao = new RazasDao();
         clasesRPGDao = new ClasesRPGDao();
         habilidadDao = new HabilidadDao();
-
+        personajesDao = new PersonajesDao();
         /*mostrarMenu();*/
         cargarTodo();
         for (Ciudades ciudad : listaCiudades){
@@ -48,6 +50,9 @@ public class GestionMundo {
         }
         for (ClasesRPG clase : listaClases){
             System.out.println(clase.toString());
+        }
+        for (Personajes personajes : listaPersonajes){
+            System.out.println(personajes.toString());
         }
     }
     public void mostrarMenu() {
@@ -82,5 +87,6 @@ public class GestionMundo {
             listaRazas = razasDao.getRazas();
             listaClases = clasesRPGDao.getClases();
             listaHabilidades = habilidadDao.getHabilidades();
+            listaPersonajes = personajesDao.getPersonajes(listaItems,listaCiudades,listaHabilidades,listaClases,listaRazas);
     }
 }

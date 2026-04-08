@@ -14,14 +14,5 @@ public class Conexion {
             throw new SQLException("¡Driver no encontrado! Revisa tu archivo pom.xml o librerías.", e);
         }
     }
-    public static ResultSet consulta(String sql){
-        try (Connection conexion = Conexion.getConexion()){
-            Statement statement = conexion.createStatement();
-            return statement.executeQuery(sql);
-        } catch (SQLException e){
-            System.out.println("Error en la consulta " + e.getCause());
-        }
-        return null;
-    }
 
 }
