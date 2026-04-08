@@ -1,38 +1,42 @@
 package rpg.dao;
-
-
 import rpg.model.Razas;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class RazasDao {
+    private List<Razas> listaRazas;
+
     public RazasDao() {
+        this.listaRazas = new ArrayList<>();
+        cargarRazas();
     }
 
-    public List<Razas> getRazas() {
-        List<Razas> listaRazas = new ArrayList<>();
+    public void cargarRazas() {
+        this.listaRazas.clear();
         String sql = "SELECT * FROM RAZAS";
-
         try (Connection connection = Conexion.getConexion();
              Statement statement = connection.createStatement();
              ResultSet result = statement.executeQuery(sql)) {
-
             while (result.next()) {
-                int id = result.getInt("id");
-                String nombre = result.getString("nombre");
-                int bonificadorVida = result.getInt("bonificador_vida");
-                int bonificadorFuerza = result.getInt("bonificador_fuerza");
-
-                // Añadimos la raza a la lista usando su constructor
-                listaRazas.add(new Razas(id, nombre, bonificadorVida, bonificadorFuerza));
+                listaRazas.add(new Razas(
+                    result.getInt("id"),
+                    result.getString("nombre"),
+                    result.getInt("bonificador_vida"),
+                    result.getInt("bonificador_fuerza")
+                ));
             }
-
         } catch (SQLException e) {
-            System.out.println("Error al obtener las razas: " + e.getMessage());
+            System.out.println("Error al cargar razas");
         }
-
-        return listaRazas;
     }
 
+    public Razas buscarPorId(int id) {
+        for (Razas r : listaRazas) {
+            if (r.getId() == id) return r;
+        }
+        return null;
+    }
+
+    public List<Razas> getListaRazas() { return listaRazas; }
 }

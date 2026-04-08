@@ -1,50 +1,68 @@
 package rpg.logic;
-
 import rpg.dao.*;
-import rpg.exception.FondosInsuficientesException;
 import rpg.model.*;
 import rpg.ui.Vista;
-
-import java.util.ArrayList;
+import rpg.exception.FondosInsuficientesException;
 import java.util.List;
 
 public class GestionMundo {
-    //utilidad
     private Vista vista;
-    //Listas
-    private List<Ciudades> listaCiudades;
-    private List<Items> listaItems;
-    private List<Razas> listaRazas;
-    private List<ClasesRPG> listaClases;
-    private List<Habilidades> listaHabilidades;
-    private List<Personajes> listaPersonajes;
-    //DAO
     private CiudadesDao ciudadesDao;
     private ItemsDao itemsDao;
     private RazasDao razasDao;
     private ClasesRPGDao clasesRPGDao;
     private HabilidadDao habilidadDao;
     private PersonajesDao personajesDao;
-    public GestionMundo() {
-        vista = new Vista();
-        listaItems = new ArrayList<>();
-        listaRazas = new ArrayList<>();
-        listaCiudades = new ArrayList<>();
-        listaClases = new ArrayList<>();
-        listaHabilidades = new ArrayList<>();
-        listaPersonajes = new ArrayList<>();
 
-        ciudadesDao = new CiudadesDao();
-        itemsDao = new ItemsDao();
-        razasDao = new RazasDao();
-        clasesRPGDao = new ClasesRPGDao();
-        habilidadDao = new HabilidadDao();
-        personajesDao = new PersonajesDao();
-        cargarTodo();
+    public GestionMundo() {
+        this.vista = new Vista();
+        
+        // 1. Instanciar DAOs maestros (se cargan solos en su constructor)
+        this.ciudadesDao = new CiudadesDao();
+        this.itemsDao = new ItemsDao();
+        this.razasDao = new RazasDao();
+        this.habilidadDao = new HabilidadDao();
+        this.clasesRPGDao = new ClasesRPGDao(habilidadDao);
+
+        // 2. Instanciar PersonajesDao y cargarlo manualmente pasándole los otros
+        this.personajesDao = new PersonajesDao(itemsDao, habilidadDao);
+        personajesDao.cargarPersonajes(ciudadesDao, razasDao, clasesRPGDao);
 
         iniciar();
-
     }
+
+    public void irALaTienda() {
+        vista.mostrarMensaje("\n--- 💰 BIENVENIDO A LA TIENDA ---");
+        
+        // Obtenemos la lista del DAO
+        List<Personajes> lista = personajesDao.getListaPersonajes();
+        vista.mostrarListaPersonajesResumida(lista);
+        
+        int idPersonaje = vista.pedirOpcion();
+        Personajes pSel = personajesDao.buscarPorId(idPersonaje);
+
+        if (pSel != null) {
+            boolean salir = false;
+            do {
+                vista.mostrarListaItems(itemsDao.getListaItems());
+                int idItem = vista.pedirOpcionTienda();
+                Items item = itemsDao.buscarPorId(idItem);
+
+                if (item != null) {
+                    try {
+                        if (pSel.getOro() < item.getPrecioOro()) {
+                            throw new FondosInsuficientesException("Oro insuficiente");
+                        }
+                        // Lógica de compra...
+                    } catch (FondosInsuficientesException e) {
+                        vista.mostrarMensaje(e.getMessage());
+                    }
+                }
+                if (vista.pedirConfirmacion() != 0) salir = true;
+            } while (!salir);
+        }
+    }
+
     public void iniciar() {
         int opcion;
         do {
@@ -58,80 +76,14 @@ public class GestionMundo {
             case 1 -> crearPersonaje();
             case 2 -> viajarACiudad();
             case 3 -> irALaTienda();
-            case 4 -> ejecutarCobroImpuestos();
-            case 5 -> gestionarCombate();
-            case 6 -> mostrarEstadisticas();
-            case 0 -> vista.mostrarMensaje("Guardando partida y saliendo...");
-            default -> vista.mostrarMensaje("⚠️ Opción no válida. Inténtalo de nuevo.");
+            case 0 -> vista.mostrarMensaje("Saliendo...");
+            default -> vista.mostrarMensaje("Opción no válida");
         }
     }
+    public void crearPersonaje(){
 
-    // --- MÉTODOS PÚBLICOS DE ACCIÓN ---
-
-    public void crearPersonaje() {
-        vista.mostrarMensaje("\n--- ✨ FORJANDO UN NUEVO HÉROE ---");
-        // Aquí llamarías a: vista.pedirDatos(), luego dao.guardar()
     }
+    public void viajarACiudad(){
 
-    public void viajarACiudad() {
-        vista.mostrarMensaje("\n--- 🧭 PREPARANDO EL VIAJE ---");
-        // Aquí listarías ciudades y actualizarías la ubicación del personaje
-    }
-
-    public void irALaTienda() {
-        vista.mostrarMensaje("\n--- 💰 BIENVENIDO A LA TIENDA DE LA GUILD ---");
-        vista.mostrarMensaje("Con que personaje quieres comprar?");
-        vista.mostrarListaPersonajesResumida(listaPersonajes);
-        int idPersonaje = vista.pedirOpcion();
-        Personajes personajeSeleccionado = null;
-
-        for (Personajes personaje : listaPersonajes){
-            if (personaje.getId() == idPersonaje) personajeSeleccionado = personaje;
-        }
-
-        boolean salir = false;
-
-        do {
-            vista.mostrarListaItems(listaItems);
-            int idObjeto = vista.pedirOpcionTienda();
-
-            for (Items objeto : listaItems){
-
-                try {
-                    if (objeto.getId() == idObjeto){
-                        int precio = objeto.getPrecioOro();
-                        if (personajeSeleccionado.getOro()<precio) throw new FondosInsuficientesException("No hay fondos suficientes");
-                    }
-                } catch (FondosInsuficientesException e) {
-                    vista.mostrarMensaje("No hay fondos suficientes");
-                }
-            }
-
-            if (vista.pedirConfirmacion() != 0) salir = true;
-        } while(!salir);
-        // Aquí mostrarías items disponibles para comprar
-    }
-
-    public void ejecutarCobroImpuestos() {
-        vista.mostrarMensaje("\n--- ⚖️ MANTENIMIENTO: COBRO DE IMPUESTOS ---");
-        // Aquí restarías oro a todos los personajes o harías limpieza de BD
-    }
-
-    public void gestionarCombate() {
-        vista.mostrarMensaje("\n--- ⚔️ GESTIÓN DE HABILIDADES Y COMBATE ---");
-        // Aquí permitirías equipar habilidades o iniciar una simulación
-    }
-
-    public void mostrarEstadisticas() {
-        vista.mostrarMensaje("\n--- 📊 CENTRO DE ESTADÍSTICAS ---");
-        // Aquí mostrarías el top de jugadores, oro total en el mundo, etc.
-    }
-    public void cargarTodo(){
-        listaCiudades = ciudadesDao.getCiudades();
-        listaItems = itemsDao.getItems();
-        listaRazas = razasDao.getRazas();
-        listaClases = clasesRPGDao.getClases();
-        listaHabilidades = habilidadDao.getHabilidades();
-        listaPersonajes = personajesDao.getPersonajes(listaItems,listaCiudades,listaHabilidades,listaClases,listaRazas);
     }
 }
