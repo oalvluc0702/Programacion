@@ -131,6 +131,7 @@ public class Personajes {
                 ", clase=" + clase +
                 ", ciudad=" + ciudad +
                 ", inventario=" + inventario +
+                ", habilidadesEquipadas=" + habilidadesEquipadas +
                 '}';
     }
 }

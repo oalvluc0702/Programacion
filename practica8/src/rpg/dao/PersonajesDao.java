@@ -9,8 +9,10 @@ import java.util.List;
 
 public class PersonajesDao {
     private ItemsDao itemsDao;
+    private HabilidadDao habilidadDao;
     public PersonajesDao(){
         itemsDao = new ItemsDao();
+        habilidadDao = new HabilidadDao();
     }
 
     public List<Personajes> getPersonajes(List<Items> listaItems, List<Ciudades> listaCiudades, List<Habilidades> listaHabilidades, List<ClasesRPG> listaClases, List<Razas> listaRazas){
@@ -47,7 +49,9 @@ public class PersonajesDao {
 
                 Personajes personaje = new Personajes(id,nombre,nivel,oro,vidaActual,razas,clasesRPG,ciudad);
                 personaje.setInventario(itemsDao.getInventario(id,listaItems));
+                personaje.setHabilidadesEquipadas(habilidadDao.getHabilidadesPersonaje(listaHabilidades,id));
                 listaPersonajes.add(personaje);
+
             }
 
         } catch (SQLException e){

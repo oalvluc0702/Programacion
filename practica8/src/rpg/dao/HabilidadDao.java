@@ -4,7 +4,9 @@ import rpg.model.Habilidades;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class HabilidadDao {
     public HabilidadDao(){
@@ -61,5 +63,26 @@ public class HabilidadDao {
         }
 
         return listaHabilidades;
+    }
+    public Map<Habilidades,Boolean> getHabilidadesPersonaje(List<Habilidades> listaHabilidades, int idPersonaje){
+        Map<Habilidades,Boolean> habilidadesPersonaje = new HashMap<>();
+        String sql = "SELECT * FROM PERSONAJES_HABILIDADES WHERE ID_PERSONAJE = ?";
+        try(Connection connection = Conexion.getConexion();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setInt(1,idPersonaje);
+            ResultSet result = preparedStatement.executeQuery();
+
+            while (result.next()){
+                int idHabilidad = result.getInt("id_habilidad");
+                Boolean equipada = result.getBoolean("equipada_combate");
+
+                for (Habilidades habilidades : listaHabilidades){
+                    if (habilidades.getId() == idHabilidad) habilidadesPersonaje.put(habilidades,equipada);
+                }
+            }
+        } catch (SQLException e){
+            System.out.println("Error en la consulta " + e.getMessage());
+        }
+        return habilidadesPersonaje;
     }
 }
