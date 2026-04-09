@@ -53,7 +53,27 @@ public class GestionMundo {
                         if (pSel.getOro() < item.getPrecioOro()) {
                             throw new FondosInsuficientesException("Oro insuficiente");
                         }
-                        // Lógica de compra...
+
+                        // le resta el oro de la compra
+                        int oroActual = pSel.getOro()-item.getPrecioOro();
+                        pSel.setOro(oroActual);
+
+                        //updatea la base de datos con el oro actual del personaje
+                        personajesDao.updateOro(idPersonaje, pSel.getOro());
+
+
+                        // añade al inventario el objeto comprobando si existe para si en la base de datos tiene que actualizar o insertar
+                        if (pSel.getInventario().containsKey(item)){
+                            pSel.añadirInventario(item);
+                            personajesDao.updateInventario(idPersonaje,idItem,pSel.getInventario().get(item));
+                        } else {
+                            pSel.añadirInventario(item);
+                            personajesDao.insertInventario(idPersonaje,idItem,pSel.getInventario().get(item));
+                        }
+
+                        // realiza el mensaje de confirmación de compra en un futuro ira con el log
+                        vista.mostrarMensaje("Compra realizada correctamente");
+
                     } catch (FondosInsuficientesException e) {
                         vista.mostrarMensaje(e.getMessage());
                     }
@@ -81,7 +101,9 @@ public class GestionMundo {
         }
     }
     public void crearPersonaje(){
-
+        vista.mostrarMensaje("\n--- BIENVENIDO A LA CREACION DE PERSONAJE ---");
+        //String nombre = vista.pedirNombre();
+        vista.mostrarListaRazas(razasDao.getListaRazas());
     }
     public void viajarACiudad(){
 

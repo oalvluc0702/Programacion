@@ -1,5 +1,7 @@
 package rpg.model;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Personajes {
@@ -24,8 +26,11 @@ public class Personajes {
         this.clase = clase;
         this.ciudad = ciudad;
         this.nivel = 1;
-        this.vida_actual = 100;
+        this.vida_actual = 100 + raza.getBonificadorVida();
         this.oro = 100;
+        inventario = new HashMap<>();
+        habilidadesEquipadas = new HashMap<>();
+        añadirHabilidadesDeRaza();
     }
 
     public Personajes(int id, String nombre, int nivel, int oro, int vida_actual, Razas raza, ClasesRPG clase, Ciudades ciudad) {
@@ -118,7 +123,15 @@ public class Personajes {
     public void setHabilidadesEquipadas(Map<Habilidades, Boolean> habilidadesEquipadas) {
         this.habilidadesEquipadas = habilidadesEquipadas;
     }
-
+    public void añadirInventario(Items objeto){
+        this.inventario.put(objeto,inventario.getOrDefault(objeto,0)+1);
+    }
+    public void añadirHabilidadesDeRaza(){
+        List<Habilidades> listaHabilidades = clase.getListaHabilidades();
+        for (Habilidades habilidad : listaHabilidades){
+            habilidadesEquipadas.put(habilidad, false);
+        }
+    }
     @Override
     public String toString() {
         return "Personajes{" +

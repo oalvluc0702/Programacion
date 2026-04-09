@@ -2,6 +2,7 @@ package rpg.ui;
 
 import rpg.model.Items;
 import rpg.model.Personajes;
+import rpg.model.Razas;
 
 import java.util.List;
 import java.util.Scanner;
@@ -86,5 +87,32 @@ public class Vista {
                     item.getBonificadorDefensa());
         }
         System.out.println("==========================================================================\n");
+    }
+    public void mostrarListaRazas(List<Razas> razas) {
+        if (razas == null || razas.isEmpty()) {
+            System.out.println("\n--- ⚠️ No hay razas disponibles ---");
+            return;
+        }
+
+        System.out.println("\n==========================================================================");
+        System.out.println("                         ⚔️ RAZAS DISPONIBLES ⚔️");
+        System.out.println("==========================================================================");
+        // %-5s (ID), %-20s (Nombre), %-12s (Tipo), %-10s (Precio), %-8s (Atq), %-8s (Def)
+        System.out.printf("| %-5s | %-20s | %-12s | %-10s |\n",
+                "ID", "NOMBRE", "BON_VIDA", "BON_FUERZA");
+        System.out.println("--------------------------------------------------------------------------");
+
+        for (Razas raza : razas) {
+            System.out.printf("| %-5d | %-20s | %-12d | %-10d |\n",
+                    raza.getId(),
+                    raza.getNombre(),
+                    raza.getBonificadorVida(),
+                    raza.getBonificadorFuerza());
+        }
+        System.out.println("==========================================================================\n");
+    }
+    public String pedirNombre(){
+        mostrarMensaje("Dime el nombre para tu personaje");
+        return sc.nextLine();
     }
 }

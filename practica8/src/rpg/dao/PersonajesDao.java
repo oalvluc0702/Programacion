@@ -53,4 +53,42 @@ public class PersonajesDao {
         }
         return null;
     }
+    public void updateOro(int idPersonaje, int cantidadOroActual){
+        String sql = "UPDATE PERSONAJES SET ORO = ? WHERE ID = ?";
+        try (Connection conexion = Conexion.getConexion();
+             PreparedStatement preparedStatement = conexion.prepareStatement(sql)){
+            preparedStatement.setInt(1,cantidadOroActual);
+            preparedStatement.setInt(2,idPersonaje);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    public void updateInventario(int idPersonaje, int idItem, int cantidad){
+        String sql = "UPDATE INVENTARIOS SET CANTIDAD = ? WHERE ID_PERSONAJE = ? AND ID_ITEM = ?";
+        try (Connection conexion = Conexion.getConexion();
+             PreparedStatement preparedStatement = conexion.prepareStatement(sql)){
+            preparedStatement.setInt(1,cantidad);
+            preparedStatement.setInt(2,idPersonaje);
+            preparedStatement.setInt(3,idItem);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    public void insertInventario(int idPersonaje, int idItem, int cantidad){
+        String sql = "INSERT INTO INVENTARIOS (ID_PERSONAJE, ID_ITEM, CANTIDAD) VALUES (?,?,?)";
+        try (Connection conexion = Conexion.getConexion();
+             PreparedStatement preparedStatement = conexion.prepareStatement(sql)){
+            preparedStatement.setInt(1,idPersonaje);
+            preparedStatement.setInt(2,idItem);
+            preparedStatement.setInt(3,cantidad);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    public void insertPersonaje(){
+
+    }
 }
