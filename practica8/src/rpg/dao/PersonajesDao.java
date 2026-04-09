@@ -37,7 +37,7 @@ public class PersonajesDao {
                 // Rellenamos mapas internos (Inventario y Habilidades)
                 p.setInventario(itemsDao.getInventario(p.getId(), itemsDao.getListaItems()));
                 p.setHabilidadesEquipadas(habilidadDao.getHabilidadesPersonaje(habilidadDao.getListaHabilidades(), p.getId()));
-                
+
                 this.listaPersonajes.add(p);
             }
         } catch (SQLException e) {
@@ -88,7 +88,62 @@ public class PersonajesDao {
             System.out.println(e.getMessage());
         }
     }
-    public void insertPersonaje(){
+    public void insertPersonaje(String nombre, int idRaza, int idClase, RazasDao rDao, ClasesRPGDao clasDao, CiudadesDao cDao) {
+        // Definimos la SQL. Omitimos ID (es SERIAL) y usamos valores por defecto para nivel, oro y ciudad inicial (id 1)
+        String sql = "INSERT INTO Personajes (nombre, id_raza, id_clase, id_ciudad_actual, nivel, oro, vida_actual) VALUES (?, ?, ?, 1, 1, 100, ?)";
 
+        // Obtenemos los objetos necesarios para calcular la vida inicial y para el objeto Java
+        Razas raza = rDao.buscarPorId(idRaza);
+        ClasesRPG clase = clasDao.buscarPorId(idClase);
+        // Le ponemos la primera ciudad por que su nivel nos permite insertarlo por defecto
+        Ciudades ciudadInicio = cDao.buscarPorId(1);
+
+        if (raza == null || clase == null) {
+            System.out.println("Error: Raza o Clase no válidas.");
+            return;
+        }
+
+        int vidaInicial = 100 + raza.getBonificadorVida();
+
+        // Usamos RETURN_GENERATED_KEYS para obtener el ID que asigne PostgreSQL automáticamente
+        try (Connection conexion = Conexion.getConexion();
+             PreparedStatement ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            ps.setString(1, nombre);
+            ps.setInt(2, idRaza);
+            ps.setInt(3, idClase);
+            ps.setInt(4, vidaInicial);
+
+            int filasAfectadas = ps.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                // Esto sirve para volver a obtener el id que ha generado en la base de datos el serial
+                try (ResultSet rs = ps.getGeneratedKeys()) {
+                    if (rs.next()) {
+                        int idGenerado = rs.getInt(1);
+
+                        // Creamos el objeto Java para mantener la lista actualizada sin recargar todo de la DB
+                        Personajes nuevo = new Personajes(idGenerado, nombre, raza, clase, ciudadInicio);
+                        this.listaPersonajes.add(nuevo);
+
+                        System.out.println("✅ Personaje '" + nombre + "' creado con éxito (ID: " + idGenerado + ")");
+                    }
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("No se ha podido crear un personaje");
+        }
+    }
+    public void updateCiudad(int idCiudad, int idPersonaje ){
+        String sql = "UPDATE PERSONAJES SET ID_CIUDAD_ACTUAL = ? WHERE ID = ?";
+        try(Connection connection = Conexion.getConexion();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setInt(1,idCiudad);
+            preparedStatement.setInt(2,idPersonaje);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
     }
 }

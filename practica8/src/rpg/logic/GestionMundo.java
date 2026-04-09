@@ -1,5 +1,6 @@
 package rpg.logic;
 import rpg.dao.*;
+import rpg.exception.NivelInsuficienteException;
 import rpg.model.*;
 import rpg.ui.Vista;
 import rpg.exception.FondosInsuficientesException;
@@ -38,7 +39,7 @@ public class GestionMundo {
         List<Personajes> lista = personajesDao.getListaPersonajes();
         vista.mostrarListaPersonajesResumida(lista);
         
-        int idPersonaje = vista.pedirOpcion();
+        int idPersonaje = vista.pedirIdPersonaje();
         Personajes pSel = personajesDao.buscarPorId(idPersonaje);
 
         if (pSel != null) {
@@ -102,10 +103,39 @@ public class GestionMundo {
     }
     public void crearPersonaje(){
         vista.mostrarMensaje("\n--- BIENVENIDO A LA CREACION DE PERSONAJE ---");
-        //String nombre = vista.pedirNombre();
+
+        String nombre = vista.pedirNombre();
+
         vista.mostrarListaRazas(razasDao.getListaRazas());
+        int idRaza = vista.pedirIdRaza();
+
+        vista.mostrarListaClases(clasesRPGDao.getListaClases());
+        int idClase = vista.pedirIdClase();
+        personajesDao.insertPersonaje(nombre,idRaza,idClase,razasDao,clasesRPGDao,ciudadesDao);
+
     }
     public void viajarACiudad(){
+        vista.mostrarMensaje("\n-- CON QUE PERSONAJE QUIERES VIAJAR? ---");
 
+        vista.mostrarListaPersonajesNivel(personajesDao.getListaPersonajes());
+        int idPersonaje = vista.pedirIdPersonaje();
+
+        Personajes psel = personajesDao.buscarPorId(idPersonaje);
+        vista.mostrarListaCiudades(ciudadesDao.getListaCiudades());
+
+        int idCiudad = vista.pedirIdCiudadViaje(psel);
+        Ciudades ciudad = ciudadesDao.buscarPorId(idCiudad);
+
+        try {
+            if (ciudad.puedeViajar(psel)){
+                personajesDao.updateCiudad(idCiudad,idPersonaje);
+                psel.setCiudad(ciudad);
+            } else{
+                throw new NivelInsuficienteException("El nivel no es suficiente, tu nivel es: "+psel.getNivel()+" y se requiere: "+ciudad.getNivelMinimoAcceso());
+            }
+        } catch (NivelInsuficienteException e) {
+            System.out.println(e.getMessage());
+        }
+        vista.mostrarMensaje("Se ha viajado correctamente a la ciudad: "+ ciudad.getNombre());
     }
 }

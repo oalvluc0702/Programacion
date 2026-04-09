@@ -34,7 +34,10 @@ public class Ciudades {
     public void setNivelMinimoAcceso(int nivelMinimoAcceso) {
         this.nivelMinimoAcceso = nivelMinimoAcceso;
     }
-
+    public Boolean puedeViajar(Personajes personaje){
+        if (personaje.getNivel() >= this.nivelMinimoAcceso) return true;
+        return false;
+    }
     @Override
     public String toString() {
         return "Ciudades{" +

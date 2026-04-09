@@ -1,8 +1,6 @@
 package rpg.ui;
 
-import rpg.model.Items;
-import rpg.model.Personajes;
-import rpg.model.Razas;
+import rpg.model.*;
 
 import java.util.List;
 import java.util.Scanner;
@@ -25,9 +23,12 @@ public class Vista {
 
         while (!sc.hasNextInt()) {
             System.out.print("Por favor, introduce un número válido: ");
-            sc.next();
+            sc.next(); // Descarta la entrada no válida
         }
-        return sc.nextInt();
+
+        int opcion = sc.nextInt();
+        sc.nextLine(); // Limpiamos el buffer para que la siguiente lectura no falle
+        return opcion;
     }
     public void mostrarMensaje(String mensaje){
         System.out.println(mensaje);
@@ -51,17 +52,58 @@ public class Vista {
         }
         System.out.println("========================================\n");
     }
-    public int pedirOpcion(){
-        mostrarMensaje("Dime que personaje quieres que compre (introducir el ID)");
-        return sc.nextInt();
+    public void mostrarListaPersonajesNivel(List<Personajes> personajes) {
+        if (personajes == null || personajes.isEmpty()) {
+            System.out.println("\n--- ⚠️ No hay personajes registrados en la Guild ---");
+            return;
+        }
+
+        System.out.println("\n==================================================");
+        System.out.println("            📜 LISTADO DE PERSONAJES");
+        System.out.println("==================================================");
+
+        // %-5s (ID), %-25s (Nombre), %-10s (Nivel)
+        System.out.printf("| %-5s | %-25s | %-10s |\n", "ID", "NOMBRE DEL HÉROE", "NIVEL");
+        System.out.println("--------------------------------------------------");
+
+        for (Personajes p : personajes) {
+            System.out.printf("| %-5d | %-25s | %-10d |\n",
+                    p.getId(),
+                    p.getNombre(),
+                    p.getNivel());
+        }
+        System.out.println("==================================================\n");
     }
-    public int pedirOpcionTienda(){
+    public int pedirIdCiudadViaje(Personajes psel) {
+        System.out.println("\n----------------------------------------------------------");
+        System.out.println("📍 VIAJE RÁPIDO");
+        mostrarMensaje("Héroe: " + psel.getNombre() + " (Nivel: " + psel.getNivel() + ")");
+        mostrarMensaje("Introduce el ID de la ciudad a la que quieres viajar:");
+        System.out.print("ID > ");
+
+        int id = sc.nextInt();
+        sc.nextLine(); // Limpiamos el buffer como en los anteriores
+        return id;
+    }
+    public int pedirIdPersonaje() {
+        mostrarMensaje("Dime que personaje quieres seleccionar (introducir el ID)");
+        int opcion = sc.nextInt();
+        sc.nextLine(); // Limpiar buffer
+        return opcion;
+    }
+
+    public int pedirOpcionTienda() {
         mostrarMensaje("Elige objeto para comprar");
-        return sc.nextInt();
+        int opcion = sc.nextInt();
+        sc.nextLine(); // Limpiar buffer
+        return opcion;
     }
-    public int pedirConfirmacion(){
+
+    public int pedirConfirmacion() {
         mostrarMensaje("Quieres seguir comprando? (0 si o 1 no)");
-        return sc.nextInt();
+        int confirmacion = sc.nextInt();
+        sc.nextLine(); // Limpiar buffer
+        return confirmacion;
     }
     public void mostrarListaItems(List<Items> items) {
         if (items == null || items.isEmpty()) {
@@ -88,6 +130,29 @@ public class Vista {
         }
         System.out.println("==========================================================================\n");
     }
+    public void mostrarListaCiudades(List<Ciudades> ciudades) {
+        if (ciudades == null || ciudades.isEmpty()) {
+            System.out.println("\n--- ⚠️ No hay ciudades descubiertas en el mapa ---");
+            return;
+        }
+
+        System.out.println("\n==========================================================");
+        System.out.println("                  🗺️ MAPA DE CIUDADES 🗺️");
+        System.out.println("==========================================================");
+
+        // %-5s (ID), %-25s (Nombre), %-15s (Nivel Mínimo)
+        System.out.printf("| %-5s | %-25s | %-15s |\n",
+                "ID", "NOMBRE DE CIUDAD", "NIVEL MÍNIMO");
+        System.out.println("----------------------------------------------------------");
+
+        for (Ciudades ciudad : ciudades) {
+            System.out.printf("| %-5d | %-25s | %-15d |\n",
+                    ciudad.getId(),
+                    ciudad.getNombre(),
+                    ciudad.getNivelMinimoAcceso()); // Asegúrate de que este sea el nombre del getter en tu clase Ciudades
+        }
+        System.out.println("==========================================================\n");
+    }
     public void mostrarListaRazas(List<Razas> razas) {
         if (razas == null || razas.isEmpty()) {
             System.out.println("\n--- ⚠️ No hay razas disponibles ---");
@@ -111,8 +176,45 @@ public class Vista {
         }
         System.out.println("==========================================================================\n");
     }
-    public String pedirNombre(){
+    public String pedirNombre() {
         mostrarMensaje("Dime el nombre para tu personaje");
         return sc.nextLine();
+    }
+
+    public int pedirIdRaza() {
+        mostrarMensaje("Dime que raza quieres (escribe su id)");
+        int id = sc.nextInt();
+        sc.nextLine(); // Limpiamos el buffer (consume el \n sobrante)
+        return id;
+    }
+
+    public int pedirIdClase() {
+        mostrarMensaje("Dime qué clase quieres (escribe su ID)");
+        int id = sc.nextInt();
+        sc.nextLine(); // Limpiamos el buffer (consume el \n sobrante)
+        return id;
+    }
+    public void mostrarListaClases(List<ClasesRPG> clases) {
+        if (clases == null || clases.isEmpty()) {
+            System.out.println("\n--- ⚠️ No hay clases disponibles ---");
+            return;
+        }
+
+        System.out.println("\n==========================================================");
+        System.out.println("                🛡️ CLASES DISPONIBLES 🛡️");
+        System.out.println("==========================================================");
+
+        // %-5s (ID), %-25s (Nombre), %-15s (Habilidades)
+        System.out.printf("| %-5s | %-25s | %-15s |\n",
+                "ID", "NOMBRE DE CLASE", "Nº HABILIDADES");
+        System.out.println("----------------------------------------------------------");
+
+        for (ClasesRPG clase : clases) {
+            System.out.printf("| %-5d | %-25s | %-15d |\n",
+                    clase.getId(),
+                    clase.getNombre(),
+                    clase.getListaHabilidades().size()); // Obtenemos el tamaño de la lista
+        }
+        System.out.println("==========================================================\n");
     }
 }
