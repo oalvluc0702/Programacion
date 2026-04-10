@@ -124,9 +124,11 @@ public class PersonajesDao {
 
                         // Creamos el objeto Java para mantener la lista actualizada sin recargar todo de la DB
                         Personajes nuevo = new Personajes(idGenerado, nombre, raza, clase, ciudadInicio);
+                        //aqui insertamos en la base de datos las habilidades del personaje y si las tiene equipadas
+                        this.insertPersonajeHabilidad(nuevo);
                         this.listaPersonajes.add(nuevo);
 
-                        System.out.println("✅ Personaje '" + nombre + "' creado con éxito (ID: " + idGenerado + ")");
+                        System.out.println("Personaje '" + nombre + "' creado con éxito (ID: " + idGenerado + ")");
                     }
                 }
             }
@@ -134,6 +136,22 @@ public class PersonajesDao {
         } catch (SQLException e) {
             System.out.println("No se ha podido crear un personaje");
         }
+    }
+    public void insertPersonajeHabilidad(Personajes personaje){
+        String sql = "INSERT INTO PERSONAJES_HABILIDADES (ID_PERSONAJE,ID_HABILIDAD,EQUIPADA_COMBATE) VALUES (?,?,?)";
+        int idPersonaje = personaje.getId();
+        for (Habilidades habilidad : personaje.getHabilidadesEquipadas().keySet()){
+            try (Connection connection = Conexion.getConexion();
+                 PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+                preparedStatement.setInt(1,idPersonaje);
+                preparedStatement.setInt(2,habilidad.getId());
+                preparedStatement.setBoolean(3,personaje.getHabilidadesEquipadas().get(habilidad));
+                preparedStatement.executeUpdate();
+            } catch (SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
     public void updateCiudad(int idCiudad, int idPersonaje ){
         String sql = "UPDATE PERSONAJES SET ID_CIUDAD_ACTUAL = ? WHERE ID = ?";
