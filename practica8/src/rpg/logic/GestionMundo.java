@@ -4,7 +4,10 @@ import rpg.exception.NivelInsuficienteException;
 import rpg.model.*;
 import rpg.ui.Vista;
 import rpg.exception.FondosInsuficientesException;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GestionMundo {
     private Vista vista;
@@ -97,6 +100,7 @@ public class GestionMundo {
             case 1 -> crearPersonaje();
             case 2 -> viajarACiudad();
             case 3 -> irALaTienda();
+            case 6 -> censo(personajesDao.getListaPersonajes());
             case 0 -> vista.mostrarMensaje("Saliendo...");
             default -> vista.mostrarMensaje("Opción no válida");
         }
@@ -130,12 +134,19 @@ public class GestionMundo {
             if (ciudad.puedeViajar(psel)){
                 personajesDao.updateCiudad(idCiudad,idPersonaje);
                 psel.setCiudad(ciudad);
+                vista.mostrarMensaje("Se ha viajado correctamente a la ciudad: "+ ciudad.getNombre());
             } else{
                 throw new NivelInsuficienteException("El nivel no es suficiente, tu nivel es: "+psel.getNivel()+" y se requiere: "+ciudad.getNivelMinimoAcceso());
             }
         } catch (NivelInsuficienteException e) {
             System.out.println(e.getMessage());
         }
-        vista.mostrarMensaje("Se ha viajado correctamente a la ciudad: "+ ciudad.getNombre());
+    }
+    public void censo(List<Personajes> listaPersonajes){
+        Map<String, Integer> censo = new HashMap<>();
+        for (Personajes personaje: listaPersonajes){
+            censo.put(personaje.getClase().getNombre(),censo.getOrDefault(personaje.getClase().getNombre(),0)+1);
+        }
+        System.out.println(censo);
     }
 }
