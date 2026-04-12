@@ -74,6 +74,31 @@ public class Vista {
         }
         System.out.println("==================================================\n");
     }
+    public void mostrarListaPersonajesOro(List<Personajes> personajes) {
+        if (personajes == null || personajes.isEmpty()) {
+            System.out.println("\n--- ⚠️ No hay personajes registrados en la Guild ---");
+            return;
+        }
+
+        System.out.println("\n=========================================================");
+        System.out.println("          💰 ESTADO FINANCIERO DE LA GUILD");
+        System.out.println("=========================================================");
+
+        // %-5s (ID), %-25s (Nombre), %-12s (Oro)
+        System.out.printf("| %-5s | %-25s | %-12s |\n", "ID", "NOMBRE DEL HÉROE", "ORO (G)");
+        System.out.println("---------------------------------------------------------");
+
+        for (Personajes p : personajes) {
+            // Formateamos el oro con una "G" de Gold o monedas
+            String oroFormateado = p.getOro() + " G";
+
+            System.out.printf("| %-5d | %-25s | %-12s |\n",
+                    p.getId(),
+                    p.getNombre(),
+                    oroFormateado);
+        }
+        System.out.println("=========================================================\n");
+    }
     public int pedirIdCiudadViaje(Personajes psel) {
         System.out.println("\n----------------------------------------------------------");
         System.out.println("📍 VIAJE RÁPIDO");
@@ -216,5 +241,45 @@ public class Vista {
                     clase.getListaHabilidades().size()); // Obtenemos el tamaño de la lista
         }
         System.out.println("==========================================================\n");
+    }
+    public void mostrarListaPersonajesCompleta(List<Personajes> personajes) {
+        if (personajes == null || personajes.isEmpty()) {
+            System.out.println("\n--- ⚠️ No hay personajes registrados en la Guild ---");
+            return;
+        }
+
+        System.out.println("\n=============================================================================");
+        System.out.println("                 📜 REGISTRO GENERAL DE LA GUILD");
+        System.out.println("=============================================================================");
+
+        // %-5s (ID), %-20s (Nombre), %-10s (Oro), %-20s (Ciudad)
+        System.out.printf("| %-5s | %-20s | %-10s | %-20s |\n", "ID", "NOMBRE", "ORO", "UBICACIÓN");
+        System.out.println("-----------------------------------------------------------------------------");
+
+        for (Personajes p : personajes) {
+            // 1. Gestionamos el Oro para que se vea bonito
+            String oroTxt = p.getOro() + " G";
+
+            // 2. Gestionamos la Ciudad (Evitamos el NullPointerException)
+            // Si p.getCiudadActual() devuelve el nombre (String), usamos esto:
+            String ubicacion = (p.getCiudad() == null) ? "🚩 DESTERRADO" : p.getCiudad().getNombre();
+
+        /* NOTA: Si getCiudadActual() devuelve un OBJETO Ciudad, deberías usar:
+           String ubicacion = (p.getCiudad() == null) ? "🚩 DESTERRADO" : p.getCiudad().getNombre();
+        */
+
+            System.out.printf("| %-5d | %-20s | %-10s | %-20s |\n",
+                    p.getId(),
+                    p.getNombre(),
+                    oroTxt,
+                    ubicacion);
+        }
+        System.out.println("=============================================================================\n");
+    }
+    public void imprimirDestierro(String nombrePersonaje, String nombreCiudad) {
+        // %-15s -> Nombre alineado a la izquierda (15 espacios)
+        // %-20s -> Ciudad alineada a la izquierda (20 espacios)
+        System.out.printf("🚩 [DESTIERRO] | Personaje: %-15s | Ciudad: %-20s |\n",
+                nombrePersonaje, nombreCiudad);
     }
 }

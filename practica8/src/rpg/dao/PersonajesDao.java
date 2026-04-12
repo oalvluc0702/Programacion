@@ -1,6 +1,9 @@
 package rpg.dao;
 import rpg.model.*;
+import rpg.utils.LoggerCustom;
+
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,29 +26,52 @@ public class PersonajesDao {
              ResultSet result = statement.executeQuery(sql)) {
 
             while (result.next()) {
-                // Buscamos los objetos en las listas de los otros DAOs
                 Razas raza = rDao.buscarPorId(result.getInt("id_raza"));
                 ClasesRPG clase = clDao.buscarPorId(result.getInt("id_clase"));
-                Ciudades ciudad = cDao.buscarPorId(result.getInt("id_ciudad_actual"));
+
+                // --- TRATAMIENTO DEL NULL PARA LA CIUDAD ---
+                Ciudades ciudad = null;
+                int idCiudad = result.getInt("id_ciudad_actual");
+
+                // wasNull() comprueba si la última columna leída (id_ciudad_actual) era null en la base de datos
+                if (!result.wasNull()) {
+                    ciudad = cDao.buscarPorId(idCiudad);
+                }
+                // Si era NULL, 'ciudad' se queda como null, lo cual representa al DESTERRADO.
+                // --------------------------------------------
 
                 Personajes p = new Personajes(
-                    result.getInt("id"), result.getString("nombre"),
-                    result.getInt("nivel"), result.getInt("oro"),
-                    result.getInt("vida_actual"), raza, clase, ciudad
+                        result.getInt("id"),
+                        result.getString("nombre"),
+                        result.getInt("nivel"),
+                        result.getInt("oro"),
+                        result.getInt("vida_actual"),
+                        raza,
+                        clase,
+                        ciudad // Pasamos el objeto ciudad (que puede ser null)
                 );
 
-                // Rellenamos mapas internos (Inventario y Habilidades)
+                // Rellenamos mapas internos
                 p.setInventario(itemsDao.getInventario(p.getId(), itemsDao.getListaItems()));
                 p.setHabilidadesEquipadas(habilidadDao.getHabilidadesPersonaje(habilidadDao.getListaHabilidades(), p.getId()));
 
                 this.listaPersonajes.add(p);
             }
         } catch (SQLException e) {
-            System.out.println("Error al cargar personajes");
+            System.out.println("Error al cargar personajes: " + e.getMessage());
         }
     }
 
     public List<Personajes> getListaPersonajes() { return listaPersonajes; }
+    public List<Personajes> getListaPersonajesConCiudad(){
+        List<Personajes> personajesConCiudad = new ArrayList<>();
+        for (Personajes personajes : this.listaPersonajes){
+            if (personajes.getCiudad() != null){
+                personajesConCiudad.add(personajes);
+            }
+        }
+        return personajesConCiudad;
+    }
 
     public Personajes buscarPorId(int id) {
         for (Personajes p : listaPersonajes) {
@@ -127,8 +153,9 @@ public class PersonajesDao {
                         //aqui insertamos en la base de datos las habilidades del personaje y si las tiene equipadas
                         this.insertPersonajeHabilidad(nuevo);
                         this.listaPersonajes.add(nuevo);
-
-                        System.out.println("Personaje '" + nombre + "' creado con éxito (ID: " + idGenerado + ")");
+                        String mensajeLog = "Personaje '" + nombre + "' creado con éxito (ID: " + idGenerado + ")";
+                        LoggerCustom.log("[ "+ LocalDateTime.now() + " ]" + "INFO: " +mensajeLog);
+                        System.out.println(mensajeLog);
                     }
                 }
             }
@@ -153,14 +180,17 @@ public class PersonajesDao {
         }
 
     }
-    public void updateCiudad(int idCiudad, int idPersonaje ){
+    public void updateCiudad(Integer idCiudad, int idPersonaje) {
         String sql = "UPDATE PERSONAJES SET ID_CIUDAD_ACTUAL = ? WHERE ID = ?";
-        try(Connection connection = Conexion.getConexion();
-            PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-            preparedStatement.setInt(1,idCiudad);
-            preparedStatement.setInt(2,idPersonaje);
+        try (Connection connection = Conexion.getConexion();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            // setObject maneja automáticamente si el Integer es un número o un null
+            preparedStatement.setObject(1, idCiudad);
+            preparedStatement.setInt(2, idPersonaje);
+
             preparedStatement.executeUpdate();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }

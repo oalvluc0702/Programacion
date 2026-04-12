@@ -4,8 +4,11 @@ import rpg.exception.NivelInsuficienteException;
 import rpg.model.*;
 import rpg.ui.Vista;
 import rpg.exception.FondosInsuficientesException;
+import rpg.utils.LoggerCustom;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -59,9 +62,7 @@ public class GestionMundo {
                         }
 
                         // le resta el oro de la compra
-                        int oroActual = pSel.getOro()-item.getPrecioOro();
-                        pSel.setOro(oroActual);
-
+                        pSel.disminuirOro(item.getPrecioOro());
                         //updatea la base de datos con el oro actual del personaje
                         personajesDao.updateOro(idPersonaje, pSel.getOro());
 
@@ -76,7 +77,9 @@ public class GestionMundo {
                         }
 
                         // realiza el mensaje de confirmación de compra en un futuro ira con el log
-                        vista.mostrarMensaje("Compra realizada correctamente");
+                        String mensajeLog = "El heroe: "+pSel.getNombre()+ " ha comprado " + item.getNombre() + " por una cantidad de: "+ item.getPrecioOro()+ " G";
+                        vista.mostrarMensaje(mensajeLog);
+                        LoggerCustom.log("[ "+ LocalDateTime.now() + " ]" + "INFO: "+ mensajeLog);
 
                     } catch (FondosInsuficientesException e) {
                         vista.mostrarMensaje(e.getMessage());
@@ -100,6 +103,7 @@ public class GestionMundo {
             case 1 -> crearPersonaje();
             case 2 -> viajarACiudad();
             case 3 -> irALaTienda();
+            case 4 -> cobrarImpuestos(personajesDao.getListaPersonajesConCiudad());
             case 6 -> censo(personajesDao.getListaPersonajes());
             case 0 -> vista.mostrarMensaje("Saliendo...");
             default -> vista.mostrarMensaje("Opción no válida");
@@ -148,5 +152,28 @@ public class GestionMundo {
             censo.put(personaje.getClase().getNombre(),censo.getOrDefault(personaje.getClase().getNombre(),0)+1);
         }
         System.out.println(censo);
+    }
+    public void cobrarImpuestos(List<Personajes> listaPersonajesConCiudad){
+        Iterator<Personajes> personajesIterator = listaPersonajesConCiudad.iterator();
+        while(personajesIterator.hasNext()){
+            // conseguimos el personaje
+            Personajes personaje = personajesIterator.next();
+            // guardamos su id por comodidad
+            int idPersonaje= personaje.getId();
+            // guardamos tambien su nombre de ciudad antes de desterrarlos
+            String nombreCiudad = personaje.getCiudad().getNombre();
+            // le disminuimos el oro cobrandole el impuesto
+            personaje.disminuirOro(20);
+            personajesDao.updateOro(idPersonaje,personaje.getOro());
+            // aqui comprobamos si tiene el oro negativo y lo desterramos poniendo su ciudad a null tanto en memoria como en la base de datos
+            if (personaje.getOro()<0){
+                personaje.setCiudad(null);
+                personajesDao.updateCiudad(null,idPersonaje);
+                //imprime que ha desterrado a alguien
+                vista.imprimirDestierro(personaje.getNombre(),nombreCiudad);
+                //lo eliminamos del iterator de personajes con ciudad
+                personajesIterator.remove();
+            }
+        }
     }
 }

@@ -132,6 +132,9 @@ public class Personajes {
             habilidadesEquipadas.put(habilidad, false);
         }
     }
+    public void disminuirOro(int cantidad){
+        setOro(this.oro-cantidad);
+    }
     @Override
     public String toString() {
         return "Personajes{" +
