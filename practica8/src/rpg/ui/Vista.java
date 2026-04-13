@@ -2,14 +2,18 @@ package rpg.ui;
 
 import rpg.model.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Vista {
     private Scanner sc;
+
     public Vista() {
         sc = new Scanner(System.in);
     }
+
     public int mostrarMenuPrincipal() {
         System.out.println("\n--- ⚔️ RPG DATABASE MANAGER ⚔️ ---");
         System.out.println("1. Crear Personaje");
@@ -30,9 +34,11 @@ public class Vista {
         sc.nextLine(); // Limpiamos el buffer para que la siguiente lectura no falle
         return opcion;
     }
-    public void mostrarMensaje(String mensaje){
+
+    public void mostrarMensaje(String mensaje) {
         System.out.println(mensaje);
     }
+
     public void mostrarListaPersonajesResumida(List<Personajes> personajes) {
         if (personajes.isEmpty()) {
             System.out.println("\n--- ⚠️ No hay personajes registrados en la Guild ---");
@@ -52,6 +58,7 @@ public class Vista {
         }
         System.out.println("========================================\n");
     }
+
     public void mostrarListaPersonajesNivel(List<Personajes> personajes) {
         if (personajes == null || personajes.isEmpty()) {
             System.out.println("\n--- ⚠️ No hay personajes registrados en la Guild ---");
@@ -74,6 +81,7 @@ public class Vista {
         }
         System.out.println("==================================================\n");
     }
+
     public void mostrarListaPersonajesOro(List<Personajes> personajes) {
         if (personajes == null || personajes.isEmpty()) {
             System.out.println("\n--- ⚠️ No hay personajes registrados en la Guild ---");
@@ -99,6 +107,7 @@ public class Vista {
         }
         System.out.println("=========================================================\n");
     }
+
     public int pedirIdCiudadViaje(Personajes psel) {
         System.out.println("\n----------------------------------------------------------");
         System.out.println("📍 VIAJE RÁPIDO");
@@ -110,6 +119,7 @@ public class Vista {
         sc.nextLine(); // Limpiamos el buffer como en los anteriores
         return id;
     }
+
     public int pedirIdPersonaje() {
         mostrarMensaje("Dime que personaje quieres seleccionar (introducir el ID)");
         int opcion = sc.nextInt();
@@ -130,6 +140,7 @@ public class Vista {
         sc.nextLine(); // Limpiar buffer
         return confirmacion;
     }
+
     public void mostrarListaItems(List<Items> items) {
         if (items == null || items.isEmpty()) {
             System.out.println("\n--- ⚠️ No hay items disponibles en el inventario global ---");
@@ -155,6 +166,7 @@ public class Vista {
         }
         System.out.println("==========================================================================\n");
     }
+
     public void mostrarListaCiudades(List<Ciudades> ciudades) {
         if (ciudades == null || ciudades.isEmpty()) {
             System.out.println("\n--- ⚠️ No hay ciudades descubiertas en el mapa ---");
@@ -178,6 +190,7 @@ public class Vista {
         }
         System.out.println("==========================================================\n");
     }
+
     public void mostrarListaRazas(List<Razas> razas) {
         if (razas == null || razas.isEmpty()) {
             System.out.println("\n--- ⚠️ No hay razas disponibles ---");
@@ -201,6 +214,7 @@ public class Vista {
         }
         System.out.println("==========================================================================\n");
     }
+
     public String pedirNombre() {
         mostrarMensaje("Dime el nombre para tu personaje");
         return sc.nextLine();
@@ -219,6 +233,7 @@ public class Vista {
         sc.nextLine(); // Limpiamos el buffer (consume el \n sobrante)
         return id;
     }
+
     public void mostrarListaClases(List<ClasesRPG> clases) {
         if (clases == null || clases.isEmpty()) {
             System.out.println("\n--- ⚠️ No hay clases disponibles ---");
@@ -242,6 +257,7 @@ public class Vista {
         }
         System.out.println("==========================================================\n");
     }
+
     public void mostrarListaPersonajesCompleta(List<Personajes> personajes) {
         if (personajes == null || personajes.isEmpty()) {
             System.out.println("\n--- ⚠️ No hay personajes registrados en la Guild ---");
@@ -276,10 +292,102 @@ public class Vista {
         }
         System.out.println("=============================================================================\n");
     }
+
     public void imprimirDestierro(String nombrePersonaje, String nombreCiudad) {
         // %-15s -> Nombre alineado a la izquierda (15 espacios)
         // %-20s -> Ciudad alineada a la izquierda (20 espacios)
         System.out.printf("🚩 [DESTIERRO] | Personaje: %-15s | Ciudad: %-20s |\n",
                 nombrePersonaje, nombreCiudad);
+    }
+
+    public void mostrarJugadoresRicos(List<Personajes> lista) {
+        System.out.println("\n=========================================================");
+        System.out.println("        🏆 TOP 3 JUGADORES MÁS RICOS (PODIO)");
+        System.out.println("=========================================================");
+        System.out.printf("| %-3s | %-25s | %-12s |\n", "POS", "NOMBRE DEL HÉROE", "FORTUNA (G)");
+        System.out.println("---------------------------------------------------------");
+
+
+        for (int i = 0; i < 3; i++) {
+            // Importante: Comprobamos si existe el elemento para evitar errores
+            // si la lista tiene menos de 3 personajes
+            if (i < lista.size()) {
+                Personajes p = lista.get(i);
+
+                String posicion = "";
+                if (i == 0) posicion = "🥇";
+                else if (i == 1) posicion = "🥈";
+                else if (i == 2) posicion = "🥉";
+
+                System.out.printf("| %-3s | %-25s | %-12s |\n",
+                        posicion,
+                        p.getNombre(),
+                        p.getOro() + " G");
+            }
+        }
+
+        System.out.println("=========================================================\n");
+    }
+    public void mostrarCenso(List<Personajes> listaPersonajes, Map<String,Integer> censo){
+        // --- DISPLAY CON FORMATO ---
+        System.out.println("\n=========================================================");
+        System.out.println("          👥 CENSO POBLACIONAL POR CLASES");
+        System.out.println("=========================================================");
+
+        // %-30s (Clase), %-15s (Cantidad)
+        System.out.printf("| %-30s | %-15s |\n", "TIPO DE CLASE", "Nº HABITANTES");
+        System.out.println("---------------------------------------------------------");
+
+        if (censo.isEmpty()) {
+            System.out.println("| No hay datos de población disponibles.                |");
+        } else {
+            // Recorremos el mapa para imprimir cada fila
+            for (Map.Entry<String, Integer> entrada : censo.entrySet()) {
+                System.out.printf("| %-30s | %-15d |\n",
+                        entrada.getKey(),
+                        entrada.getValue());
+            }
+        }
+
+        System.out.println("=========================================================");
+        System.out.println(" TOTAL DE PERSONAJES REGISTRADOS: " + listaPersonajes.size());
+        System.out.println("=========================================================\n");
+    }
+    public int mostrarMenuEstadisticas() {
+        System.out.println("\n=========================================================");
+        System.out.println("          📊 CENTRO DE ESTADÍSTICAS DE LA GUILD");
+        System.out.println("=========================================================");
+        System.out.println("1. Ver Censo de Personajes");
+        System.out.println("2. Ver Top 3 Jugadores más Ricos");
+        System.out.println("0. Volver al Menú Principal");
+        System.out.println("---------------------------------------------------------");
+        System.out.print("Seleccione una opción: ");
+
+        while (!sc.hasNextInt()) {
+            System.out.print("⚠️ Por favor, introduce un número válido: ");
+            sc.next();
+        }
+        int opcion = sc.nextInt();
+        sc.nextLine();
+
+        return opcion;
+    }
+    public int mostrarMenuCombate() {
+        System.out.println("\n=========================================================");
+        System.out.println("          ⚔️ ACADEMIA DE GUERRA Y COMBATE");
+        System.out.println("=========================================================");
+        System.out.println("1. Gestionar Habilidades (Equipar/desequipar)");
+        System.out.println("2. Iniciar Simulación de Combate");
+        System.out.println("0. Volver al Menú Principal");
+        System.out.println("---------------------------------------------------------");
+        System.out.print("Seleccione una acción táctica: ");
+
+        while (!sc.hasNextInt()) {
+            System.out.print("⚠️ Entrada inválida. Use los números del menú: ");
+            sc.next();
+        }
+        int opcion = sc.nextInt();
+        sc.nextLine();
+        return opcion;
     }
 }

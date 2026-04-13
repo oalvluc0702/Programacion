@@ -104,7 +104,8 @@ public class GestionMundo {
             case 2 -> viajarACiudad();
             case 3 -> irALaTienda();
             case 4 -> cobrarImpuestos(personajesDao.getListaPersonajesConCiudad());
-            case 6 -> censo(personajesDao.getListaPersonajes());
+            case 5 -> gestionarHabilidadesYCombate();
+            case 6 -> centroDeEstadisticas();
             case 0 -> vista.mostrarMensaje("Saliendo...");
             default -> vista.mostrarMensaje("Opción no válida");
         }
@@ -146,12 +147,22 @@ public class GestionMundo {
             System.out.println(e.getMessage());
         }
     }
-    public void censo(List<Personajes> listaPersonajes){
+    public void centroDeEstadisticas(){
+        int opcion = vista.mostrarMenuEstadisticas();
+        switch (opcion){
+            case 1 -> censo();
+            case 2 -> top3JugadoresMasRicos();
+            case 0 -> vista.mostrarMensaje("Saliendo del centro de estadísticas");
+            default -> vista.mostrarMensaje("Opción no válida");
+        }
+    }
+    public void censo(){
         Map<String, Integer> censo = new HashMap<>();
+        List<Personajes> listaPersonajes = personajesDao.getListaPersonajes();
         for (Personajes personaje: listaPersonajes){
             censo.put(personaje.getClase().getNombre(),censo.getOrDefault(personaje.getClase().getNombre(),0)+1);
         }
-        System.out.println(censo);
+        vista.mostrarCenso(listaPersonajes,censo);
     }
     public void cobrarImpuestos(List<Personajes> listaPersonajesConCiudad){
         Iterator<Personajes> personajesIterator = listaPersonajesConCiudad.iterator();
@@ -174,6 +185,20 @@ public class GestionMundo {
                 //lo eliminamos del iterator de personajes con ciudad
                 personajesIterator.remove();
             }
+        }
+    }
+    public void top3JugadoresMasRicos(){
+        List<Personajes> personajesRicos = personajesDao.getListaPersonajes();
+        personajesRicos.sort((p1, p2) -> Integer.compare(p2.getOro(), p1.getOro()));
+        vista.mostrarJugadoresRicos(personajesRicos);
+    }
+    public void gestionarHabilidadesYCombate(){
+        int opcion = vista.mostrarMenuCombate();
+        switch (opcion){
+            case 1 -> censo();
+            case 2 -> top3JugadoresMasRicos();
+            case 0 -> vista.mostrarMensaje("Saliendo del centro de estadísticas");
+            default -> vista.mostrarMensaje("Opción no válida");
         }
     }
 }
