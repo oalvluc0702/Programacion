@@ -13,6 +13,7 @@ public class Vista {
     public Vista() {
         sc = new Scanner(System.in);
     }
+    // la mayoria de menús los ha hecho gemini, por eso se ven tan bonitos
 
     public int mostrarMenuPrincipal() {
         System.out.println("\n--- ⚔️ RPG DATABASE MANAGER ⚔️ ---");
@@ -133,6 +134,12 @@ public class Vista {
         sc.nextLine(); // Limpiar buffer
         return opcion;
     }
+    public int pedirIdHabilidad() {
+        mostrarMensaje("Escoge la habilidad por ID (0 salir)");
+        int opcion = sc.nextInt();
+        sc.nextLine(); // Limpiar buffer
+        return opcion;
+    }
 
     public int pedirConfirmacion() {
         mostrarMensaje("Quieres seguir comprando? (0 si o 1 no)");
@@ -186,7 +193,7 @@ public class Vista {
             System.out.printf("| %-5d | %-25s | %-15d |\n",
                     ciudad.getId(),
                     ciudad.getNombre(),
-                    ciudad.getNivelMinimoAcceso()); // Asegúrate de que este sea el nombre del getter en tu clase Ciudades
+                    ciudad.getNivelMinimoAcceso());
         }
         System.out.println("==========================================================\n");
     }
@@ -223,14 +230,14 @@ public class Vista {
     public int pedirIdRaza() {
         mostrarMensaje("Dime que raza quieres (escribe su id)");
         int id = sc.nextInt();
-        sc.nextLine(); // Limpiamos el buffer (consume el \n sobrante)
+        sc.nextLine();
         return id;
     }
 
     public int pedirIdClase() {
         mostrarMensaje("Dime qué clase quieres (escribe su ID)");
         int id = sc.nextInt();
-        sc.nextLine(); // Limpiamos el buffer (consume el \n sobrante)
+        sc.nextLine();
         return id;
     }
 
@@ -253,7 +260,7 @@ public class Vista {
             System.out.printf("| %-5d | %-25s | %-15d |\n",
                     clase.getId(),
                     clase.getNombre(),
-                    clase.getListaHabilidades().size()); // Obtenemos el tamaño de la lista
+                    clase.getListaHabilidades().size());
         }
         System.out.println("==========================================================\n");
     }
@@ -273,16 +280,12 @@ public class Vista {
         System.out.println("-----------------------------------------------------------------------------");
 
         for (Personajes p : personajes) {
-            // 1. Gestionamos el Oro para que se vea bonito
+            // Gestionamos el Oro para que se vea bonito
             String oroTxt = p.getOro() + " G";
 
-            // 2. Gestionamos la Ciudad (Evitamos el NullPointerException)
+            // Gestionamos la Ciudad
             // Si p.getCiudadActual() devuelve el nombre (String), usamos esto:
             String ubicacion = (p.getCiudad() == null) ? "🚩 DESTERRADO" : p.getCiudad().getNombre();
-
-        /* NOTA: Si getCiudadActual() devuelve un OBJETO Ciudad, deberías usar:
-           String ubicacion = (p.getCiudad() == null) ? "🚩 DESTERRADO" : p.getCiudad().getNombre();
-        */
 
             System.out.printf("| %-5d | %-20s | %-10s | %-20s |\n",
                     p.getId(),
@@ -294,8 +297,6 @@ public class Vista {
     }
 
     public void imprimirDestierro(String nombrePersonaje, String nombreCiudad) {
-        // %-15s -> Nombre alineado a la izquierda (15 espacios)
-        // %-20s -> Ciudad alineada a la izquierda (20 espacios)
         System.out.printf("🚩 [DESTIERRO] | Personaje: %-15s | Ciudad: %-20s |\n",
                 nombrePersonaje, nombreCiudad);
     }
@@ -317,7 +318,7 @@ public class Vista {
                 String posicion = "";
                 if (i == 0) posicion = "🥇";
                 else if (i == 1) posicion = "🥈";
-                else if (i == 2) posicion = "🥉";
+                else posicion = "🥉";
 
                 System.out.printf("| %-3s | %-25s | %-12s |\n",
                         posicion,
@@ -389,5 +390,148 @@ public class Vista {
         int opcion = sc.nextInt();
         sc.nextLine();
         return opcion;
+    }
+    public void mostrarHabilidadesPersonaje(Personajes personaje) {
+        Map<Habilidades, Boolean> habilidades = personaje.getHabilidadesEquipadas();
+
+        System.out.println("\n==============================================================");
+        System.out.println("      ⚔️  HABILIDADES DE: " + personaje.getNombre().toUpperCase());
+        System.out.println("==============================================================");
+
+        // Ajustamos las columnas: ID (4), EST (5), NOMBRE (35)
+        System.out.printf("| %-4s | %-5s | %-35s |\n", "ID", "EST.", "NOMBRE DE LA HABILIDAD");
+        System.out.println("--------------------------------------------------------------");
+
+        if (habilidades == null || habilidades.isEmpty()) {
+            System.out.println("|      El personaje no tiene habilidades aprendidas.          |");
+        } else {
+            for (Map.Entry<Habilidades, Boolean> entrada : habilidades.entrySet()) {
+                Habilidades hab = entrada.getKey();
+
+                // Determinamos el símbolo según el valor booleano
+                String estado = entrada.getValue() ? "[✔]" : "[ ]";
+
+                // Sacamos el ID y el Nombre de la habilidad
+                int idHabilidad = hab.getId(); // Asumiendo que Habilidades tiene getId()
+                String nombreHabilidad = hab.getNombre();
+
+                System.out.printf("| %-4d | %-5s | %-35s |\n",
+                        idHabilidad,
+                        estado,
+                        nombreHabilidad);
+            }
+        }
+
+        System.out.println("==============================================================");
+        System.out.println(" CLASE: " + personaje.getClase().getNombre() + " | NIVEL: " + personaje.getNivel());
+        System.out.println("==============================================================\n");
+    }
+    public void mostrarListaPersonajes(List<Personajes> listaPersonajes) {
+        System.out.println("\n==========================================================================================================");
+        System.out.println("                                     📜 REGISTRO DE AVENTUREROS");
+        System.out.println("==========================================================================================================");
+
+        // Definición de columnas:
+        // %-3s (ID), %-15s (Nombre), %-5s (Nivel), %-10s (Raza), %-8s (Vida), %-8s (Oro), %-7s (Atq), %-7s (Def)
+        System.out.printf("| %-3s | %-30s | %-5s | %-10s | %-8s | %-8s | %-7s | %-7s |\n",
+                "ID", "NOMBRE", "LVL", "RAZA", "VIDA", "ORO", "ATQ", "DEF");
+        System.out.println("----------------------------------------------------------------------------------------------------------");
+
+        if (listaPersonajes.isEmpty()) {
+            System.out.println("|                                No hay personajes registrados en el reino.                              |");
+        } else {
+            for (Personajes p : listaPersonajes) {
+                System.out.printf("| %-3d | %-30s | %-5d | %-10s | %-8d | %-8d | %-7d | %-7d |\n",
+                        p.getId(),
+                        p.getNombre(),
+                        p.getNivel(),
+                        p.getRaza().getNombre(),
+                        p.getVida_actual(),
+                        p.getOro(),
+                        p.getFuerzaTotal(),
+                        p.getDefensaTotal()
+                );
+            }
+        }
+
+        System.out.println("==========================================================================================================");
+        System.out.println(" TOTAL DE AVENTUREROS: " + listaPersonajes.size());
+        System.out.println("==========================================================================================================\n");
+    }
+
+    // relacionados con el combate
+    /* este es para el encabezado del combate */
+
+    public void mensajeTurno(String nombre) {
+        System.out.println("\n---------------------------------------------------------");
+        System.out.println(" ⚔️  ES EL TURNO DE: " + nombre.toUpperCase());
+        System.out.println("---------------------------------------------------------");
+    }
+    // esta va a devolver el id de la habilidad que escoge el personaje
+    public int elegirHabilidadCombate(Personajes p, Map<Habilidades, Integer> usosRestantes) {
+        System.out.println("Selecciona tu acción:");
+        System.out.println("0. 👊 Ataque Básico (Sin límite de usos)");
+
+        // Listamos las habilidades equipadas del personaje
+        // El mapa habilidadesEquipadas contiene <Habilidad, Boolean>
+        for (Map.Entry<Habilidades, Boolean> entrada : p.getHabilidadesEquipadas().entrySet()) {
+            Habilidades hab = entrada.getKey();
+            boolean estaEquipada = entrada.getValue();
+
+            // Solo mostramos las que están marcadas como equipadas
+            if (estaEquipada) {
+                int usosActuales = usosRestantes.get(hab);
+                System.out.printf("%d. %-20s (Usos: %d/%d) [Daño Base: %d]\n",
+                        hab.getId(),
+                        hab.getNombre(),
+                        usosActuales,
+                        hab.getUsosMaximos(),
+                        hab.getDanioBase());
+            }
+        }
+
+        System.out.print("\nIntroduce el ID de la habilidad: ");
+        // Capturamos el ID que el usuario escribe
+        int idSeleccionado = sc.nextInt();
+
+        return idSeleccionado;
+    }
+    // mensaje de daño por una habilidad
+    public void mensajeAtaqueHabilidad(String nombreHab, int dano) {
+        System.out.println("\n   ✨ ¡" + nombreHab.toUpperCase() + "!");
+        System.out.println("   💥 El impacto causa " + dano + " puntos de daño.");
+        System.out.println("---------------------------------------------------------");
+    }
+    // mensaje de daño por un ataque basico
+    public void mensajeAtaqueBasico(int dano) {
+        System.out.println("\n   ⚔️  ¡ATAQUE FÍSICO!");
+        System.out.println("   🤜 Golpeas al enemigo causando " + dano + " puntos de daño.");
+        System.out.println("---------------------------------------------------------");
+    }
+    // mensaje de vida de los personajes
+    public void mostrarVida(Personajes p1, Personajes p2) {
+        System.out.println("\n         ❤️  ESTADO DE SALUD ❤️");
+        System.out.println("---------------------------------------------------------");
+
+        // usamos un operador ternario para que la vida no baje de 0 visualmente
+        int vidaP1 = Math.max(0, p1.getVida_actual());
+        int vidaP2 = Math.max(0, p2.getVida_actual());
+
+        System.out.printf("| %-20s | HP: %4d puntos |\n", p1.getNombre(), vidaP1);
+        System.out.printf("| %-20s | HP: %4d puntos |\n", p2.getNombre(), vidaP2);
+        System.out.println("---------------------------------------------------------\n");
+    }
+    // mensaje para el ganador y perdedor del combate que muestra el oro que roba
+    public void mensajeFinCombate(Personajes ganador, int oroRobado) {
+        System.out.println("\n*********************************************************");
+        System.out.println("             🏆 ¡VICTORIA FINAL! 🏆");
+        System.out.println("*********************************************************");
+        System.out.println("   EL GANADOR ES: " + ganador.getNombre().toUpperCase());
+        System.out.println("   CLASE: " + ganador.getClase().getNombre());
+        System.out.println("   NIVEL: " + ganador.getNivel());
+        System.out.println("---------------------------------------------------------");
+        System.out.println("   💰 BOTÍN DE GUERRA: " + oroRobado + " monedas de oro.");
+        System.out.println("   El oro ha sido transferido y guardado con éxito.");
+        System.out.println("*********************************************************\n");
     }
 }

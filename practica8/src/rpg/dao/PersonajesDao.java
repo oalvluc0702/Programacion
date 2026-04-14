@@ -6,6 +6,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class PersonajesDao {
     private List<Personajes> listaPersonajes;
@@ -54,6 +55,10 @@ public class PersonajesDao {
                 // Rellenamos mapas internos
                 p.setInventario(itemsDao.getInventario(p.getId(), itemsDao.getListaItems()));
                 p.setHabilidadesEquipadas(habilidadDao.getHabilidadesPersonaje(habilidadDao.getListaHabilidades(), p.getId()));
+                p.añadirHabilidadesDeRaza();
+                //realizo esto para actualizar la lista de habilidades por raza
+                //si se ha añadido una habilidad nueva se añade automaticamente en la carga
+                insertPersonajeHabilidad(p);
 
                 this.listaPersonajes.add(p);
             }
@@ -164,21 +169,29 @@ public class PersonajesDao {
             System.out.println("No se ha podido crear un personaje");
         }
     }
-    public void insertPersonajeHabilidad(Personajes personaje){
-        String sql = "INSERT INTO PERSONAJES_HABILIDADES (ID_PERSONAJE,ID_HABILIDAD,EQUIPADA_COMBATE) VALUES (?,?,?)";
-        int idPersonaje = personaje.getId();
-        for (Habilidades habilidad : personaje.getHabilidadesEquipadas().keySet()){
-            try (Connection connection = Conexion.getConexion();
-                 PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-                preparedStatement.setInt(1,idPersonaje);
-                preparedStatement.setInt(2,habilidad.getId());
-                preparedStatement.setBoolean(3,personaje.getHabilidadesEquipadas().get(habilidad));
-                preparedStatement.executeUpdate();
-            } catch (SQLException e){
-                System.out.println(e.getMessage());
-            }
-        }
+    public void insertPersonajeHabilidad(Personajes personaje) {
+        String sqlDelete = "DELETE FROM PERSONAJES_HABILIDADES WHERE ID_PERSONAJE = ?";
+        String sqlInsert = "INSERT INTO PERSONAJES_HABILIDADES (ID_PERSONAJE, ID_HABILIDAD, EQUIPADA_COMBATE) VALUES (?, ?, ?)";
 
+        try (Connection connection = Conexion.getConexion()) {
+            // 1. Borramos lo que hubiera antes para este personaje
+            try (PreparedStatement deleteStmt = connection.prepareStatement(sqlDelete)) {
+                deleteStmt.setInt(1, personaje.getId());
+                deleteStmt.executeUpdate();
+            }
+
+            // 2. Insertamos el estado actual del mapa
+            try (PreparedStatement insertStmt = connection.prepareStatement(sqlInsert)) {
+                for (Map.Entry<Habilidades, Boolean> entrada : personaje.getHabilidadesEquipadas().entrySet()) {
+                    insertStmt.setInt(1, personaje.getId());
+                    insertStmt.setInt(2, entrada.getKey().getId());
+                    insertStmt.setBoolean(3, entrada.getValue());
+                    insertStmt.executeUpdate();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar habilidades: " + e.getMessage());
+        }
     }
     public void updateCiudad(Integer idCiudad, int idPersonaje) {
         String sql = "UPDATE PERSONAJES SET ID_CIUDAD_ACTUAL = ? WHERE ID = ?";
@@ -192,6 +205,33 @@ public class PersonajesDao {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }
+
+    }
+    public void updateEstadoHabilidad(int idPersonaje, int idHabilidad, boolean nuevoEstado) {
+        String sql = "UPDATE PERSONAJES_HABILIDADES SET EQUIPADA_COMBATE = ? " +
+                "WHERE ID_PERSONAJE = ? AND ID_HABILIDAD = ?";
+
+        try (Connection connection = Conexion.getConexion();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            // 1. El nuevo valor de EQUIPADA_COMBATE (true o false)
+            preparedStatement.setBoolean(1, nuevoEstado);
+
+            // 2. Filtramos por el personaje y la habilidad específica
+            preparedStatement.setInt(2, idPersonaje);
+            preparedStatement.setInt(3, idHabilidad);
+
+            int filasAfectadas = preparedStatement.executeUpdate();
+
+            if (filasAfectadas > 0) {
+                System.out.println("Estado de la habilidad actualizado en la BBDD.");
+            } else {
+                System.out.println("No se encontró la relación para actualizar.");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar estado de habilidad: " + e.getMessage());
         }
     }
 }

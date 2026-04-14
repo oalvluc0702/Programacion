@@ -1,5 +1,6 @@
 package rpg.logic;
 import rpg.dao.*;
+import rpg.exception.LimiteHabilidadesException;
 import rpg.exception.NivelInsuficienteException;
 import rpg.model.*;
 import rpg.ui.Vista;
@@ -58,7 +59,7 @@ public class GestionMundo {
                 if (item != null) {
                     try {
                         if (pSel.getOro() < item.getPrecioOro()) {
-                            throw new FondosInsuficientesException("Oro insuficiente");
+                            throw new FondosInsuficientesException("Oro insuficiente para comprar: " + item.getNombre()+ " al heroe: "+ pSel.getNombre()+" le faltan: "+ (item.getPrecioOro()-pSel.getOro())+ " G");
                         }
 
                         // le resta el oro de la compra
@@ -82,6 +83,7 @@ public class GestionMundo {
                         LoggerCustom.log("[ "+ LocalDateTime.now() + " ]" + "INFO: "+ mensajeLog);
 
                     } catch (FondosInsuficientesException e) {
+                        LoggerCustom.log("[ "+ LocalDateTime.now() + " ]" + "ERROR: "+ e.getMessage());
                         vista.mostrarMensaje(e.getMessage());
                     }
                 }
@@ -144,6 +146,7 @@ public class GestionMundo {
                 throw new NivelInsuficienteException("El nivel no es suficiente, tu nivel es: "+psel.getNivel()+" y se requiere: "+ciudad.getNivelMinimoAcceso());
             }
         } catch (NivelInsuficienteException e) {
+            LoggerCustom.log("[ "+ LocalDateTime.now() + " ]" + "ERROR: "+ e.getMessage());
             System.out.println(e.getMessage());
         }
     }
@@ -193,12 +196,43 @@ public class GestionMundo {
         vista.mostrarJugadoresRicos(personajesRicos);
     }
     public void gestionarHabilidadesYCombate(){
-        int opcion = vista.mostrarMenuCombate();
-        switch (opcion){
-            case 1 -> censo();
-            case 2 -> top3JugadoresMasRicos();
-            case 0 -> vista.mostrarMensaje("Saliendo del centro de estadísticas");
-            default -> vista.mostrarMensaje("Opción no válida");
-        }
+        int opcion;
+
+        do {
+            opcion = vista.mostrarMenuCombate();
+            switch (opcion){
+                case 1 -> organizarHabilidades();
+                case 2 -> organizarCombate();
+                case 0 -> vista.mostrarMensaje("Volviendo al menú anterior");
+                default -> vista.mostrarMensaje("Opción no válida");
+            }
+        } while (opcion!=0);
+
+    }
+    public void organizarHabilidades(){
+        vista.mostrarListaPersonajes(personajesDao.getListaPersonajes());
+        int idPersonaje = vista.pedirIdPersonaje();
+        Personajes pSel = personajesDao.buscarPorId(idPersonaje);
+        int opcion;
+
+        do {
+            vista.mostrarHabilidadesPersonaje(pSel);
+            opcion = vista.pedirIdHabilidad();
+            if (opcion != 0){
+                try{
+                    pSel.equiparDesequiparHabilidad(habilidadDao.buscarPorId(opcion),personajesDao);
+                } catch (LimiteHabilidadesException e){
+                    LoggerCustom.log("[ "+ LocalDateTime.now() + " ]" + "ERROR: "+ e.getMessage());
+                }
+            }
+        } while (opcion != 0);
+    }
+    public void organizarCombate(){
+        vista.mostrarListaPersonajes(personajesDao.getListaPersonajes());
+        int idPersonaje1 = vista.pedirIdPersonaje();
+        int idPersonaje2 = vista.pedirIdPersonaje();
+        Personajes personaje1 = personajesDao.buscarPorId(idPersonaje1);
+        Personajes personaje2 = personajesDao.buscarPorId(idPersonaje2);
+        MotorCombate combate = new MotorCombate(personaje1,personaje2,vista,personajesDao,habilidadDao);
     }
 }

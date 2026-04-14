@@ -3,3 +3,9 @@
 [ 2026-04-12T19:24:43.237042822 ]INFO: Personaje 'Dani' creado con éxito (ID: 7)
 [ 2026-04-13T13:13:58.032091668 ]INFO: Personaje 'marito' creado con éxito (ID: 5)
 [ 2026-04-13T13:23:51.145318378 ]INFO: El heroe: Mario ha comprado Espada de Madera por una cantidad de: 50 G
+[ 2026-04-14T17:53:02.544862192 ]ERROR: No puedes equipar más de 3 habilidades.
+[ 2026-04-14T19:27:10.679784331 ]ERROR: No puedes equipar más de 3 habilidades.
+[ 2026-04-14T19:27:52.581669199 ]ERROR: No puedes equipar más de 3 habilidades.
+[ 2026-04-14T19:28:39.849069615 ]INFO: el combate entre Óscar y Eldara Sabia se está dando lugar
+[ 2026-04-14T19:29:26.019723428 ]INFO: ha ganado: Personajes{id=3, nombre='Óscar', nivel=1, oro=226, vida_actual=80, raza=Razas{id=2, nombre='Orco', bonificadorVida=25, bonificadorFuerza=10}, clase=Clase: Paladin | Habilidades: 4, ciudad=Ciudades{id=1, nombre='Villa Inicio', nivelMinimoAcceso=1}, inventario={}, habilidadesEquipadas={Habilidades{id=12, nombre='Luz Cegadora', danioBase=25, usosMaximos=4, id_clase=4}=true, Habilidades{id=10, nombre='Castigo Divino', danioBase=30, usosMaximos=5, id_clase=4}=true, Habilidades{id=11, nombre='Golpe de Escudo', danioBase=20, usosMaximos=6, id_clase=4}=false, Habilidades{id=14, nombre='Que dios te bendiga', danioBase=80, usosMaximos=1, id_clase=4}=true}} y ha robado 146 G
+[ 2026-04-14T19:43:09.782054759 ]ERROR: No puedes equipar más de 3 habilidades.
