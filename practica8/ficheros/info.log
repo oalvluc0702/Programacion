@@ -9,3 +9,5 @@
 [ 2026-04-14T19:28:39.849069615 ]INFO: el combate entre Óscar y Eldara Sabia se está dando lugar
 [ 2026-04-14T19:29:26.019723428 ]INFO: ha ganado: Personajes{id=3, nombre='Óscar', nivel=1, oro=226, vida_actual=80, raza=Razas{id=2, nombre='Orco', bonificadorVida=25, bonificadorFuerza=10}, clase=Clase: Paladin | Habilidades: 4, ciudad=Ciudades{id=1, nombre='Villa Inicio', nivelMinimoAcceso=1}, inventario={}, habilidadesEquipadas={Habilidades{id=12, nombre='Luz Cegadora', danioBase=25, usosMaximos=4, id_clase=4}=true, Habilidades{id=10, nombre='Castigo Divino', danioBase=30, usosMaximos=5, id_clase=4}=true, Habilidades{id=11, nombre='Golpe de Escudo', danioBase=20, usosMaximos=6, id_clase=4}=false, Habilidades{id=14, nombre='Que dios te bendiga', danioBase=80, usosMaximos=1, id_clase=4}=true}} y ha robado 146 G
 [ 2026-04-14T19:43:09.782054759 ]ERROR: No puedes equipar más de 3 habilidades.
+[ 2026-04-15T10:10:18.378965507 ]INFO: el combate entre Eldara Sabia y Grog el Destructor se está dando lugar
+[ 2026-04-15T10:11:13.881374852 ]INFO: ha ganado: Grog el Destructor y ha robado 156 G
