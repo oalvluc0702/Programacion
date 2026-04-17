@@ -30,7 +30,11 @@ public class Personajes {
         this.ciudad = ciudad;
         this.nivel = 1;
         restablecerVida();
-        this.oro = 100;
+        if (this.ciudad.getNivelMinimoAcceso() == 1){
+            this.oro = 100;
+        } else{
+            this.oro = 500;
+        }
         inventario = new HashMap<>();
         habilidadesEquipadas = new HashMap<>();
         añadirHabilidadesDeRaza();
@@ -199,6 +203,21 @@ public class Personajes {
     public void restablecerVida() {
         // Esta es la fórmula que usas en tu constructor
         this.vida_actual = 100 + this.raza.getBonificadorVida();
+    }
+    public int contarHabilidadesEquipadas(){
+        int contador = 0;
+        for (Habilidades habilidades : habilidadesEquipadas.keySet()){
+            if (habilidadesEquipadas.get(habilidades)) contador++;
+        }
+        return contador;
+    }
+    public int contarObjetos(){
+        int contador = 0;
+        for (Items item : inventario.keySet()){
+            int cantidad = inventario.get(item);
+            contador += cantidad;
+        }
+        return contador;
     }
     @Override
     public String toString() {

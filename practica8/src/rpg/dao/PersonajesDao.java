@@ -121,20 +121,27 @@ public class PersonajesDao {
     }
     public void insertPersonaje(String nombre, int idRaza, int idClase, RazasDao rDao, ClasesRPGDao clasDao, CiudadesDao cDao) {
         // Definimos la SQL. Omitimos ID (es SERIAL) y usamos valores por defecto para nivel, oro y ciudad inicial (id 1)
-        String sql = "INSERT INTO Personajes (nombre, id_raza, id_clase, id_ciudad_actual, nivel, oro, vida_actual) VALUES (?, ?, ?, 1, 1, 100, ?)";
+        String sql = "INSERT INTO Personajes (nombre, id_raza, id_clase, id_ciudad_actual, nivel, oro, vida_actual) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         // Obtenemos los objetos necesarios para calcular la vida inicial y para el objeto Java
         Razas raza = rDao.buscarPorId(idRaza);
         ClasesRPG clase = clasDao.buscarPorId(idClase);
         // Le ponemos la primera ciudad por que su nivel nos permite insertarlo por defecto
-        Ciudades ciudadInicio = cDao.buscarPorId(1);
+        Ciudades ciudadInicio = cDao.buscarPorId(2);
 
         if (raza == null || clase == null) {
             System.out.println("Error: Raza o Clase no válidas.");
             return;
         }
-
+        int idCiudadActual = ciudadInicio.getId();
         int vidaInicial = 100 + raza.getBonificadorVida();
+        int oroActual = 0;
+        int nivelActual = ciudadInicio.getNivelMinimoAcceso();
+        if (ciudadInicio.getNivelMinimoAcceso() == 1){
+            oroActual = 100;
+         } else {
+            oroActual = 500;
+        }
 
         // Usamos RETURN_GENERATED_KEYS para obtener el ID que asigne PostgreSQL automáticamente
         try (Connection conexion = Conexion.getConexion();
@@ -143,7 +150,10 @@ public class PersonajesDao {
             ps.setString(1, nombre);
             ps.setInt(2, idRaza);
             ps.setInt(3, idClase);
-            ps.setInt(4, vidaInicial);
+            ps.setInt(4, idCiudadActual);
+            ps.setInt(5, nivelActual);
+            ps.setInt(6, oroActual);
+            ps.setInt(7,vidaInicial);
 
             int filasAfectadas = ps.executeUpdate();
 
@@ -232,6 +242,20 @@ public class PersonajesDao {
 
         } catch (SQLException e) {
             System.err.println("Error al actualizar estado de habilidad: " + e.getMessage());
+        }
+    }
+    public void updateClase(int idPersonaje, Integer idClase){
+        String sql = "UPDATE PERSONAJES SET ID_Clase = ? WHERE ID = ?";
+        try (Connection connection = Conexion.getConexion();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            // setObject maneja automáticamente si el Integer es un número o un null
+            preparedStatement.setObject(1, idClase);
+            preparedStatement.setInt(2, idPersonaje);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

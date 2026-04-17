@@ -235,4 +235,29 @@ public class GestionMundo {
         Personajes personaje2 = personajesDao.buscarPorId(idPersonaje2);
         MotorCombate combate = new MotorCombate(personaje1,personaje2,vista,personajesDao,habilidadDao);
     }
+    public void  procesarRitual(List<Personajes> expedicion, int idClaseEvolucionada){
+        Iterator<Personajes> personajesIterator = expedicion.iterator();
+        while (personajesIterator.hasNext()){
+            Personajes personaje = personajesIterator.next();
+            if(personaje.contarHabilidadesEquipadas() == 3){
+
+                if (personaje.contarObjetos() > 5){
+                    // ejecuta la evolucion
+                    ejecutarEvolucion(personaje,idClaseEvolucionada);
+                } else {
+                    if (personaje.getVida_actual() < personaje.getRaza().getBonificadorVida() * 0.1){
+                        personajesDao.updateCiudad(null,personaje.getId());
+                        //desterrar
+                        personajesIterator.remove();
+                    }
+                }
+            }
+        }
+    }
+    public void ejecutarEvolucion(Personajes personaje, int idClaseEvolucionada){
+        personaje.setClase(clasesRPGDao.buscarPorId(idClaseEvolucionada));
+        personaje.disminuirOro(50);
+        personajesDao.updateOro(personaje.getId(),personaje.getOro());
+        personajesDao.updateClase(personaje.getId(),idClaseEvolucionada);
+    }
 }

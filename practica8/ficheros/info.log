@@ -13,3 +13,9 @@
 [ 2026-04-15T10:11:13.881374852 ]INFO: ha ganado: Grog el Destructor y ha robado 156 G
 [ 2026-04-15T10:15:33.447170523 ]INFO: el combate entre Grog el Destructor y Eldara Sabia se está dando lugar
 [ 2026-04-15T10:15:46.577068252 ]INFO: ha ganado: Grog el Destructor y ha robado 124 G
+[ 2026-04-15T14:00:40.665902384 ]INFO: El heroe: Grog el Destructor ha comprado Espada de Madera por una cantidad de: 50 G
+[ 2026-04-15T14:03:58.484999388 ]INFO: el combate entre Mario y Grog el Destructor se está dando lugar
+[ 2026-04-15T14:04:32.144197316 ]INFO: ha ganado: Grog el Destructor y ha robado 6 G
+[ 2026-04-17T08:24:59.942098356 ]ERROR: El nivel no es suficiente, tu nivel es: 3 y se requiere: 5
+[ 2026-04-17T08:54:00.768481977 ]INFO: Personaje 'pruebaOro' creado con éxito (ID: 6)
+[ 2026-04-17T09:03:07.139100233 ]INFO: Personaje 'pruebaOro2' creado con éxito (ID: 7)
